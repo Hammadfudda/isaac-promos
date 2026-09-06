@@ -19,6 +19,7 @@ const columns: {
       },
       { label: "Workwear", to: "/products/$category", params: { category: "workwear" } },
       { label: "Garment Labels", to: "/products/$category", params: { category: "garment-labels" } },
+      { label: "Custom Notebooks", to: "/products/$category/$product", params: { category: "promotional-items", product: "custom-notebook" } },
       { label: "All Products", to: "/products" },
     ],
   },
@@ -57,19 +58,19 @@ export function SiteFooter() {
         <div className="grid gap-12 lg:grid-cols-[1.1fr_2fr]">
           <div className="min-w-0">
             <Link to="/" className="inline-flex items-center gap-3" aria-label="Izaac Promos home">
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-sm bg-background">
+              <span className="flex h-20 w-20 shrink-0 items-center justify-center rounded-sm bg-background">
                 <img
                   src="/isaac-promos-logo.png"
                   alt="Izaac Promos"
                   width={48}
                   height={48}
                   loading="lazy"
-                  className="h-12 w-12 object-contain"
+                  className="h-18 w-18 object-contain"
                 />
               </span>
 
               <span className="font-display text-lg font-bold tracking-tight">
-                ISAAC<span className="text-primary"> PROMOS</span>
+                IZAAC<span className="text-primary"> PROMOS</span>
               </span>
             </Link>
 

@@ -80,13 +80,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Isaac Promos | Custom Bulk Merchandise for US Businesses" },
+      { title: "Izaac Promos | Custom Bulk Merchandise for US Businesses" },
       {
         name: "description",
         content:
-          "Isaac Promos helps US businesses, schools and organizations source, customize and order custom apparel, drinkware, patches, workwear and promotional products in bulk.",
+          "Izaac Promos helps US businesses, schools and organizations source, customize and order custom apparel, drinkware, patches, workwear and promotional products in bulk.",
       },
-      { property: "og:site_name", content: "Isaac Promos" },
+      { property: "og:site_name", content: "Izaac Promos" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -106,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "Isaac Promos",
+          name: "Izaac Promos",
           description:
             "Custom merchandise and bulk order solutions for businesses, schools and organizations in the United States.",
           areaServed: "US",

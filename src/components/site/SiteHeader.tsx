@@ -40,7 +40,7 @@ const megaMenu: {
       { name: "Custom Keychains", slug: "custom-keychains" },
       { name: "Custom Lanyards", slug: "custom-lanyards" },
       { name: "Custom Stress Balls with Logo", slug: "custom-stress-balls" },
-      { name: "Custom Notebook", slug: "custom-notebook" },
+      { name: "Custom Notebooks", slug: "custom-notebook" },
       { name: "Small Giveaway Items", slug: "small-giveaway-items", comingSoon: true },
     ],
   },
@@ -154,10 +154,10 @@ export function SiteHeader() {
                 alt="Izaac Promos"
                 width={52}
                 height={52}
-                className="h-11 w-11 shrink-0 object-contain sm:h-12 sm:w-12"
+                className="h-14 w-14 shrink-0 object-contain sm:h-16 sm:w-16"
               />
               <span className="hidden truncate font-display text-base font-bold leading-none tracking-tight sm:block sm:text-lg">
-                ISAAC<span className="text-primary"> PROMOS</span>
+                IZAAC<span className="text-primary"> PROMOS</span>
               </span>
             </Link>
 
@@ -302,10 +302,10 @@ export function SiteHeader() {
                   alt="Izaac Promos"
                   width={48}
                   height={48}
-                  className="h-10 w-10 shrink-0 object-contain"
+                  className="h-13 w-13 shrink-0 object-contain"
                 />
                 <span className="font-display text-base font-bold tracking-tight">
-                  ISAAC<span className="text-primary"> PROMOS</span>
+                  IZAAC<span className="text-primary"> PROMOS</span>
                 </span>
               </Link>
 
