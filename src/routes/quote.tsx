@@ -14,12 +14,6 @@ export const Route = createFileRoute("/quote")({
         content:
           "Request pricing for custom bulk merchandise. Tell us the product, quantity, branding preference, timeline and contact details.",
       },
-      { property: "og:title", content: "Request a Quote | Isaac Promos" },
-      {
-        property: "og:description",
-        content:
-          "Tell us what you are sourcing and we will help structure the order around your actual requirements.",
-      },
     ],
   }),
   component: QuotePage,
@@ -78,29 +72,28 @@ function QuotePage() {
 
   if (submitted) {
     return (
-      <div>
+      <>
         <PageHeader
           eyebrow="Quote request"
           title="Request details captured"
           lead="Your information is ready for review."
         />
+
         <Section>
-          <div className="mx-auto max-w-xl rounded-sm border border-border bg-surface p-8 text-center">
+          <div className="mx-auto max-w-xl rounded-sm border border-border bg-surface p-6 text-center sm:p-8">
             <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
             <h2 className="mt-5 text-2xl">What happens next</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              The current frontend records the completed form state only. Connect this form
-              to your email or backend before launch so real requests are delivered to the
-              team.
+              The current frontend captures the form state only. Connect this form to your email or backend before launch so real requests are delivered to the team.
             </p>
           </div>
         </Section>
-      </div>
+      </>
     );
   }
 
   return (
-    <div>
+    <>
       <PageHeader
         eyebrow="Request a quote"
         title="Tell us what you are trying to order"
@@ -109,8 +102,8 @@ function QuotePage() {
       />
 
       <Section>
-        <div className="mx-auto max-w-3xl">
-          <ol className="grid grid-cols-4 gap-2" aria-label="Progress">
+        <div className="mx-auto max-w-3xl min-w-0">
+          <ol className="grid grid-cols-4 gap-1.5 sm:gap-2" aria-label="Progress">
             {steps.map((label, i) => (
               <li key={label} className="flex min-w-0 flex-col gap-2">
                 <span
@@ -123,9 +116,10 @@ function QuotePage() {
                 >
                   {i + 1}
                 </span>
+
                 <span
                   className={cn(
-                    "truncate text-[0.65rem] font-semibold uppercase tracking-wide sm:text-xs",
+                    "text-[0.58rem] font-semibold uppercase leading-tight tracking-wide sm:text-xs",
                     i <= step ? "text-foreground" : "text-muted-foreground",
                   )}
                 >
@@ -136,7 +130,7 @@ function QuotePage() {
           </ol>
 
           <form
-            className="mt-8 rounded-sm border border-border bg-surface p-6 sm:p-8"
+            className="mt-7 rounded-sm border border-border bg-surface p-4 sm:mt-8 sm:p-8"
             onSubmit={(e) => {
               e.preventDefault();
 
@@ -153,9 +147,9 @@ function QuotePage() {
                   <span className="mb-2 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                     What do you need?
                   </span>
+
                   <p className="mb-4 text-sm text-muted-foreground">
-                    Choose one category. If your project includes several product types,
-                    list the others in Product Details or Notes.
+                    Choose one category. If your project includes several product types, list the others in Product Details or Notes.
                   </p>
 
                   <div className="grid gap-2 sm:grid-cols-2">
@@ -168,7 +162,7 @@ function QuotePage() {
                           type="button"
                           onClick={() => set("category", cat.slug)}
                           className={cn(
-                            "relative rounded-sm border p-4 text-left transition-colors",
+                            "relative min-w-0 rounded-sm border p-4 text-left transition-colors",
                             selected
                               ? "border-primary bg-background font-semibold"
                               : "border-border bg-background hover:border-foreground/40",
@@ -180,9 +174,11 @@ function QuotePage() {
                               <Check className="h-3 w-3" />
                             </span>
                           ) : null}
+
                           <span className="block pr-7 font-display text-sm font-semibold">
                             {cat.name}
                           </span>
+
                           <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
                             {cat.tagline}
                           </span>
@@ -207,8 +203,7 @@ function QuotePage() {
                 <div className="flex gap-3 rounded-sm border border-border bg-background p-4">
                   <Info className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                   <p className="text-xs leading-relaxed text-muted-foreground">
-                    No exact product picked yet? That's okay. Tell us the goal and we'll
-                    help you narrow it down.
+                    No exact product picked yet? That is okay. Tell us the goal and we will help you narrow it down.
                   </p>
                 </div>
               </div>
@@ -217,7 +212,7 @@ function QuotePage() {
             {step === 1 ? (
               <div className="space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <label className="block">
+                  <label className="block min-w-0">
                     <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                       Approximate quantity
                     </span>
@@ -230,7 +225,7 @@ function QuotePage() {
                     />
                   </label>
 
-                  <label className="block">
+                  <label className="block min-w-0">
                     <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                       Budget range, optional
                     </span>
@@ -250,7 +245,7 @@ function QuotePage() {
                 </div>
 
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <label className="block">
+                  <label className="block min-w-0">
                     <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                       Need-by date
                     </span>
@@ -262,7 +257,7 @@ function QuotePage() {
                     />
                   </label>
 
-                  <label className="block">
+                  <label className="block min-w-0">
                     <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                       Purpose or event
                     </span>
@@ -301,37 +296,30 @@ function QuotePage() {
                   <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                     Logo or artwork
                   </span>
-                  <div className="rounded-sm border border-dashed border-border bg-background p-5">
-                    <div className="flex items-center gap-3">
-                      <Upload className="h-5 w-5 text-primary" />
+
+                  <div className="rounded-sm border border-dashed border-border bg-background p-4 sm:p-5">
+                    <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
+                      <Upload className="h-5 w-5 shrink-0 text-primary" />
                       <input
                         type="file"
                         accept=".png,.jpg,.jpeg,.pdf,.svg,.eps,.ai"
                         onChange={(e) => set("artworkName", e.target.files?.[0]?.name ?? "")}
-                        className="block w-full text-sm text-muted-foreground file:mr-3 file:border-0 file:bg-transparent file:font-semibold file:text-foreground"
+                        className="block min-w-0 w-full text-sm text-muted-foreground file:mr-3 file:border-0 file:bg-transparent file:font-semibold file:text-foreground"
                       />
                     </div>
+
                     <p className="mt-3 text-xs text-muted-foreground">
-                      Preferred files include AI, EPS, PDF or SVG. High-resolution PNG is
-                      usually workable.
+                      Preferred files include AI, EPS, PDF or SVG. High-resolution PNG is usually workable.
                     </p>
                   </div>
                 </label>
-
-                <div className="flex gap-3 rounded-sm border border-border bg-background p-4">
-                  <Info className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <p className="text-xs leading-relaxed text-muted-foreground">
-                    The file picker is ready in the UI. A real upload destination still
-                    needs to be connected before launch.
-                  </p>
-                </div>
               </div>
             ) : null}
 
             {step === 3 ? (
               <div className="space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <label className="block">
+                  <label className="block min-w-0">
                     <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                       Name
                     </span>
@@ -344,7 +332,7 @@ function QuotePage() {
                     />
                   </label>
 
-                  <label className="block">
+                  <label className="block min-w-0">
                     <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                       Work email
                     </span>
@@ -360,7 +348,7 @@ function QuotePage() {
                 </div>
 
                 <div className="grid gap-5 sm:grid-cols-2">
-                  <label className="block">
+                  <label className="block min-w-0">
                     <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                       Company / organization
                     </span>
@@ -372,7 +360,7 @@ function QuotePage() {
                     />
                   </label>
 
-                  <label className="block">
+                  <label className="block min-w-0">
                     <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                       Phone, optional
                     </span>
@@ -411,12 +399,13 @@ function QuotePage() {
               </div>
             ) : null}
 
-            <div className="mt-8 flex items-center justify-between gap-3">
+            <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
               {step > 0 ? (
                 <ButtonAction
                   type="button"
                   variant="ghost"
                   onClick={() => setStep(step - 1)}
+                  className="w-full sm:w-auto"
                 >
                   <ArrowLeft className="h-4 w-4" /> Back
                 </ButtonAction>
@@ -424,7 +413,12 @@ function QuotePage() {
                 <span />
               )}
 
-              <ButtonAction type="submit" size="lg" disabled={!canContinue}>
+              <ButtonAction
+                type="submit"
+                size="lg"
+                disabled={!canContinue}
+                className="w-full sm:w-auto"
+              >
                 {step < steps.length - 1 ? (
                   <>
                     Continue <ArrowRight className="h-4 w-4" />
@@ -435,13 +429,8 @@ function QuotePage() {
               </ButtonAction>
             </div>
           </form>
-
-          <p className="mt-4 text-center text-xs text-muted-foreground">
-            No exact product picked yet? That's okay. Tell us the goal and we'll help you
-            narrow it down.
-          </p>
         </div>
       </Section>
-    </div>
+    </>
   );
 }

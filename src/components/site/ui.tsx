@@ -12,7 +12,7 @@ type ActionProps = {
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-sm font-display font-semibold tracking-tight transition-all duration-200 active:translate-y-px disabled:opacity-60";
+  "inline-flex max-w-full items-center justify-center gap-2 rounded-sm font-display font-semibold tracking-tight transition-all duration-200 active:translate-y-px disabled:opacity-60";
 
 const variants = {
   primary:
@@ -24,8 +24,8 @@ const variants = {
 };
 
 const sizes = {
-  md: "h-10 px-4 text-sm",
-  lg: "h-12 px-6 text-[0.95rem]",
+  md: "min-h-10 px-4 py-2 text-sm",
+  lg: "min-h-12 px-5 py-3 text-[0.95rem] sm:px-6",
 };
 
 export function Action({
@@ -83,8 +83,9 @@ export function Section({
     surface: "bg-surface",
     ink: "bg-ink text-ink-foreground",
   };
+
   return (
-    <section id={id} className={cn("py-16 lg:py-24", tones[tone], className)}>
+    <section id={id} className={cn("py-12 sm:py-16 lg:py-24", tones[tone], className)}>
       <div className="container-x">{children}</div>
     </section>
   );
@@ -106,23 +107,25 @@ export function SectionHead({
   return (
     <div
       className={cn(
-        "max-w-3xl",
+        "min-w-0 max-w-3xl",
         align === "center" && "mx-auto text-center",
       )}
     >
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+
       <h2
         className={cn(
-          "mt-3 text-3xl leading-[1.1] sm:text-4xl lg:text-[2.75rem]",
+          "mt-3 text-2xl leading-[1.12] sm:text-4xl lg:text-[2.75rem]",
           invert && "text-ink-foreground",
         )}
       >
         {title}
       </h2>
+
       {lead ? (
         <p
           className={cn(
-            "mt-4 text-base leading-relaxed",
+            "mt-4 text-sm leading-relaxed sm:text-base",
             invert ? "text-ink-foreground/70" : "text-muted-foreground",
           )}
         >
@@ -145,15 +148,18 @@ export function PageHeader({
   crumbs?: { label: string; to?: string; params?: Record<string, string> }[];
 }) {
   return (
-    <header className="border-b border-border bg-surface">
-      <div className="container-x py-12 lg:py-20">
+    <header className="w-full border-b border-border bg-surface">
+      <div className="container-x py-9 sm:py-12 lg:py-20">
         {crumbs ? <Breadcrumbs items={crumbs} /> : null}
-        {eyebrow ? <p className="eyebrow mt-6">{eyebrow}</p> : null}
-        <h1 className="mt-3 max-w-4xl text-4xl leading-[1.05] sm:text-5xl lg:text-6xl">
+
+        {eyebrow ? <p className="eyebrow mt-5 sm:mt-6">{eyebrow}</p> : null}
+
+        <h1 className="mt-3 max-w-4xl text-3xl leading-[1.07] sm:text-5xl lg:text-6xl">
           {title}
         </h1>
+
         {lead ? (
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg">
             {lead}
           </p>
         ) : null}
@@ -168,10 +174,10 @@ export function Breadcrumbs({
   items: { label: string; to?: string; params?: Record<string, string> }[];
 }) {
   return (
-    <nav aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+    <nav aria-label="Breadcrumb" className="min-w-0">
+      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
         {items.map((item, i) => (
-          <li key={item.label} className="flex items-center gap-2">
+          <li key={`${item.label}-${i}`} className="flex min-w-0 items-center gap-2">
             {item.to ? (
               <Link
                 to={item.to}
@@ -183,6 +189,7 @@ export function Breadcrumbs({
             ) : (
               <span className="text-foreground">{item.label}</span>
             )}
+
             {i < items.length - 1 ? (
               <span aria-hidden="true" className="text-border">
                 /
@@ -197,7 +204,7 @@ export function Breadcrumbs({
 
 export function Tag({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-sm border border-border bg-background px-2 py-1 font-display text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+    <span className="inline-flex max-w-full items-center rounded-sm border border-border bg-background px-2 py-1 font-display text-[0.68rem] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
       {children}
     </span>
   );
@@ -252,25 +259,29 @@ export function CTABlock({
 }) {
   return (
     <section className="bg-ink text-ink-foreground">
-      <div className="container-x py-16 lg:py-20">
+      <div className="container-x py-12 sm:py-16 lg:py-20">
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
-          <div>
+          <div className="min-w-0">
             <p className="eyebrow">Next step</p>
-            <h2 className="mt-3 max-w-2xl text-3xl leading-[1.1] sm:text-4xl">
+            <h2 className="mt-3 max-w-2xl text-2xl leading-[1.1] sm:text-4xl">
               {title}
             </h2>
-            <p className="mt-4 max-w-xl text-ink-foreground/70">{body}</p>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink-foreground/70 sm:text-base">
+              {body}
+            </p>
           </div>
-          <div className="flex flex-wrap gap-3 lg:justify-end">
-            <Action to="/quote" size="lg">
+
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:justify-end">
+            <Action to="/quote" size="lg" className="w-full sm:w-auto">
               {primaryLabel}
             </Action>
+
             {secondary ? (
               <Action
                 to={secondary.to}
                 size="lg"
                 variant="outline"
-                className="border-ink-foreground/25 bg-transparent text-ink-foreground hover:border-ink-foreground hover:bg-ink-foreground/10"
+                className="w-full border-ink-foreground/25 bg-transparent text-ink-foreground hover:border-ink-foreground hover:bg-ink-foreground/10 sm:w-auto"
               >
                 {secondary.label}
               </Action>

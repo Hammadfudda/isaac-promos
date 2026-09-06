@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
-import logo from "@/assets/isaac-promos-logo.png.asset.json";
 import { Action } from "./ui";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +20,6 @@ const megaMenu: {
       { name: "Embroidered Polos", slug: "embroidered-polos" },
       { name: "DTF Polos", slug: "dtf-branded-polos" },
       { name: "Hoodies", slug: "custom-hoodies" },
-      { name: "Garment Labels", slug: "garment-labels" },
     ],
   },
   {
@@ -29,8 +27,13 @@ const megaMenu: {
     slug: "drinkware",
     items: [
       { name: "Custom Bottles", slug: "custom-bottles" },
-      { name: "Tumblers with Custom Logo", slug: "tumblers" },
+      { name: "Tumblers", slug: "tumblers" },
     ],
+  },
+  {
+    category: "Bags",
+    slug: "bags",
+    items: [{ name: "Tote Bags", slug: "tote-bags" }],
   },
   {
     category: "Promotional Items",
@@ -39,16 +42,7 @@ const megaMenu: {
       { name: "Pens", slug: "pens" },
       { name: "Keychains", slug: "keychains" },
       { name: "Custom Keychains", slug: "custom-keychains" },
-      { name: "Custom Lanyards", slug: "custom-lanyards" },
-      { name: "Custom Stress Balls", slug: "custom-stress-balls" },
-    ],
-  },
-  {
-    category: "Bags",
-    slug: "bags",
-    items: [
-      { name: "Tote Bags", slug: "tote-bags" },
-      { name: "Woven & Non-Woven Bags", slug: "woven-non-woven-bags" },
+      { name: "Custom Notebook", slug: "custom-notebook" },
     ],
   },
   {
@@ -63,19 +57,19 @@ const megaMenu: {
     ],
   },
   {
-    category: "Towels",
-    slug: "towels",
-    items: [
-      { name: "Golf Towels", slug: "golf-towels" },
-      { name: "Custom Towels", slug: "custom-towels" },
-    ],
-  },
-  {
     category: "Workwear",
     slug: "workwear",
     items: [
       { name: "FR Shirts", slug: "fr-shirts" },
       { name: "Branded Work Shirts", slug: "branded-work-shirts" },
+    ],
+  },
+  {
+    category: "Towels",
+    slug: "towels",
+    items: [
+      { name: "Golf Towels", slug: "golf-towels" },
+      { name: "Custom Towels", slug: "custom-towels" },
     ],
   },
   {
@@ -89,7 +83,6 @@ const navLinks = [
   { label: "Solutions", to: "/solutions" },
   { label: "Decoration Methods", to: "/decoration-methods" },
   { label: "How It Works", to: "/how-it-works" },
-  { label: "Our Work", to: "/our-work" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ];
@@ -107,25 +100,33 @@ export function SiteHeader() {
   }, [mobileOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/85">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90">
       <div className="container-x">
-        <div className="flex h-[72px] items-center justify-between gap-6">
-          <Link to="/" className="flex items-center gap-3" aria-label="Isaac Promos home">
+        <div className="flex min-h-[68px] items-center justify-between gap-3 sm:min-h-[72px]">
+          <Link
+            to="/"
+            className="flex min-w-0 items-center gap-2.5"
+            aria-label="Isaac Promos home"
+            onClick={() => {
+              setMobileOpen(false);
+              setOpenMega(false);
+            }}
+          >
             <img
-              src={logo.url}
+              src="/isaac-promos-logo.png"
               alt="Isaac Promos"
-              width={44}
-              height={44}
-              className="h-11 w-11 object-contain"
+              width={52}
+              height={52}
+              className="h-10 w-10 shrink-0 object-contain sm:h-12 sm:w-12"
             />
-            <span className="hidden font-display text-lg font-bold leading-none tracking-tight sm:block">
-              ISAAC<span className="text-primary">PROMOS</span>
+            <span className="hidden truncate font-display text-base font-bold leading-none tracking-tight sm:block sm:text-lg">
+              ISAAC<span className="text-primary"> PROMOS</span>
             </span>
           </Link>
 
           <nav
             aria-label="Primary"
-            className="hidden items-center gap-1 xl:flex"
+            className="hidden items-center gap-0.5 xl:flex"
             onMouseLeave={() => setOpenMega(false)}
           >
             <button
@@ -134,7 +135,7 @@ export function SiteHeader() {
               onMouseEnter={() => setOpenMega(true)}
               onClick={() => setOpenMega((v) => !v)}
               className={cn(
-                "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors hover:text-primary",
+                "flex items-center gap-1 whitespace-nowrap px-2.5 py-2 text-sm font-medium transition-colors hover:text-primary",
                 openMega && "text-primary",
               )}
             >
@@ -150,7 +151,7 @@ export function SiteHeader() {
                 key={l.to}
                 to={l.to}
                 onMouseEnter={() => setOpenMega(false)}
-                className="px-3 py-2 text-sm font-medium transition-colors hover:text-primary"
+                className="whitespace-nowrap px-2.5 py-2 text-sm font-medium transition-colors hover:text-primary"
                 activeProps={{ className: "text-primary" }}
               >
                 {l.label}
@@ -158,20 +159,21 @@ export function SiteHeader() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-3 xl:flex">
+          <div className="hidden xl:block">
             <Action to="/quote">Get a Quote</Action>
           </div>
 
-          <div className="flex items-center gap-2 xl:hidden">
-            <Action to="/quote" size="md" className="hidden sm:inline-flex">
+          <div className="flex shrink-0 items-center gap-2 xl:hidden">
+            <Action to="/quote" size="md" className="hidden md:inline-flex">
               Get a Quote
             </Action>
+
             <button
               type="button"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((v) => !v)}
-              className="inline-flex h-10 w-10 items-center justify-center border border-border"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-border bg-background"
             >
               {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -181,13 +183,13 @@ export function SiteHeader() {
 
       {openMega ? (
         <div
-          className="absolute inset-x-0 top-full hidden border-b border-border bg-background shadow-[0_24px_48px_-32px_rgba(0,0,0,0.35)] xl:block"
+          className="absolute inset-x-0 top-full hidden max-h-[calc(100vh-72px)] overflow-y-auto border-b border-border bg-background shadow-[0_24px_48px_-32px_rgba(0,0,0,0.35)] xl:block"
           onMouseEnter={() => setOpenMega(true)}
           onMouseLeave={() => setOpenMega(false)}
         >
-          <div className="container-x grid grid-cols-4 gap-8 py-10 animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="container-x grid grid-cols-4 gap-x-8 gap-y-10 py-10">
             {megaMenu.map((group) => (
-              <div key={group.slug}>
+              <div key={group.slug} className="min-w-0">
                 <Link
                   to="/products/$category"
                   params={{ category: group.slug }}
@@ -196,6 +198,7 @@ export function SiteHeader() {
                 >
                   {group.category}
                 </Link>
+
                 <ul className="mt-3 space-y-2">
                   {group.items.map((item) => (
                     <li key={item.slug}>
@@ -226,22 +229,28 @@ export function SiteHeader() {
       ) : null}
 
       {mobileOpen ? (
-        <div className="fixed inset-0 top-[72px] z-50 overflow-y-auto bg-background xl:hidden">
-          <div className="container-x py-6">
-            <p className="eyebrow">Products</p>
+        <div className="fixed inset-x-0 bottom-0 top-[68px] z-50 overflow-y-auto bg-background sm:top-[72px] xl:hidden">
+          <div className="container-x py-5 pb-24">
+            <div className="flex items-center justify-between gap-4">
+              <p className="eyebrow">Products</p>
+              <Action to="/quote" size="md" className="md:hidden">
+                Get a Quote
+              </Action>
+            </div>
 
-            <ul className="mt-3 divide-y divide-border border-y border-border">
+            <ul className="mt-4 divide-y divide-border border-y border-border">
               {megaMenu.map((group) => (
                 <li key={group.slug}>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-2">
                     <Link
                       to="/products/$category"
                       params={{ category: group.slug }}
                       onClick={() => setMobileOpen(false)}
-                      className="flex-1 py-3 font-display text-sm font-semibold"
+                      className="min-w-0 flex-1 py-3.5 font-display text-sm font-semibold"
                     >
                       {group.category}
                     </Link>
+
                     {group.items.length ? (
                       <button
                         type="button"
@@ -250,7 +259,7 @@ export function SiteHeader() {
                         onClick={() =>
                           setExpanded(expanded === group.slug ? null : group.slug)
                         }
-                        className="p-3"
+                        className="flex h-11 w-11 shrink-0 items-center justify-center"
                       >
                         <ChevronDown
                           className={cn(
@@ -263,14 +272,14 @@ export function SiteHeader() {
                   </div>
 
                   {expanded === group.slug ? (
-                    <ul className="pb-3 pl-3">
+                    <ul className="grid gap-1 pb-3 pl-3 sm:grid-cols-2">
                       {group.items.map((item) => (
                         <li key={item.slug}>
                           <Link
                             to="/products/$category/$product"
                             params={{ category: group.slug, product: item.slug }}
                             onClick={() => setMobileOpen(false)}
-                            className="block py-2 text-sm text-muted-foreground"
+                            className="block py-2.5 pr-2 text-sm text-muted-foreground"
                           >
                             {item.name}
                           </Link>
@@ -282,13 +291,13 @@ export function SiteHeader() {
               ))}
             </ul>
 
-            <ul className="mt-6 space-y-1">
+            <ul className="mt-6 grid gap-1 sm:grid-cols-2">
               {navLinks.map((l) => (
                 <li key={l.to}>
                   <Link
                     to={l.to}
                     onClick={() => setMobileOpen(false)}
-                    className="block py-2 font-display text-base font-semibold"
+                    className="block py-3 font-display text-base font-semibold"
                   >
                     {l.label}
                   </Link>
@@ -296,7 +305,7 @@ export function SiteHeader() {
               ))}
             </ul>
 
-            <div className="mt-8 flex flex-col gap-3 pb-16">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <Action to="/quote" size="lg" className="w-full">
                 Get a Quote
               </Action>

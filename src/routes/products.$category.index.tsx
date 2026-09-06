@@ -51,17 +51,6 @@ export const Route = createFileRoute("/products/$category/")({
     };
   },
   component: CategoryPage,
-  notFoundComponent: () => (
-    <div className="container-x py-24 text-center">
-      <h1 className="text-3xl">Category not found</h1>
-      <p className="mt-3 text-muted-foreground">
-        That category does not exist. Browse all products instead.
-      </p>
-      <div className="mt-6 flex justify-center">
-        <Action to="/products">View All Products</Action>
-      </div>
-    </div>
-  ),
 });
 
 function CategoryPage() {
@@ -81,28 +70,28 @@ function CategoryPage() {
         ]}
       />
 
-      <section className="py-14 lg:py-20">
-        <div className="container-x grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div className="hover-media border border-border">
+      <section className="py-12 lg:py-20">
+        <div className="container-x grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-10">
+          <div className="hover-media min-w-0 overflow-hidden border border-border">
             <img
               src={img}
               alt={`${category.name} product examples`}
               loading="lazy"
               width={1200}
               height={900}
-              className="h-full w-full object-cover"
+              className="aspect-[4/3] h-full w-full object-cover"
             />
           </div>
 
-          <div>
+          <div className="min-w-0">
             {category.slug === "apparel" ? (
               <>
                 <h2 className="text-2xl sm:text-3xl">
                   Shirts, Polos & Hoodies, Built Around Your Budget and Branding
                 </h2>
+
                 <p className="mt-4 leading-relaxed text-muted-foreground">
-                  We keep our margins tight and shipping is included, so the pricing you
-                  get is genuinely competitive.
+                  We keep our margins tight and shipping is included, so the pricing you get is genuinely competitive.
                 </p>
 
                 <div className="mt-6 space-y-5 text-sm leading-relaxed text-muted-foreground">
@@ -111,10 +100,7 @@ function CategoryPage() {
                       Fabric & Printing
                     </h3>
                     <p className="mt-2">
-                      We work with a wide range of fabrics and can decorate with screen
-                      printing, embroidery, DTG, heat transfer or sublimation. Good for
-                      school giveaways, campaigns, or apparel that needs a lighter,
-                      office-friendly branding touch.
+                      We work with a wide range of fabrics and can decorate with screen printing, embroidery, DTG, heat transfer or sublimation.
                     </p>
                   </div>
 
@@ -123,8 +109,7 @@ function CategoryPage() {
                       Patches
                     </h3>
                     <p className="mt-2">
-                      Leather, chenille and PVC patch options are available if you want a
-                      more premium look.
+                      Leather, chenille and PVC patch options are available if you want a more premium look.
                     </p>
                   </div>
 
@@ -133,9 +118,7 @@ function CategoryPage() {
                       Sampling
                     </h3>
                     <p className="mt-2">
-                      We usually send a sample before full production starts. Once you
-                      approve it, we move to mass production, which saves fabric and time
-                      on both ends.
+                      We usually send a sample before full production starts. Once you approve it, we move to mass production, which saves fabric and time on both ends.
                     </p>
                   </div>
                 </div>
@@ -149,9 +132,11 @@ function CategoryPage() {
               </>
             )}
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Action to="/quote">Request Pricing</Action>
-              <Action to="/decoration-methods" variant="outline">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Action to="/quote" className="w-full sm:w-auto">
+                Request Pricing
+              </Action>
+              <Action to="/decoration-methods" variant="outline" className="w-full sm:w-auto">
                 Compare Decoration Methods
               </Action>
             </div>
@@ -160,13 +145,13 @@ function CategoryPage() {
       </section>
 
       {items.length ? (
-        <section className="border-t border-border bg-surface py-14 lg:py-20">
+        <section className="border-t border-border bg-surface py-12 lg:py-20">
           <div className="container-x">
             <h2 className="text-2xl sm:text-3xl">Products in {category.name}</h2>
 
             <div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
               {items.map((p) => (
-                <article key={p.slug} className="flex flex-col bg-background p-7">
+                <article key={p.slug} className="flex min-w-0 flex-col bg-background p-5 sm:p-7">
                   <h3 className="font-display text-lg font-bold">
                     <Link
                       to="/products/$category/$product"
@@ -192,6 +177,7 @@ function CategoryPage() {
                       to="/products/$category/$product"
                       params={{ category: p.category, product: p.slug }}
                       variant="outline"
+                      className="w-full sm:w-auto"
                     >
                       Ask About This Product
                     </Action>
@@ -202,12 +188,11 @@ function CategoryPage() {
           </div>
         </section>
       ) : (
-        <section className="border-t border-border bg-surface py-14 lg:py-20">
+        <section className="border-t border-border bg-surface py-12 lg:py-20">
           <div className="container-x max-w-2xl">
             <h2 className="text-2xl sm:text-3xl">Send us the requirement</h2>
             <p className="mt-4 text-muted-foreground">
-              Custom projects are handled case by case. Share a description, reference
-              image or spec sheet and we will tell you directly whether we can source it.
+              Custom projects are handled case by case. Share a description, reference image or spec sheet and we will tell you directly whether we can source it.
             </p>
             <div className="mt-6">
               <Action to="/quote">Discuss a Custom Project</Action>
@@ -216,9 +201,10 @@ function CategoryPage() {
         </section>
       )}
 
-      <section className="py-14 lg:py-20">
+      <section className="py-12 lg:py-20">
         <div className="container-x">
           <h2 className="text-2xl sm:text-3xl">Other categories</h2>
+
           <div className="mt-8 flex flex-wrap gap-2">
             {categories
               .filter((c) => c.slug !== category.slug)

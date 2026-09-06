@@ -47,7 +47,7 @@ export const categories: Category[] = [
   {
     slug: "bags",
     name: "Bags",
-    tagline: "Totes plus woven and non-woven bags for events, kits and campaigns.",
+    tagline: "Tote bags for events, kits and campaigns.",
     intro:
       "Bags keep your branding in use after an event ends. Material, weight, handle style and print area all affect the final look, so we help you compare options before ordering.",
     image: "promo",
@@ -55,7 +55,7 @@ export const categories: Category[] = [
   {
     slug: "promotional-items",
     name: "Promotional Items",
-    tagline: "Pens, keychains, lanyards and giveaway items for bulk programs.",
+    tagline: "Pens, keychains and notebooks for bulk programs.",
     intro:
       "Small promotional products are usually about quantity, usability and consistency. We help you choose items that fit the budget without looking disposable.",
     image: "promo",
@@ -108,13 +108,13 @@ export const products: Product[] = [
   },
   {
     slug: "gildan-2000",
-    name: "Gildan 2000 Shirts",
+    name: "Gildan 2000",
     category: "apparel",
     blurb: "A widely used heavyweight cotton tee for higher quantity orders.",
     idealFor: ["Large quantity orders", "Budget-conscious projects", "Events"],
     decoration: ["screen-print", "dtf"],
     why:
-      "The Gildan 2000 is a familiar heavyweight blank with broad sizing and color availability. It is often a practical choice when buyers need volume and a straightforward fit.",
+      "Gildan 2000 is a familiar heavyweight blank with broad sizing and color availability. It is often a practical choice when buyers need volume and a straightforward fit.",
     useCases: ["Volunteer shirts", "Bulk event tees", "Warehouse and crew shirts"],
   },
   {
@@ -152,7 +152,7 @@ export const products: Product[] = [
   },
   {
     slug: "dtf-branded-polos",
-    name: "DTF Branded Polos",
+    name: "DTF Polos",
     category: "apparel",
     blurb: "Full-color transfers for logos with gradients, photos or fine detail.",
     idealFor: ["Detailed logos", "Multi-color artwork", "Smaller quantities"],
@@ -163,7 +163,7 @@ export const products: Product[] = [
   },
   {
     slug: "custom-hoodies",
-    name: "Custom Hoodies",
+    name: "Hoodies",
     category: "apparel",
     blurb: "Fleece pullovers and zip hoodies for cooler seasons and team apparel.",
     idealFor: ["Team apparel", "Employee gifts", "School stores"],
@@ -171,28 +171,6 @@ export const products: Product[] = [
     why:
       "Hoodies carry higher perceived value than basic tees, which makes them useful for gifting and merchandise programs. Fleece weight is one of the main quality drivers.",
     useCases: ["Employee appreciation", "School and club merchandise", "Winter events"],
-  },
-  {
-    slug: "fr-shirts",
-    name: "FR Shirts",
-    category: "workwear",
-    blurb: "Flame-resistant work shirts for field crews with branding requirements.",
-    idealFor: ["Construction", "Energy and utilities", "Industrial crews"],
-    decoration: ["embroidery", "leather"],
-    why:
-      "FR garments can have specific labeling and decoration considerations. Send us the requirement and any standard your site follows so we can review the project correctly.",
-    useCases: ["Job-site uniforms", "Contractor crews", "Field service teams"],
-  },
-  {
-    slug: "branded-work-shirts",
-    name: "Branded Work Shirts",
-    category: "workwear",
-    blurb: "Durable button-ups and work polos built for daily field and shop use.",
-    idealFor: ["Trades", "Facilities teams", "Service fleets"],
-    decoration: ["embroidery", "dtf"],
-    why:
-      "Work shirts are selected differently from office apparel. Fabric weight, construction and branding placement matter when garments are worn and washed frequently.",
-    useCases: ["HVAC and plumbing teams", "Landscaping crews", "Maintenance staff"],
   },
   {
     slug: "custom-bottles",
@@ -207,7 +185,7 @@ export const products: Product[] = [
   },
   {
     slug: "tumblers",
-    name: "Tumblers with Custom Logo",
+    name: "Tumblers",
     category: "drinkware",
     blurb: "Insulated tumblers with engraved or printed custom branding.",
     idealFor: ["Corporate gifts", "Holiday programs", "Recognition awards"],
@@ -215,17 +193,6 @@ export const products: Product[] = [
     why:
       "Tumblers stay in circulation on desks and in vehicles, which gives branding a long useful life. Capacity, lid style and finish are the main product choices.",
     useCases: ["Service awards", "Client thank-you gifts", "Team milestones"],
-  },
-  {
-    slug: "pens",
-    name: "Pens",
-    category: "promotional-items",
-    blurb: "Everyday and executive pens for high-quantity distribution.",
-    idealFor: ["Trade shows", "Front-desk giveaways", "Mailers"],
-    decoration: ["pad-print", "laser"],
-    why:
-      "Pens are a classic volume item. Barrel material, clip style and imprint area determine how premium or practical the final piece feels.",
-    useCases: ["Conference bags", "Reception desks", "Direct mail inserts"],
   },
   {
     slug: "tote-bags",
@@ -239,15 +206,15 @@ export const products: Product[] = [
     useCases: ["Event swag bags", "School book bags", "Store merchandise"],
   },
   {
-    slug: "woven-non-woven-bags",
-    name: "Woven & Non-Woven Bags",
-    category: "bags",
-    blurb: "Bulk branded bags for events, retail, trade shows and giveaway programs.",
-    idealFor: ["Events", "Retail promotions", "Trade shows", "Campaign kits"],
-    decoration: ["screen-print", "dtf"],
+    slug: "pens",
+    name: "Pens",
+    category: "promotional-items",
+    blurb: "Everyday and executive pens for high-quantity distribution.",
+    idealFor: ["Trade shows", "Front-desk giveaways", "Mailers"],
+    decoration: ["pad-print", "laser"],
     why:
-      "Woven and non-woven bags are useful when the priority is quantity, repeat use and a visible branding area. Material and handle construction affect both feel and price.",
-    useCases: ["Conference bags", "Retail promotions", "School and community events"],
+      "Pens are a classic volume item. Barrel material, clip style and imprint area determine how premium or practical the final piece feels.",
+    useCases: ["Conference bags", "Reception desks", "Direct mail inserts"],
   },
   {
     slug: "keychains",
@@ -272,59 +239,15 @@ export const products: Product[] = [
     useCases: ["Brand mascots", "Anniversary campaigns", "Retail merchandise"],
   },
   {
-    slug: "custom-lanyards",
-    name: "Custom Lanyards",
+    slug: "custom-notebook",
+    name: "Custom Notebook",
     category: "promotional-items",
-    blurb: "Bulk branded lanyards for events, schools, staff and organizations.",
-    idealFor: ["Conferences", "Schools", "Staff IDs", "Organizations"],
-    decoration: ["screen-print", "dtf"],
+    blurb: "Branded notebooks for meetings, onboarding kits, conferences and client gifts.",
+    idealFor: ["Corporate kits", "Conferences", "Client gifts", "Employee onboarding"],
+    decoration: ["screen-print", "laser"],
     why:
-      "Lanyards are useful when identification and brand visibility need to work together. Width, attachment style and print method are the main decisions.",
-    useCases: ["Conference credentials", "School IDs", "Staff access programs"],
-  },
-  {
-    slug: "custom-stress-balls",
-    name: "Custom Stress Balls with Logo",
-    category: "promotional-items",
-    blurb: "Logo-branded stress balls for events, desks and giveaway programs.",
-    idealFor: ["Trade shows", "Healthcare events", "Office giveaways", "Campaigns"],
-    decoration: ["pad-print"],
-    why:
-      "Stress balls are simple, high-volume giveaway items. Shape, imprint area and material density determine how the finished item feels and how clearly the logo prints.",
-    useCases: ["Trade show booths", "Wellness campaigns", "Office promotions"],
-  },
-  {
-    slug: "garment-labels",
-    name: "Garment Labels",
-    category: "apparel",
-    blurb: "Custom neck labels, care labels and garment branding for apparel programs.",
-    idealFor: ["Private-label apparel", "Retail merchandise", "Uniform programs"],
-    decoration: ["screen-print", "dtf"],
-    why:
-      "Garment labels help a custom apparel order feel more complete and brand-specific. The right approach depends on whether you need neck branding, care information or both.",
-    useCases: ["Private-label shirts", "Retail apparel", "School and club merchandise"],
-  },
-  {
-    slug: "golf-towels",
-    name: "Golf Towels",
-    category: "towels",
-    blurb: "Waffle and terry golf towels with grommet and clip options.",
-    idealFor: ["Tournaments", "Sponsor gifts", "Client outings"],
-    decoration: ["embroidery", "screen-print", "dtf"],
-    why:
-      "Golf towels are a standard tournament item. Embroidery works well on many terry options, while printing is often better suited to flatter surfaces.",
-    useCases: ["Charity tournaments", "Sponsor packages", "Golf outings"],
-  },
-  {
-    slug: "custom-towels",
-    name: "Custom Towels",
-    category: "towels",
-    blurb: "Shop, gym and utility towels sized and branded to your requirement.",
-    idealFor: ["Shops and garages", "Gyms", "Hospitality"],
-    decoration: ["embroidery", "screen-print"],
-    why:
-      "Utility towels are usually about weight, absorbency and repeat use. Tell us where they will be used and we can help narrow the options.",
-    useCases: ["Auto shops", "Fitness facilities", "Event hospitality"],
+      "Notebooks are practical business merchandise that stay in use after an event or onboarding program. Cover material and branding method determine the final look.",
+    useCases: ["Meeting kits", "Welcome packs", "Client gifting"],
   },
   {
     slug: "leather-patches",
@@ -380,6 +303,50 @@ export const products: Product[] = [
     why:
       "Badges need to stay readable under repeat use. Attachment style, thickness and finish are all worth confirming before production.",
     useCases: ["Hospitality staff", "Conference credentials", "Facility access"],
+  },
+  {
+    slug: "fr-shirts",
+    name: "FR Shirts",
+    category: "workwear",
+    blurb: "Flame-resistant work shirts for field crews with branding requirements.",
+    idealFor: ["Construction", "Energy and utilities", "Industrial crews"],
+    decoration: ["embroidery", "leather"],
+    why:
+      "FR garments can have specific labeling and decoration considerations. Send us the requirement and any standard your site follows so we can review the project correctly.",
+    useCases: ["Job-site uniforms", "Contractor crews", "Field service teams"],
+  },
+  {
+    slug: "branded-work-shirts",
+    name: "Branded Work Shirts",
+    category: "workwear",
+    blurb: "Durable button-ups and work polos built for daily field and shop use.",
+    idealFor: ["Trades", "Facilities teams", "Service fleets"],
+    decoration: ["embroidery", "dtf"],
+    why:
+      "Work shirts are selected differently from office apparel. Fabric weight, construction and branding placement matter when garments are worn and washed frequently.",
+    useCases: ["HVAC and plumbing teams", "Landscaping crews", "Maintenance staff"],
+  },
+  {
+    slug: "golf-towels",
+    name: "Golf Towels",
+    category: "towels",
+    blurb: "Waffle and terry golf towels with grommet and clip options.",
+    idealFor: ["Tournaments", "Sponsor gifts", "Client outings"],
+    decoration: ["embroidery", "screen-print", "dtf"],
+    why:
+      "Golf towels are a standard tournament item. Embroidery works well on many terry options, while printing is often better suited to flatter surfaces.",
+    useCases: ["Charity tournaments", "Sponsor packages", "Golf outings"],
+  },
+  {
+    slug: "custom-towels",
+    name: "Custom Towels",
+    category: "towels",
+    blurb: "Shop, gym and utility towels sized and branded to your requirement.",
+    idealFor: ["Shops and garages", "Gyms", "Hospitality"],
+    decoration: ["embroidery", "screen-print"],
+    why:
+      "Utility towels are usually about weight, absorbency and repeat use. Tell us where they will be used and we can help narrow the options.",
+    useCases: ["Auto shops", "Fitness facilities", "Event hospitality"],
   },
 ];
 
@@ -446,14 +413,14 @@ export const decorationMethods: {
     name: "Laser Engraving",
     bestFor: "Hard-surface items where a permanent mark is preferred",
     look: "Etched mark in the surface material",
-    products: "Tumblers, bottles, metal keychains, badges",
+    products: "Tumblers, bottles, metal keychains, notebooks",
   },
   {
     key: "pad-print",
     name: "Pad Printing",
     bestFor: "Small imprint areas on curved or irregular surfaces",
     look: "Clean printed mark in one or more colors",
-    products: "Pens, bottles, stress balls and small promotional items",
+    products: "Pens, bottles and small promotional items",
   },
 ];
 
@@ -517,8 +484,8 @@ export const solutions = [
     outcome:
       "Gift items selected around the relationship, occasion and presentation level you want.",
     needs: ["Presentation quality", "Quantity", "Recipient variety"],
-    categories: ["Drinkware", "Apparel", "Bags"],
-    methods: ["Laser Engraving", "Embroidery", "Leather Patch"],
+    categories: ["Drinkware", "Apparel", "Promotional Items"],
+    methods: ["Laser Engraving", "Embroidery"],
     cta: "Discuss a Gift Program",
   },
   {
@@ -611,38 +578,6 @@ export const industries = [
     cats: ["Apparel", "Towels", "Drinkware"],
     methods: ["Embroidery", "DTF Printing"],
     cta: "Spec Staff Uniforms",
-  },
-  {
-    name: "Nonprofits & Fundraisers",
-    need:
-      "Volunteer shirts, donor gifts and merchandise selected around a workable fundraising budget.",
-    cats: ["Apparel", "Bags", "Promotional Items"],
-    methods: ["Screen Printing", "DTF Printing"],
-    cta: "Price a Fundraiser",
-  },
-  {
-    name: "Agencies & Distributors",
-    need:
-      "Sourcing and production support for client projects with clear specifications and communication.",
-    cats: ["All categories"],
-    methods: ["Varies by project"],
-    cta: "Discuss an Outsourced Project",
-  },
-  {
-    name: "Small Businesses",
-    need:
-      "A first branded apparel run, shop merchandise or giveaway items without a large internal team.",
-    cats: ["Apparel", "Promotional Items", "Drinkware"],
-    methods: ["DTF Printing", "Embroidery"],
-    cta: "Start a Bulk Order",
-  },
-  {
-    name: "Organizations & Clubs",
-    need:
-      "Member apparel, patches and recognition items for one-time or repeat programs.",
-    cats: ["Apparel", "Patches", "Promotional Items"],
-    methods: ["Embroidery", "PVC", "Chenille"],
-    cta: "Get Product Recommendations",
   },
 ];
 
@@ -790,15 +725,4 @@ export const faqGroups = [
       },
     ],
   },
-];
-
-export const projectPlaceholders = [
-  { title: "Corporate Uniform Program", tag: "Apparel", scope: "Polos and work shirts", method: "Embroidery" },
-  { title: "Conference Attendee Kit", tag: "Events", scope: "Totes, pens, bottles", method: "Screen Print / Pad Print" },
-  { title: "School Spirit Run", tag: "Schools", scope: "Tees and hoodies", method: "DTF Printing" },
-  { title: "Field Crew Workwear", tag: "Workwear", scope: "FR shirts and polos", method: "Embroidery" },
-  { title: "Cap Patch Program", tag: "Patches", scope: "Leather patch caps", method: "Leather Patch" },
-  { title: "Client Gift Drinkware", tag: "Drinkware", scope: "Insulated tumblers", method: "Laser Engraving" },
-  { title: "Tournament Package", tag: "Corporate", scope: "Golf towels and polos", method: "Embroidery" },
-  { title: "Team Award Jackets", tag: "Apparel", scope: "Fleece and chenille", method: "Chenille" },
 ];

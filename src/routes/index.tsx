@@ -10,7 +10,6 @@ import promoImg from "@/assets/cat-promo.jpg";
 import {
   Action,
   CTABlock,
-  ImageSlot,
   Section,
   SectionHead,
   Tag,
@@ -20,7 +19,6 @@ import {
   faqGroups,
   industries,
   processSteps,
-  projectPlaceholders,
   solutions,
 } from "@/data/catalog";
 
@@ -85,7 +83,7 @@ const featuredCategories = [
   {
     name: "Bags & Promo",
     slug: "promotional-items",
-    line: "Totes, pens, keychains, lanyards and giveaways.",
+    line: "Totes, pens, keychains and notebooks.",
     img: promoImg,
     span: "",
   },
@@ -126,7 +124,6 @@ function Home() {
       <ProcessPreview />
       <IndustriesPreview />
       <Distributor />
-      <WorkPreview />
       <FaqPreview />
       <CTABlock
         title="Tell us what you are trying to accomplish."
@@ -141,47 +138,44 @@ function Home() {
 function Hero() {
   return (
     <section className="border-b border-border bg-background">
-      <div className="container-x grid items-center gap-12 py-14 lg:grid-cols-[1.05fr_1fr] lg:py-24">
-        <div className="reveal">
+      <div className="container-x grid items-center gap-8 py-10 sm:gap-12 sm:py-14 lg:grid-cols-[1.05fr_1fr] lg:py-24">
+        <div className="reveal min-w-0">
           <p className="eyebrow">Custom Merchandise • Bulk Orders • USA</p>
-          <h1 className="mt-4 text-4xl leading-[1.02] sm:text-5xl lg:text-[4.1rem]">
+
+          <h1 className="mt-4 text-3xl leading-[1.03] sm:text-5xl lg:text-[4.1rem]">
             Custom Products Without the Bulk-Order Headache.
           </h1>
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            From branded apparel and drinkware to patches, workwear and promotional
-            merchandise, Isaac Promos helps businesses turn an idea into a clear,
-            customized bulk order.
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg">
+            From branded apparel and drinkware to patches, workwear and promotional merchandise, Isaac Promos helps businesses turn an idea into a clear, customized bulk order.
           </p>
 
-          <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-            Tell us what you need: the product, the quantity, your timeline, and how you
-            want it branded. We'll help you land on the right product and the right
-            customization approach.
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            Tell us what you need, the quantity, your timeline and how you want it branded. We will help you land on the right product and the right customization approach.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Action to="/quote" size="lg">
+          <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
+            <Action to="/quote" size="lg" className="w-full sm:w-auto">
               Get a Quote
             </Action>
-            <Action to="/products" size="lg" variant="outline">
+            <Action to="/products" size="lg" variant="outline" className="w-full sm:w-auto">
               Explore Products
             </Action>
           </div>
 
           <p className="mt-5 border-l-2 border-primary pl-4 text-sm text-muted-foreground">
-            Not sure what product you need? Tell us what you're trying to accomplish.
+            Not sure what product you need? Tell us what you are trying to accomplish.
           </p>
         </div>
 
-        <div className="relative">
-          <div className="hover-media border border-border">
+        <div className="min-w-0">
+          <div className="hover-media overflow-hidden border border-border">
             <img
               src={heroImg}
-              alt="Assorted custom merchandise including shirts, a polo, tumbler, bottle, tote bag, patch, pen and towel arranged on a studio surface"
+              alt="Assorted custom merchandise arranged on a studio surface"
               width={1600}
               height={1200}
-              className="h-full w-full object-cover"
+              className="aspect-[4/3] h-full w-full object-cover"
             />
           </div>
         </div>
@@ -193,18 +187,17 @@ function Hero() {
 function WhyWeDoIt() {
   return (
     <Section>
-      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <div>
+      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-10">
+        <div className="min-w-0">
           <p className="eyebrow">Why we do it this way</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">
+          <h2 className="mt-3 text-2xl sm:text-4xl">
             We are building for long-term relationships.
           </h2>
         </div>
 
-        <div className="max-w-2xl">
+        <div className="min-w-0 max-w-2xl">
           <p className="leading-relaxed text-muted-foreground">
-            We're building this company around long-term relationships, not one-off
-            orders. Our goal is a wall of loyal customers, not a pile of profit.
+            We are building this company around long-term relationships, not one-off orders. Our goal is a wall of loyal customers, not a pile of profit.
           </p>
 
           <p className="mt-6 font-display text-sm font-bold uppercase tracking-[0.1em]">
@@ -218,8 +211,7 @@ function WhyWeDoIt() {
           </ul>
 
           <p className="mt-6 leading-relaxed text-muted-foreground">
-            At the end of the day, we're here to build a wall with customers, not with
-            money.
+            At the end of the day, we are here to build a wall with customers, not with money.
           </p>
         </div>
       </div>
@@ -232,7 +224,7 @@ function TrustStrip() {
     <div className="border-y border-border bg-surface">
       <div className="container-x grid gap-px sm:grid-cols-2 lg:grid-cols-4">
         {trustStrip.map((t) => (
-          <div key={t.title} className="py-7 lg:pr-8">
+          <div key={t.title} className="py-6 sm:py-7 lg:pr-8">
             <h2 className="font-display text-sm font-bold uppercase tracking-[0.1em]">
               {t.title}
             </h2>
@@ -247,7 +239,7 @@ function TrustStrip() {
 function SolveSection() {
   return (
     <Section>
-      <div className="flex flex-wrap items-end justify-between gap-6">
+      <div className="flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
         <SectionHead
           eyebrow="Start with the goal"
           title="What are you trying to create?"
@@ -258,13 +250,13 @@ function SolveSection() {
         </Action>
       </div>
 
-      <div className="mt-12 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid gap-px border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
         {solutions.map((s) => (
           <Link
             key={s.slug}
             to="/solutions"
             hash={s.slug}
-            className="group bg-background p-7 transition-colors hover:bg-surface"
+            className="group min-w-0 bg-background p-5 transition-colors hover:bg-surface sm:p-7"
           >
             <h3 className="font-display text-lg font-bold">{s.title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -290,13 +282,13 @@ function FeaturedCategories() {
         lead="Each category page explains what the products are typically used for and which decoration methods apply."
       />
 
-      <div className="mt-12 grid auto-rows-[220px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid auto-rows-[200px] gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:auto-rows-[220px]">
         {featuredCategories.map((c) => (
           <Link
             key={c.slug}
             to="/products/$category"
             params={{ category: c.slug }}
-            className={`group hover-media relative border border-border bg-background ${c.span}`}
+            className={`group hover-media relative min-w-0 overflow-hidden border border-border bg-background ${c.span}`}
           >
             <img
               src={c.img}
@@ -306,9 +298,11 @@ function FeaturedCategories() {
               height={900}
               className="absolute inset-0 h-full w-full object-cover"
             />
+
             <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-6">
-              <h3 className="font-display text-xl font-bold text-ink-foreground">
+
+            <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+              <h3 className="font-display text-lg font-bold text-ink-foreground sm:text-xl">
                 {c.name}
               </h3>
               <p className="mt-1.5 max-w-sm text-sm text-ink-foreground/75">{c.line}</p>
@@ -333,30 +327,29 @@ function FeaturedCategories() {
 function ProblemSolution() {
   return (
     <Section tone="ink">
-      <div className="grid gap-12 lg:grid-cols-[1fr_1fr]">
-        <div>
+      <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
+        <div className="min-w-0">
           <SectionHead
             eyebrow="The usual problem"
-            title="Bulk ordering shouldn't require five different vendors."
+            title="Bulk ordering should not require five different vendors."
             lead="Buyers usually spend more time coordinating suppliers than deciding what they actually want. These are the friction points we hear about most."
             invert
           />
+
           <ul className="mt-8 space-y-3">
             {problems.map((p) => (
               <li
                 key={p}
                 className="flex gap-3 border-b border-ink-foreground/10 pb-3 text-sm text-ink-foreground/75"
               >
-                <span aria-hidden="true" className="text-primary">
-                  •
-                </span>
+                <span aria-hidden="true" className="text-primary">•</span>
                 {p}
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="border border-ink-foreground/15 p-8 lg:p-10">
+        <div className="min-w-0 border border-ink-foreground/15 p-6 sm:p-8 lg:p-10">
           <p className="eyebrow">How we work</p>
           <h3 className="mt-3 text-2xl text-ink-foreground">
             We help simplify the process from product selection to production.
@@ -374,9 +367,7 @@ function ProblemSolution() {
           </ul>
 
           <div className="mt-9">
-            <Action to="/how-it-works" variant="primary">
-              See How It Works
-            </Action>
+            <Action to="/how-it-works">See How It Works</Action>
           </div>
         </div>
       </div>
@@ -396,7 +387,7 @@ const finderFields = {
     "Other",
   ],
   item: ["Apparel", "Drinkware", "Bags", "Patches", "Promo Items", "Not Sure"],
-  qty: ["25–50", "50–100", "100–250", "250–500", "500+", "Not Sure"],
+  qty: ["25 to 50", "50 to 100", "100 to 250", "250 to 500", "500+", "Not Sure"],
 };
 
 function ProductFinder() {
@@ -406,14 +397,14 @@ function ProductFinder() {
 
   return (
     <Section>
-      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-10">
         <SectionHead
           eyebrow="Product finder"
           title="Not sure where to start?"
           lead="Answer three quick questions and we will point you toward products that make sense for the order. You can change any of it later."
         />
 
-        <div className="border border-border bg-surface p-7 lg:p-9">
+        <div className="min-w-0 border border-border bg-surface p-5 sm:p-7 lg:p-9">
           <FinderGroup
             label="What are you ordering for?"
             options={finderFields.audience}
@@ -436,14 +427,15 @@ function ProductFinder() {
             name="finder-qty"
           />
 
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
             <Link
               to="/quote"
               search={{ audience, item, qty } as never}
-              className="inline-flex h-12 items-center justify-center rounded-sm bg-primary px-6 font-display text-[0.95rem] font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/90"
+              className="inline-flex min-h-12 w-full items-center justify-center rounded-sm bg-primary px-5 py-3 font-display text-[0.95rem] font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/90 sm:w-auto sm:px-6"
             >
               Show Me Good Options
             </Link>
+
             <p className="text-sm text-muted-foreground">
               Each question allows one choice only. You can change the selection anytime.
             </p>
@@ -472,6 +464,7 @@ function FinderGroup({
       <legend className="font-display text-sm font-bold uppercase tracking-[0.1em]">
         {label}
       </legend>
+
       <div className="mt-3 flex flex-wrap gap-2">
         {options.map((o) => (
           <label
@@ -501,45 +494,44 @@ function FinderGroup({
 function Spotlight() {
   return (
     <Section tone="surface">
-      <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-        <div className="hover-media border border-border">
+      <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-10">
+        <div className="hover-media min-w-0 overflow-hidden border border-border">
           <img
             src={apparelImg}
-            alt="Stack of folded blank polos and t-shirts in charcoal, white and red"
+            alt="Stack of folded blank polos and t-shirts"
             loading="lazy"
             width={1200}
             height={900}
-            className="h-full w-full object-cover"
+            className="aspect-[4/3] h-full w-full object-cover"
           />
         </div>
 
-        <div>
+        <div className="min-w-0">
           <p className="eyebrow">Product spotlight</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl">
+          <h2 className="mt-3 text-2xl sm:text-4xl">
             Shirts, polos and hoodies built around your budget and branding.
           </h2>
+
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            We keep our margins tight and shipping is included, so the pricing you get is
-            genuinely competitive. We work with a wide range of fabrics and can decorate
-            with screen printing, embroidery, DTG, heat transfer or sublimation.
+            We keep our margins tight and shipping is included, so the pricing you get is genuinely competitive. We work with a wide range of fabrics and can decorate with screen printing, embroidery, DTG, heat transfer or sublimation.
           </p>
 
           <div className="mt-6 space-y-4 text-sm text-muted-foreground">
-            <p>
-              Leather, chenille and PVC patch options are available if you want a more
-              premium look.
-            </p>
-            <p>
-              We usually send a sample before full production starts. Once you approve it,
-              we move to mass production, which saves fabric and time on both ends.
-            </p>
+            <p>Leather, chenille and PVC patch options are available if you want a more premium look.</p>
+            <p>We usually send a sample before full production starts. Once you approve it, we move to mass production, which saves fabric and time on both ends.</p>
           </div>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Action to="/products/$category" params={{ category: "apparel" }} variant="dark">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Action
+              to="/products/$category"
+              params={{ category: "apparel" }}
+              variant="dark"
+              className="w-full sm:w-auto"
+            >
               Explore Apparel
             </Action>
-            <Action to="/quote" variant="outline">
+
+            <Action to="/quote" variant="outline" className="w-full sm:w-auto">
               Request Pricing
             </Action>
           </div>
@@ -552,7 +544,7 @@ function Spotlight() {
 function DecorationPreview() {
   return (
     <Section>
-      <div className="flex flex-wrap items-end justify-between gap-6">
+      <div className="flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
         <SectionHead
           eyebrow="Decoration methods"
           title="How your logo gets onto the product."
@@ -563,9 +555,9 @@ function DecorationPreview() {
         </Action>
       </div>
 
-      <div className="mt-12 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-10 grid gap-px border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
         {decorationMethods.map((m) => (
-          <div key={m.key} className="bg-background p-6">
+          <div key={m.key} className="min-w-0 bg-background p-5 sm:p-6">
             <h3 className="font-display text-base font-bold">{m.name}</h3>
             <p className="mt-3 text-sm text-muted-foreground">{m.look}</p>
             <p className="mt-4 text-xs uppercase tracking-[0.1em] text-muted-foreground">
@@ -598,9 +590,9 @@ function ProcessPreview() {
         lead="You do not need final specifications to start. Most projects get shaped during the first two steps."
       />
 
-      <ol className="mt-12 grid gap-px border border-border bg-border lg:grid-cols-5">
+      <ol className="mt-10 grid gap-px border border-border bg-border sm:mt-12 sm:grid-cols-2 lg:grid-cols-5">
         {processSteps.map((s) => (
-          <li key={s.n} className="bg-background p-6">
+          <li key={s.n} className="min-w-0 bg-background p-5 sm:p-6">
             <span className="font-display text-2xl font-bold text-primary">{s.n}</span>
             <h3 className="mt-3 font-display text-base font-bold">{s.title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{s.body}</p>
@@ -620,20 +612,21 @@ function ProcessPreview() {
 function IndustriesPreview() {
   return (
     <Section>
-      <div className="flex flex-wrap items-end justify-between gap-6">
+      <div className="flex flex-col gap-6 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
         <SectionHead
           eyebrow="Industries we help"
           title="Buyers we work with."
           lead="Different buyers have different pressure points. These are the ones we plan around."
         />
+
         <Action to="/solutions" variant="outline">
           See All Solutions
         </Action>
       </div>
 
-      <div className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-        {industries.slice(0, 6).map((i) => (
-          <div key={i.name} className="border-t-2 border-ink pt-5">
+      <div className="mt-10 grid gap-x-10 gap-y-8 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3">
+        {industries.map((i) => (
+          <div key={i.name} className="min-w-0 border-t-2 border-ink pt-5">
             <h3 className="font-display text-lg font-bold">{i.name}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{i.need}</p>
             <div className="mt-4 flex flex-wrap gap-1.5">
@@ -651,53 +644,22 @@ function IndustriesPreview() {
 function Distributor() {
   return (
     <Section tone="ink">
-      <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-        <div>
+      <div className="grid gap-8 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-10">
+        <div className="min-w-0">
           <p className="eyebrow">Distributor & outsourced work</p>
-          <h2 className="mt-3 text-3xl text-ink-foreground sm:text-4xl">
+          <h2 className="mt-3 text-2xl text-ink-foreground sm:text-4xl">
             Need a dependable partner behind the scenes?
           </h2>
           <p className="mt-5 max-w-2xl leading-relaxed text-ink-foreground/70">
-            If you have the customer but need help sourcing or producing the merchandise,
-            talk to us about your project. Isaac Promos can evaluate custom and bulk-order
-            opportunities based on your requirements.
+            If you have the customer but need help sourcing or producing the merchandise, talk to us about your project. Isaac Promos can evaluate custom and bulk-order opportunities based on your requirements.
           </p>
         </div>
 
         <div className="lg:justify-self-end">
-          <Action to="/contact" size="lg">
+          <Action to="/contact" size="lg" className="w-full sm:w-auto">
             Discuss an Outsourced Project
           </Action>
         </div>
-      </div>
-    </Section>
-  );
-}
-
-function WorkPreview() {
-  return (
-    <Section tone="surface">
-      <div className="flex flex-wrap items-end justify-between gap-6">
-        <SectionHead
-          eyebrow="Our work"
-          title="Project examples."
-          lead="Project photography is being built out. The gallery below shows the types of projects we set up, with placeholders in place of client images."
-        />
-        <Action to="/our-work" variant="outline">
-          View Gallery
-        </Action>
-      </div>
-
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {projectPlaceholders.slice(0, 4).map((p) => (
-          <article key={p.title}>
-            <ImageSlot label={`${p.tag} project image`} />
-            <h3 className="mt-4 font-display text-base font-bold">{p.title}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {p.scope} · {p.method}
-            </p>
-          </article>
-        ))}
       </div>
     </Section>
   );
@@ -708,26 +670,27 @@ function FaqPreview() {
 
   return (
     <Section>
-      <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-        <div>
+      <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-12">
+        <div className="min-w-0">
           <SectionHead
             eyebrow="Questions"
             title="Common questions before a first order."
             lead="If something is not covered here, ask directly. We would rather answer than have you guess."
           />
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Action to="/faq" variant="dark">
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Action to="/faq" variant="dark" className="w-full sm:w-auto">
               Read Full FAQ
             </Action>
-            <Action to="/contact" variant="outline">
+            <Action to="/contact" variant="outline" className="w-full sm:w-auto">
               Ask a Product Question
             </Action>
           </div>
         </div>
 
-        <dl className="divide-y divide-border border-y border-border">
+        <dl className="min-w-0 divide-y divide-border border-y border-border">
           {preview.map((f) => (
-            <div key={f.q} className="py-6">
+            <div key={f.q} className="py-5 sm:py-6">
               <dt className="font-display text-base font-bold">{f.q}</dt>
               <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 {f.a}
