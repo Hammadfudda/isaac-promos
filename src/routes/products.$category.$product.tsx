@@ -10,7 +10,6 @@ import {
   Breadcrumbs,
   ButtonAction,
   CTABlock,
-  ImageSlot,
   Tag,
 } from "@/components/site/ui";
 import {
@@ -71,20 +70,58 @@ function ProductPage() {
       <section className="py-10 lg:py-16">
         <div className="container-x grid gap-9 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           <div className="min-w-0">
-            <div className="hover-media overflow-hidden border border-border">
+            <div className="hover-media flex aspect-[4/3] w-full items-center justify-center overflow-hidden border border-border bg-surface p-3 sm:p-5">
               <img
                 src={hero}
-                alt={`${product.name} example`}
+                alt={`${product.name} product example`}
                 width={1200}
                 height={900}
-                className="aspect-[4/3] h-full w-full object-cover"
+                className="h-full w-full object-contain"
               />
             </div>
 
-            <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-4 sm:gap-4">
-              <ImageSlot label="Alternate view" ratio="1 / 1" />
-              <ImageSlot label="Branding closeup" ratio="1 / 1" />
-              <ImageSlot label="In-use view" ratio="1 / 1" />
+            <div className="mt-5 border border-border bg-surface p-5 sm:p-6">
+              <p className="eyebrow">Before you request a quote</p>
+              <h2 className="mt-3 text-xl">A few details help us price it correctly.</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                You do not need every specification figured out. Send what you know and we will help with the rest.
+              </p>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="border-t border-border pt-3">
+                  <p className="font-display text-sm font-bold">Quantity</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    An estimate is enough to get started.
+                  </p>
+                </div>
+
+                <div className="border-t border-border pt-3">
+                  <p className="font-display text-sm font-bold">Deadline</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Tell us when you need the order in hand.
+                  </p>
+                </div>
+
+                <div className="border-t border-border pt-3">
+                  <p className="font-display text-sm font-bold">Artwork</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Upload your logo or send a reference image.
+                  </p>
+                </div>
+
+                <div className="border-t border-border pt-3">
+                  <p className="font-display text-sm font-bold">Branding</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    If you are not sure which method fits, we can recommend one.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <Action to="/contact" variant="outline">
+                  Ask a Product Question
+                </Action>
+              </div>
             </div>
           </div>
 
