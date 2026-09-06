@@ -1,9 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, Check, CheckCircle2, Info, Upload } from "lucide-react";
+import { useMemo, useRef, useState } from "react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  CheckCircle2,
+  Info,
+  Loader2,
+  Upload,
+} from "lucide-react";
 import { categories, decorationMethods } from "@/data/catalog";
 import { ButtonAction, PageHeader, Section } from "@/components/site/ui";
 import { cn } from "@/lib/utils";
+import {
+  sendEmailJs,
+  uploadToCloudinary,
+  validateUpload,
+} from "@/lib/form-delivery";
 
 export const Route = createFileRoute("/quote")({
   head: () => ({
@@ -20,14 +33,13 @@ export const Route = createFileRoute("/quote")({
 });
 
 type FormState = {
-  category: string;
+  categories: string[];
   productDetails: string;
   quantity: string;
   budget: string;
   deadline: string;
   purpose: string;
   decoration: string;
-  artworkName: string;
   name: string;
   email: string;
   phone: string;
@@ -37,14 +49,13 @@ type FormState = {
 };
 
 const initialState: FormState = {
-  category: "",
+  categories: [],
   productDetails: "",
   quantity: "",
   budget: "",
   deadline: "",
   purpose: "",
   decoration: "",
-  artworkName: "",
   name: "",
   email: "",
   phone: "",
@@ -59,32 +70,113 @@ function QuotePage() {
   const [step, setStep] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState<FormState>(initialState);
+  const [artwork, setArtwork] = useState<File | null>(null);
+  const [fileError, setFileError] = useState("");
+  const [submitError, setSubmitError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const set = (key: keyof FormState, value: string) =>
-    setForm((current) => ({ ...current, [key]: value }));
+  const set = (
+    key: Exclude<keyof FormState, "categories">,
+    value: string,
+  ) => setForm((current) => ({ ...current, [key]: value }));
+
+  const toggleCategory = (slug: string) => {
+    setForm((current) => ({
+      ...current,
+      categories: current.categories.includes(slug)
+        ? current.categories.filter((item) => item !== slug)
+        : [...current.categories, slug],
+    }));
+  };
 
   const canContinue = useMemo(() => {
-    if (step === 0) return form.category !== "";
+    if (step === 0) return form.categories.length > 0;
     if (step === 1) return form.quantity.trim() !== "";
-    if (step === 2) return true;
+    if (step === 2) return !fileError;
     return form.name.trim() !== "" && form.email.trim() !== "";
-  }, [step, form]);
+  }, [step, form, fileError]);
+
+  const categoryLabel =
+    form.categories
+      .map(
+        (slug) =>
+          categories.find((category) => category.slug === slug)?.name || slug,
+      )
+      .join(", ") || "Not specified";
+
+  const decorationLabel =
+    decorationMethods.find((method) => method.key === form.decoration)?.name ||
+    "Not sure, advise me";
+
+  const budgetLabel =
+    {
+      "under-1000": "Under $1,000",
+      "1000-2500": "$1,000 to $2,500",
+      "2500-5000": "$2,500 to $5,000",
+      "5000-10000": "$5,000 to $10,000",
+      "10000-plus": "$10,000+",
+    }[form.budget] || "Not provided";
+
+  async function submitQuote() {
+    setSubmitError("");
+    setSubmitting(true);
+
+    try {
+      const artworkUrl = artwork
+        ? await uploadToCloudinary(artwork)
+        : "No artwork uploaded";
+
+      const projectDetails = [
+        `Budget: ${budgetLabel}`,
+        `Purpose / Event: ${form.purpose.trim() || "Not provided"}`,
+        `City / State: ${form.cityState.trim() || "Not provided"}`,
+        "",
+        "Additional Notes:",
+        form.notes.trim() || "No additional notes",
+      ].join("\n");
+
+      await sendEmailJs(import.meta.env.VITE_EMAILJS_TEMPLATE_ID_QUOTE, {
+        customer_name: form.name.trim(),
+        customer_email: form.email.trim(),
+        customer_phone: form.phone.trim() || "Not provided",
+        company_name: form.company.trim() || "Not provided",
+        product_category: categoryLabel,
+        product_name: form.productDetails.trim() || categoryLabel,
+        quantity: form.quantity.trim(),
+        deadline: form.deadline || "Not provided",
+        decoration_method: decorationLabel,
+        artwork_url: artworkUrl,
+        message: projectDetails,
+      });
+
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "We could not send your quote request. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   if (submitted) {
     return (
       <>
         <PageHeader
           eyebrow="Quote request"
-          title="Request details captured"
-          lead="Your information is ready for review."
+          title="Your quote request has been sent"
+          lead="We received the details you submitted."
         />
 
         <Section>
           <div className="mx-auto max-w-xl rounded-sm border border-border bg-surface p-6 text-center sm:p-8">
             <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
-            <h2 className="mt-5 text-2xl">What happens next</h2>
+            <h2 className="mt-5 text-2xl">Thank you</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              The current frontend captures the form state only. Connect this form to your email or backend before launch so real requests are delivered to the team.
+              Your order details and any uploaded artwork have been delivered to the Izaac Promos team for review.
             </p>
           </div>
         </Section>
@@ -116,7 +208,6 @@ function QuotePage() {
                 >
                   {i + 1}
                 </span>
-
                 <span
                   className={cn(
                     "text-[0.58rem] font-semibold uppercase leading-tight tracking-wide sm:text-xs",
@@ -131,14 +222,15 @@ function QuotePage() {
 
           <form
             className="mt-7 rounded-sm border border-border bg-surface p-4 sm:mt-8 sm:p-8"
-            onSubmit={(e) => {
-              e.preventDefault();
+            onSubmit={async (event) => {
+              event.preventDefault();
 
               if (step < steps.length - 1) {
-                setStep(step + 1);
-              } else {
-                setSubmitted(true);
+                setStep((current) => current + 1);
+                return;
               }
+
+              await submitQuote();
             }}
           >
             {step === 0 ? (
@@ -149,18 +241,18 @@ function QuotePage() {
                   </span>
 
                   <p className="mb-4 text-sm text-muted-foreground">
-                    Choose one category. If your project includes more than one product type, list the others in Product Details or Notes.
+                    Choose one or more categories that apply to your project.
                   </p>
 
                   <div className="grid gap-2 sm:grid-cols-2">
                     {categories.map((cat) => {
-                      const selected = form.category === cat.slug;
+                      const selected = form.categories.includes(cat.slug);
 
                       return (
                         <button
                           key={cat.slug}
                           type="button"
-                          onClick={() => set("category", cat.slug)}
+                          onClick={() => toggleCategory(cat.slug)}
                           className={cn(
                             "relative min-w-0 rounded-sm border p-4 text-left transition-colors",
                             selected
@@ -178,7 +270,6 @@ function QuotePage() {
                           <span className="block pr-7 font-display text-sm font-semibold">
                             {cat.name}
                           </span>
-
                           <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
                             {cat.tagline}
                           </span>
@@ -186,6 +277,12 @@ function QuotePage() {
                       );
                     })}
                   </div>
+
+                  {form.categories.length > 0 ? (
+                    <p className="mt-3 text-xs font-medium text-primary">
+                      {form.categories.length} {form.categories.length === 1 ? "category" : "categories"} selected
+                    </p>
+                  ) : null}
                 </div>
 
                 <label className="block">
@@ -301,16 +398,47 @@ function QuotePage() {
                     <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
                       <Upload className="h-5 w-5 shrink-0 text-primary" />
                       <input
+                        ref={fileInputRef}
                         type="file"
-                        accept=".png,.jpg,.jpeg,.pdf,.svg,.eps,.ai"
-                        onChange={(e) => set("artworkName", e.target.files?.[0]?.name ?? "")}
+                        accept=".png,.jpg,.jpeg,.webp,.pdf,.svg,.eps,.ai"
+                        onChange={(event) => {
+                          const nextFile = event.target.files?.[0] ?? null;
+                          const error = validateUpload(nextFile);
+                          setFileError(error ?? "");
+                          setArtwork(error ? null : nextFile);
+                        }}
                         className="block min-w-0 w-full text-sm text-muted-foreground file:mr-3 file:border-0 file:bg-transparent file:font-semibold file:text-foreground"
                       />
                     </div>
 
                     <p className="mt-3 text-xs text-muted-foreground">
-                      Preferred files include AI, EPS, PDF or SVG. High-resolution PNG is usually workable.
+                      PNG, JPG, WEBP, PDF, SVG, EPS or AI. Maximum 10 MB.
                     </p>
+
+                    {artwork && !fileError ? (
+                      <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                        <span className="rounded-sm bg-primary/10 px-2.5 py-1.5 font-semibold text-primary">
+                          {artwork.name}
+                        </span>
+                        <button
+                          type="button"
+                          className="font-semibold text-muted-foreground underline underline-offset-4 hover:text-foreground"
+                          onClick={() => {
+                            setArtwork(null);
+                            setFileError("");
+                            if (fileInputRef.current) fileInputRef.current.value = "";
+                          }}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ) : null}
+
+                    {fileError ? (
+                      <p className="mt-3 text-xs font-medium text-destructive">
+                        {fileError}
+                      </p>
+                    ) : null}
                   </div>
                 </label>
               </div>
@@ -399,13 +527,26 @@ function QuotePage() {
               </div>
             ) : null}
 
+            {submitError ? (
+              <div
+                className="mt-6 rounded-sm border border-destructive/30 bg-destructive/5 p-4 text-sm text-destructive"
+                role="alert"
+              >
+                {submitError}
+              </div>
+            ) : null}
+
             <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
               {step > 0 ? (
                 <ButtonAction
                   type="button"
                   variant="ghost"
-                  onClick={() => setStep(step - 1)}
+                  onClick={() => {
+                    setSubmitError("");
+                    setStep((current) => current - 1);
+                  }}
                   className="w-full sm:w-auto"
+                  disabled={submitting}
                 >
                   <ArrowLeft className="h-4 w-4" /> Back
                 </ButtonAction>
@@ -416,10 +557,15 @@ function QuotePage() {
               <ButtonAction
                 type="submit"
                 size="lg"
-                disabled={!canContinue}
+                disabled={!canContinue || submitting}
                 className="w-full sm:w-auto"
               >
-                {step < steps.length - 1 ? (
+                {submitting ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : step < steps.length - 1 ? (
                   <>
                     Continue <ArrowRight className="h-4 w-4" />
                   </>

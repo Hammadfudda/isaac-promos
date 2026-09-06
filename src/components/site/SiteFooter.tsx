@@ -82,6 +82,31 @@ export function SiteFooter() {
               Serving business buyers across the United States.
             </p>
 
+            <div className="mt-5 space-y-2 text-sm leading-relaxed text-ink-foreground/70">
+              <p>
+                <span className="font-semibold text-ink-foreground">Email:</span>{" "}
+                <a
+                  href="mailto:info@izaacpromos.com"
+                  className="transition-colors hover:text-primary"
+                >
+                  info@izaacpromos.com
+                </a>
+              </p>
+              <p>
+                <span className="font-semibold text-ink-foreground">Phone:</span>{" "}
+                <a
+                  href="tel:+13127732671"
+                  className="transition-colors hover:text-primary"
+                >
+                  (312) 773-2671
+                </a>
+              </p>
+              <p className="max-w-sm">
+                <span className="font-semibold text-ink-foreground">Address:</span>{" "}
+                1223 N Cleaver St, Chicago, IL 60642, United States
+              </p>
+            </div>
+
             <div className="mt-6">
               <Action to="/quote">Get a Quote</Action>
             </div>
@@ -95,7 +120,6 @@ export function SiteFooter() {
             >
               <Facebook className="h-5 w-5" aria-hidden="true" />
             </a>
-
           </div>
 
           <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4">
