@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import apparelImg from "@/assets/cat-apparel.jpg";
-import drinkwareImg from "@/assets/cat-drinkware.jpg";
+import apparelImg from "@/assets/cat-apparel.png";
+import drinkwareImg from "@/assets/cat-drinkware.png";
 import patchesImg from "@/assets/cat-patches.jpg";
 import workwearImg from "@/assets/cat-workwear.jpg";
 import promoImg from "@/assets/cat-promo.jpg";

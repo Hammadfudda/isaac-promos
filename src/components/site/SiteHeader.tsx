@@ -20,7 +20,6 @@ const megaMenu: {
       { name: "Embroidered Polos", slug: "embroidered-polos" },
       { name: "DTF Polos", slug: "dtf-branded-polos" },
       { name: "Hoodies", slug: "custom-hoodies" },
-      { name: "FR Shirts", slug: "fr-shirts" },
     ],
   },
   {
@@ -154,7 +153,7 @@ export function SiteHeader() {
                 alt="Izaac Promos"
                 width={52}
                 height={52}
-                className="h-14 w-14 shrink-0 object-contain sm:h-16 sm:w-16"
+                className="h-11 w-11 shrink-0 object-contain sm:h-12 sm:w-12"
               />
               <span className="hidden truncate font-display text-base font-bold leading-none tracking-tight sm:block sm:text-lg">
                 IZAAC<span className="text-primary"> PROMOS</span>
@@ -256,11 +255,6 @@ export function SiteHeader() {
                           className="text-sm text-muted-foreground transition-colors hover:text-primary"
                         >
                           {item.name}
-                          {item.comingSoon ? (
-                            <span className="ml-2 text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-primary">
-                              Coming Soon
-                            </span>
-                          ) : null}
                         </Link>
                       </li>
                     ))}
@@ -302,7 +296,7 @@ export function SiteHeader() {
                   alt="Izaac Promos"
                   width={48}
                   height={48}
-                  className="h-13 w-13 shrink-0 object-contain"
+                  className="h-10 w-10 shrink-0 object-contain"
                 />
                 <span className="font-display text-base font-bold tracking-tight">
                   IZAAC<span className="text-primary"> PROMOS</span>
@@ -379,11 +373,6 @@ export function SiteHeader() {
                             className="block rounded-sm px-2 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-surface hover:text-foreground"
                           >
                             {item.name}
-                            {item.comingSoon ? (
-                              <span className="ml-2 text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-primary">
-                                Coming Soon
-                              </span>
-                            ) : null}
                           </Link>
                         </li>
                       ))}

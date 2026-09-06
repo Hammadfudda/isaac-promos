@@ -1,10 +1,17 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
-import apparelImg from "@/assets/cat-apparel.jpg";
-import drinkwareImg from "@/assets/cat-drinkware.jpg";
+import apparelImg from "@/assets/cat-apparel.png";
+import drinkwareImg from "@/assets/cat-drinkware.png";
 import patchesImg from "@/assets/cat-patches.jpg";
 import workwearImg from "@/assets/cat-workwear.jpg";
 import promoImg from "@/assets/cat-promo.jpg";
+
+const customTshirtAssets = import.meta.glob(
+  "../assets/custom-tshirt.{png,jpg,jpeg,webp}",
+  { eager: true, import: "default" },
+) as Record<string, string>;
+
+const customTshirtImg = Object.values(customTshirtAssets)[0];
 import {
   Action,
   Breadcrumbs,
@@ -46,7 +53,10 @@ export const Route = createFileRoute("/products/$category/$product")({
 
 function ProductPage() {
   const { product, category, related } = Route.useLoaderData();
-  const hero = images[category.image];
+  const hero =
+    product.slug === "custom-t-shirts" && customTshirtImg
+      ? customTshirtImg
+      : images[category.image];
 
   return (
     <>
