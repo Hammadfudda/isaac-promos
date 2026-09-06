@@ -43,6 +43,7 @@ function ProductsPage() {
 
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
+
     return products.filter((p) => {
       const matchesCat = active === "all" || p.category === active;
       const matchesQuery =
@@ -50,6 +51,7 @@ function ProductsPage() {
         p.name.toLowerCase().includes(q) ||
         p.blurb.toLowerCase().includes(q) ||
         p.idealFor.join(" ").toLowerCase().includes(q);
+
       return matchesCat && matchesQuery;
     });
   }, [active, query]);
@@ -82,7 +84,8 @@ function ProductsPage() {
               className="h-11 w-full border border-input bg-background pl-10 pr-3 text-sm outline-none transition-colors focus:border-primary"
             />
           </div>
-          <div className="flex flex-wrap gap-2">
+
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Product category filter">
             {filters.map((f) => (
               <button
                 key={f.slug}
@@ -104,9 +107,22 @@ function ProductsPage() {
 
       <section className="py-14 lg:py-20">
         <div className="container-x">
-          <p className="text-sm text-muted-foreground">
-            Showing {visible.length} product {visible.length === 1 ? "type" : "types"}
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <p className="text-sm text-muted-foreground">
+              Showing {visible.length} product {visible.length === 1 ? "type" : "types"}
+            </p>
+
+            <Action to="/quote" variant="outline">
+              Download Product Catalog
+            </Action>
+          </div>
+
+          <p className="mt-3 max-w-2xl text-xs leading-relaxed text-muted-foreground">
+            Full product catalog available on request. Tell us what you're sourcing and
+            we'll send relevant options. No catalog file is fabricated until the real
+            product overview is ready.
           </p>
+
           <div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {visible.map((p) => (
               <article key={p.slug} className="flex flex-col bg-background p-7">
@@ -119,14 +135,17 @@ function ProductsPage() {
                     {p.name}
                   </Link>
                 </h2>
+
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {p.blurb}
                 </p>
+
                 <div className="mt-5 flex flex-wrap gap-1.5">
                   {p.decoration.slice(0, 3).map((d) => (
                     <Tag key={d}>{decorationLabel(d)}</Tag>
                   ))}
                 </div>
+
                 <div className="mt-6 flex flex-wrap gap-2">
                   <Action
                     to="/products/$category/$product"
@@ -179,7 +198,7 @@ function ProductsPage() {
 
       <CTABlock
         title="Still comparing options?"
-        body="Send your quantity range and what the items are for. We will come back with a short list instead of a catalog."
+        body="Send your quantity range and what the items are for. We will come back with a short list instead of making you sort through hundreds of products."
         primaryLabel="Get Product Recommendations"
         secondary={{ label: "Talk to a Product Specialist", to: "/contact" }}
       />

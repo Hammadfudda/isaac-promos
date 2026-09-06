@@ -5,7 +5,11 @@ import logo from "@/assets/isaac-promos-logo.png.asset.json";
 import { Action } from "./ui";
 import { cn } from "@/lib/utils";
 
-const megaMenu: { category: string; slug: string; items: { name: string; slug: string }[] }[] = [
+const megaMenu: {
+  category: string;
+  slug: string;
+  items: { name: string; slug: string }[];
+}[] = [
   {
     category: "Apparel",
     slug: "apparel",
@@ -17,6 +21,7 @@ const megaMenu: { category: string; slug: string; items: { name: string; slug: s
       { name: "Embroidered Polos", slug: "embroidered-polos" },
       { name: "DTF Polos", slug: "dtf-branded-polos" },
       { name: "Hoodies", slug: "custom-hoodies" },
+      { name: "Garment Labels", slug: "garment-labels" },
     ],
   },
   {
@@ -24,13 +29,8 @@ const megaMenu: { category: string; slug: string; items: { name: string; slug: s
     slug: "drinkware",
     items: [
       { name: "Custom Bottles", slug: "custom-bottles" },
-      { name: "Tumblers", slug: "tumblers" },
+      { name: "Tumblers with Custom Logo", slug: "tumblers" },
     ],
-  },
-  {
-    category: "Bags",
-    slug: "bags",
-    items: [{ name: "Tote Bags", slug: "tote-bags" }],
   },
   {
     category: "Promotional Items",
@@ -39,6 +39,16 @@ const megaMenu: { category: string; slug: string; items: { name: string; slug: s
       { name: "Pens", slug: "pens" },
       { name: "Keychains", slug: "keychains" },
       { name: "Custom Keychains", slug: "custom-keychains" },
+      { name: "Custom Lanyards", slug: "custom-lanyards" },
+      { name: "Custom Stress Balls", slug: "custom-stress-balls" },
+    ],
+  },
+  {
+    category: "Bags",
+    slug: "bags",
+    items: [
+      { name: "Tote Bags", slug: "tote-bags" },
+      { name: "Woven & Non-Woven Bags", slug: "woven-non-woven-bags" },
     ],
   },
   {
@@ -53,19 +63,19 @@ const megaMenu: { category: string; slug: string; items: { name: string; slug: s
     ],
   },
   {
-    category: "Workwear",
-    slug: "workwear",
-    items: [
-      { name: "FR Shirts", slug: "fr-shirts" },
-      { name: "Branded Work Shirts", slug: "branded-work-shirts" },
-    ],
-  },
-  {
     category: "Towels",
     slug: "towels",
     items: [
       { name: "Golf Towels", slug: "golf-towels" },
       { name: "Custom Towels", slug: "custom-towels" },
+    ],
+  },
+  {
+    category: "Workwear",
+    slug: "workwear",
+    items: [
+      { name: "FR Shirts", slug: "fr-shirts" },
+      { name: "Branded Work Shirts", slug: "branded-work-shirts" },
     ],
   },
   {
@@ -118,24 +128,23 @@ export function SiteHeader() {
             className="hidden items-center gap-1 xl:flex"
             onMouseLeave={() => setOpenMega(false)}
           >
-            <div className="relative">
-              <button
-                type="button"
-                aria-expanded={openMega}
-                onMouseEnter={() => setOpenMega(true)}
-                onClick={() => setOpenMega((v) => !v)}
-                className={cn(
-                  "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors hover:text-primary",
-                  openMega && "text-primary",
-                )}
-              >
-                Products
-                <ChevronDown
-                  className={cn("h-4 w-4 transition-transform", openMega && "rotate-180")}
-                  aria-hidden="true"
-                />
-              </button>
-            </div>
+            <button
+              type="button"
+              aria-expanded={openMega}
+              onMouseEnter={() => setOpenMega(true)}
+              onClick={() => setOpenMega((v) => !v)}
+              className={cn(
+                "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors hover:text-primary",
+                openMega && "text-primary",
+              )}
+            >
+              Products
+              <ChevronDown
+                className={cn("h-4 w-4 transition-transform", openMega && "rotate-180")}
+                aria-hidden="true"
+              />
+            </button>
+
             {navLinks.map((l) => (
               <Link
                 key={l.to}
@@ -150,9 +159,6 @@ export function SiteHeader() {
           </nav>
 
           <div className="hidden items-center gap-3 xl:flex">
-            <Action to="/products" variant="outline">
-              Products
-            </Action>
             <Action to="/quote">Get a Quote</Action>
           </div>
 
@@ -167,13 +173,12 @@ export function SiteHeader() {
               onClick={() => setMobileOpen((v) => !v)}
               className="inline-flex h-10 w-10 items-center justify-center border border-border"
             >
-              {mobileOpen ? <Menu className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Desktop mega menu */}
       {openMega ? (
         <div
           className="absolute inset-x-0 top-full hidden border-b border-border bg-background shadow-[0_24px_48px_-32px_rgba(0,0,0,0.35)] xl:block"
@@ -207,6 +212,7 @@ export function SiteHeader() {
                 </ul>
               </div>
             ))}
+
             <div className="col-span-4 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
               <p className="text-sm text-muted-foreground">
                 Not sure which product fits? Describe the goal and we will recommend options.
@@ -219,20 +225,11 @@ export function SiteHeader() {
         </div>
       ) : null}
 
-      {/* Mobile drawer */}
       {mobileOpen ? (
         <div className="fixed inset-0 top-[72px] z-50 overflow-y-auto bg-background xl:hidden">
           <div className="container-x py-6">
-            <div className="mb-4 flex justify-end">
-              <button
-                type="button"
-                onClick={() => setMobileOpen(false)}
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground"
-              >
-                Close <X className="h-4 w-4" />
-              </button>
-            </div>
             <p className="eyebrow">Products</p>
+
             <ul className="mt-3 divide-y divide-border border-y border-border">
               {megaMenu.map((group) => (
                 <li key={group.slug}>
@@ -264,6 +261,7 @@ export function SiteHeader() {
                       </button>
                     ) : null}
                   </div>
+
                   {expanded === group.slug ? (
                     <ul className="pb-3 pl-3">
                       {group.items.map((item) => (

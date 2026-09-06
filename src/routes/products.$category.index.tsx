@@ -29,11 +29,16 @@ export const Route = createFileRoute("/products/$category/")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [{ title: "Category not found | Isaac Promos" }, { name: "robots", content: "noindex" }],
+        meta: [
+          { title: "Category not found | Isaac Promos" },
+          { name: "robots", content: "noindex" },
+        ],
       };
     }
+
     const { category } = loaderData;
     const title = `Custom ${category.name} in Bulk | Isaac Promos`;
+
     return {
       meta: [
         { title },
@@ -88,9 +93,62 @@ function CategoryPage() {
               className="h-full w-full object-cover"
             />
           </div>
+
           <div>
-            <h2 className="text-2xl sm:text-3xl">What this category covers</h2>
-            <p className="mt-4 leading-relaxed text-muted-foreground">{category.intro}</p>
+            {category.slug === "apparel" ? (
+              <>
+                <h2 className="text-2xl sm:text-3xl">
+                  Shirts, Polos & Hoodies, Built Around Your Budget and Branding
+                </h2>
+                <p className="mt-4 leading-relaxed text-muted-foreground">
+                  We keep our margins tight and shipping is included, so the pricing you
+                  get is genuinely competitive.
+                </p>
+
+                <div className="mt-6 space-y-5 text-sm leading-relaxed text-muted-foreground">
+                  <div>
+                    <h3 className="font-display text-sm font-bold text-foreground">
+                      Fabric & Printing
+                    </h3>
+                    <p className="mt-2">
+                      We work with a wide range of fabrics and can decorate with screen
+                      printing, embroidery, DTG, heat transfer or sublimation. Good for
+                      school giveaways, campaigns, or apparel that needs a lighter,
+                      office-friendly branding touch.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-display text-sm font-bold text-foreground">
+                      Patches
+                    </h3>
+                    <p className="mt-2">
+                      Leather, chenille and PVC patch options are available if you want a
+                      more premium look.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-display text-sm font-bold text-foreground">
+                      Sampling
+                    </h3>
+                    <p className="mt-2">
+                      We usually send a sample before full production starts. Once you
+                      approve it, we move to mass production, which saves fabric and time
+                      on both ends.
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <h2 className="text-2xl sm:text-3xl">What this category covers</h2>
+                <p className="mt-4 leading-relaxed text-muted-foreground">
+                  {category.intro}
+                </p>
+              </>
+            )}
+
             <div className="mt-8 flex flex-wrap gap-3">
               <Action to="/quote">Request Pricing</Action>
               <Action to="/decoration-methods" variant="outline">
@@ -105,6 +163,7 @@ function CategoryPage() {
         <section className="border-t border-border bg-surface py-14 lg:py-20">
           <div className="container-x">
             <h2 className="text-2xl sm:text-3xl">Products in {category.name}</h2>
+
             <div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
               {items.map((p) => (
                 <article key={p.slug} className="flex flex-col bg-background p-7">
@@ -117,14 +176,17 @@ function CategoryPage() {
                       {p.name}
                     </Link>
                   </h3>
+
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                     {p.blurb}
                   </p>
+
                   <div className="mt-5 flex flex-wrap gap-1.5">
                     {p.decoration.slice(0, 3).map((d) => (
                       <Tag key={d}>{decorationLabel(d)}</Tag>
                     ))}
                   </div>
+
                   <div className="mt-6">
                     <Action
                       to="/products/$category/$product"

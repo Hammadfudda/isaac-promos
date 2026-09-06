@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, CheckCircle2, Info } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, CheckCircle2, Info, Upload } from "lucide-react";
 import { categories, decorationMethods } from "@/data/catalog";
 import { ButtonAction, PageHeader, Section } from "@/components/site/ui";
 import { cn } from "@/lib/utils";
@@ -12,13 +12,13 @@ export const Route = createFileRoute("/quote")({
       {
         name: "description",
         content:
-          "Request a quote for custom bulk merchandise. Tell us the product, quantity, decoration method and timeline — we respond with accurate pricing within one business day.",
+          "Request pricing for custom bulk merchandise. Tell us the product, quantity, branding preference, timeline and contact details.",
       },
       { property: "og:title", content: "Request a Quote | Isaac Promos" },
       {
         property: "og:description",
         content:
-          "Tell us the product, quantity, decoration method and timeline — we respond with accurate pricing within one business day.",
+          "Tell us what you are sourcing and we will help structure the order around your actual requirements.",
       },
     ],
   }),
@@ -29,11 +29,16 @@ type FormState = {
   category: string;
   productDetails: string;
   quantity: string;
-  decoration: string;
+  budget: string;
   deadline: string;
+  purpose: string;
+  decoration: string;
+  artworkName: string;
   name: string;
   email: string;
+  phone: string;
   company: string;
+  cityState: string;
   notes: string;
 };
 
@@ -41,15 +46,20 @@ const initialState: FormState = {
   category: "",
   productDetails: "",
   quantity: "",
-  decoration: "",
+  budget: "",
   deadline: "",
+  purpose: "",
+  decoration: "",
+  artworkName: "",
   name: "",
   email: "",
+  phone: "",
   company: "",
+  cityState: "",
   notes: "",
 };
 
-const steps = ["Project", "Details", "Contact"] as const;
+const steps = ["Product", "Project Details", "Customization", "Contact"] as const;
 
 function QuotePage() {
   const [step, setStep] = useState(0);
@@ -61,7 +71,8 @@ function QuotePage() {
 
   const canContinue = useMemo(() => {
     if (step === 0) return form.category !== "";
-    if (step === 1) return form.quantity !== "";
+    if (step === 1) return form.quantity.trim() !== "";
+    if (step === 2) return true;
     return form.name.trim() !== "" && form.email.trim() !== "";
   }, [step, form]);
 
@@ -70,29 +81,18 @@ function QuotePage() {
       <div>
         <PageHeader
           eyebrow="Quote request"
-          title="Request received"
-          lead="Thanks — your quote request is in our inbox."
+          title="Request details captured"
+          lead="Your information is ready for review."
         />
         <Section>
           <div className="mx-auto max-w-xl rounded-sm border border-border bg-surface p-8 text-center">
             <CheckCircle2 className="mx-auto h-12 w-12 text-primary" />
             <h2 className="mt-5 text-2xl">What happens next</h2>
-            <ol className="mt-6 space-y-4 text-left">
-              {[
-                "We review your request and check blank availability and decoration fit.",
-                "You receive pricing, a suggested product and a realistic timeline within one business day.",
-                "Once you approve, we prepare a digital proof before anything goes into production.",
-              ].map((text, i) => (
-                <li key={text} className="flex gap-4">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm bg-primary font-display text-xs font-bold text-primary-foreground">
-                    {i + 1}
-                  </span>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {text}
-                  </p>
-                </li>
-              ))}
-            </ol>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              The current frontend records the completed form state only. Connect this form
+              to your email or backend before launch so real requests are delivered to the
+              team.
+            </p>
           </div>
         </Section>
       </div>
@@ -103,19 +103,19 @@ function QuotePage() {
     <div>
       <PageHeader
         eyebrow="Request a quote"
-        title="Get accurate pricing for your order"
-        lead="Three short steps. The more detail you share, the more accurate your pricing — no ballpark ranges that change later."
+        title="Tell us what you are trying to order"
+        lead="Four short steps. You do not need to know every product or printing term before you start."
         crumbs={[{ label: "Home", to: "/" }, { label: "Get a Quote" }]}
       />
 
       <Section>
-        <div className="mx-auto max-w-2xl">
-          <ol className="flex items-center gap-2" aria-label="Progress">
+        <div className="mx-auto max-w-3xl">
+          <ol className="grid grid-cols-4 gap-2" aria-label="Progress">
             {steps.map((label, i) => (
-              <li key={label} className="flex flex-1 items-center gap-2">
+              <li key={label} className="flex min-w-0 flex-col gap-2">
                 <span
                   className={cn(
-                    "flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border font-display text-xs font-bold",
+                    "flex h-8 w-8 items-center justify-center rounded-sm border font-display text-xs font-bold",
                     i <= step
                       ? "border-primary bg-primary text-primary-foreground"
                       : "border-border bg-surface text-muted-foreground",
@@ -125,15 +125,12 @@ function QuotePage() {
                 </span>
                 <span
                   className={cn(
-                    "text-xs font-semibold uppercase tracking-wide",
+                    "truncate text-[0.65rem] font-semibold uppercase tracking-wide sm:text-xs",
                     i <= step ? "text-foreground" : "text-muted-foreground",
                   )}
                 >
                   {label}
                 </span>
-                {i < steps.length - 1 ? (
-                  <span className="h-px flex-1 bg-border" aria-hidden="true" />
-                ) : null}
               </li>
             ))}
           </ol>
@@ -142,51 +139,78 @@ function QuotePage() {
             className="mt-8 rounded-sm border border-border bg-surface p-6 sm:p-8"
             onSubmit={(e) => {
               e.preventDefault();
-              if (step < steps.length - 1) setStep(step + 1);
-              else setSubmitted(true);
+
+              if (step < steps.length - 1) {
+                setStep(step + 1);
+              } else {
+                setSubmitted(true);
+              }
             }}
           >
             {step === 0 ? (
-              <div className="space-y-5">
+              <div className="space-y-6">
                 <div>
                   <span className="mb-2 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    Product category
+                    What do you need?
                   </span>
+                  <p className="mb-4 text-sm text-muted-foreground">
+                    Choose one category. If your project includes several product types,
+                    list the others in Product Details or Notes.
+                  </p>
+
                   <div className="grid gap-2 sm:grid-cols-2">
-                    {categories.map((cat) => (
-                      <button
-                        key={cat.slug}
-                        type="button"
-                        onClick={() => set("category", cat.slug)}
-                        className={cn(
-                          "rounded-sm border p-3 text-left transition-colors",
-                          form.category === cat.slug
-                            ? "border-primary bg-background"
-                            : "border-border bg-background hover:border-foreground/40",
-                        )}
-                        aria-pressed={form.category === cat.slug}
-                      >
-                        <span className="font-display text-sm font-semibold">
-                          {cat.name}
-                        </span>
-                        <span className="mt-0.5 block text-xs text-muted-foreground">
-                          {cat.tagline}
-                        </span>
-                      </button>
-                    ))}
+                    {categories.map((cat) => {
+                      const selected = form.category === cat.slug;
+
+                      return (
+                        <button
+                          key={cat.slug}
+                          type="button"
+                          onClick={() => set("category", cat.slug)}
+                          className={cn(
+                            "relative rounded-sm border p-4 text-left transition-colors",
+                            selected
+                              ? "border-primary bg-background font-semibold"
+                              : "border-border bg-background hover:border-foreground/40",
+                          )}
+                          aria-pressed={selected}
+                        >
+                          {selected ? (
+                            <span className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                              <Check className="h-3 w-3" />
+                            </span>
+                          ) : null}
+                          <span className="block pr-7 font-display text-sm font-semibold">
+                            {cat.name}
+                          </span>
+                          <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
+                            {cat.tagline}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
+
                 <label className="block">
                   <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    Product details (optional)
+                    Product details
                   </span>
-                  <input
-                    className="field"
+                  <textarea
+                    className="field min-h-24"
                     value={form.productDetails}
                     onChange={(e) => set("productDetails", e.target.value)}
-                    placeholder="e.g. heavyweight tees, 20oz tumblers, leather patches"
+                    placeholder="Example: 150 heavyweight tees plus 50 polos, or I am not sure which product yet"
                   />
                 </label>
+
+                <div className="flex gap-3 rounded-sm border border-border bg-background p-4">
+                  <Info className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    No exact product picked yet? That's okay. Tell us the goal and we'll
+                    help you narrow it down.
+                  </p>
+                </div>
               </div>
             ) : null}
 
@@ -199,55 +223,112 @@ function QuotePage() {
                     </span>
                     <input
                       required
-                      type="number"
-                      min={1}
                       className="field"
                       value={form.quantity}
                       onChange={(e) => set("quantity", e.target.value)}
-                      placeholder="e.g. 150"
+                      placeholder="Example: 150 or 100 to 250"
                     />
                   </label>
+
                   <label className="block">
                     <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                      Decoration method
+                      Budget range, optional
                     </span>
                     <select
                       className="field"
-                      value={form.decoration}
-                      onChange={(e) => set("decoration", e.target.value)}
+                      value={form.budget}
+                      onChange={(e) => set("budget", e.target.value)}
                     >
-                      <option value="">Not sure — advise me</option>
-                      {decorationMethods.map((d) => (
-                        <option key={d.key} value={d.key}>
-                          {d.name}
-                        </option>
-                      ))}
+                      <option value="">Prefer not to say</option>
+                      <option value="under-1000">Under $1,000</option>
+                      <option value="1000-2500">$1,000 to $2,500</option>
+                      <option value="2500-5000">$2,500 to $5,000</option>
+                      <option value="5000-10000">$5,000 to $10,000</option>
+                      <option value="10000-plus">$10,000+</option>
                     </select>
                   </label>
                 </div>
-                <label className="block">
-                  <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    Deadline or event date (optional)
-                  </span>
-                  <input
-                    type="date"
-                    className="field"
-                    value={form.deadline}
-                    onChange={(e) => set("deadline", e.target.value)}
-                  />
-                </label>
-                <div className="flex gap-3 rounded-sm border border-border bg-background p-4">
-                  <Info className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <p className="text-xs leading-relaxed text-muted-foreground">
-                    Not sure about decoration? Leave it blank — we recommend a
-                    method based on the product, artwork and quantity. You can
-                    also attach your logo after submitting.
-                  </p>
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <label className="block">
+                    <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      Need-by date
+                    </span>
+                    <input
+                      type="date"
+                      className="field"
+                      value={form.deadline}
+                      onChange={(e) => set("deadline", e.target.value)}
+                    />
+                  </label>
+
+                  <label className="block">
+                    <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      Purpose or event
+                    </span>
+                    <input
+                      className="field"
+                      value={form.purpose}
+                      onChange={(e) => set("purpose", e.target.value)}
+                      placeholder="School event, staff uniforms, trade show..."
+                    />
+                  </label>
                 </div>
               </div>
             ) : null}
 
             {step === 2 ? (
+              <div className="space-y-5">
+                <label className="block">
+                  <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Decoration preference
+                  </span>
+                  <select
+                    className="field"
+                    value={form.decoration}
+                    onChange={(e) => set("decoration", e.target.value)}
+                  >
+                    <option value="">Not sure, advise me</option>
+                    {decorationMethods.map((d) => (
+                      <option key={d.key} value={d.key}>
+                        {d.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <label className="block">
+                  <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Logo or artwork
+                  </span>
+                  <div className="rounded-sm border border-dashed border-border bg-background p-5">
+                    <div className="flex items-center gap-3">
+                      <Upload className="h-5 w-5 text-primary" />
+                      <input
+                        type="file"
+                        accept=".png,.jpg,.jpeg,.pdf,.svg,.eps,.ai"
+                        onChange={(e) => set("artworkName", e.target.files?.[0]?.name ?? "")}
+                        className="block w-full text-sm text-muted-foreground file:mr-3 file:border-0 file:bg-transparent file:font-semibold file:text-foreground"
+                      />
+                    </div>
+                    <p className="mt-3 text-xs text-muted-foreground">
+                      Preferred files include AI, EPS, PDF or SVG. High-resolution PNG is
+                      usually workable.
+                    </p>
+                  </div>
+                </label>
+
+                <div className="flex gap-3 rounded-sm border border-border bg-background p-4">
+                  <Info className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                  <p className="text-xs leading-relaxed text-muted-foreground">
+                    The file picker is ready in the UI. A real upload destination still
+                    needs to be connected before launch.
+                  </p>
+                </div>
+              </div>
+            ) : null}
+
+            {step === 3 ? (
               <div className="space-y-5">
                 <div className="grid gap-5 sm:grid-cols-2">
                   <label className="block">
@@ -262,6 +343,7 @@ function QuotePage() {
                       placeholder="Jane Smith"
                     />
                   </label>
+
                   <label className="block">
                     <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                       Work email
@@ -276,26 +358,54 @@ function QuotePage() {
                     />
                   </label>
                 </div>
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <label className="block">
+                    <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      Company / organization
+                    </span>
+                    <input
+                      className="field"
+                      value={form.company}
+                      onChange={(e) => set("company", e.target.value)}
+                      placeholder="Acme Corp"
+                    />
+                  </label>
+
+                  <label className="block">
+                    <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      Phone, optional
+                    </span>
+                    <input
+                      className="field"
+                      value={form.phone}
+                      onChange={(e) => set("phone", e.target.value)}
+                      placeholder="(555) 555-5555"
+                    />
+                  </label>
+                </div>
+
                 <label className="block">
                   <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    Company / organization
+                    City / State
                   </span>
                   <input
                     className="field"
-                    value={form.company}
-                    onChange={(e) => set("company", e.target.value)}
-                    placeholder="Acme Corp"
+                    value={form.cityState}
+                    onChange={(e) => set("cityState", e.target.value)}
+                    placeholder="Dallas, TX"
                   />
                 </label>
+
                 <label className="block">
                   <span className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                    Anything else we should know?
+                    Additional notes
                   </span>
                   <textarea
                     className="field min-h-28"
                     value={form.notes}
                     onChange={(e) => set("notes", e.target.value)}
-                    placeholder="Sizes breakdown, colors, budget range, shipping address..."
+                    placeholder="Sizes, colors, shipping details, extra product types, or anything else we should know"
                   />
                 </label>
               </div>
@@ -313,20 +423,22 @@ function QuotePage() {
               ) : (
                 <span />
               )}
+
               <ButtonAction type="submit" size="lg" disabled={!canContinue}>
                 {step < steps.length - 1 ? (
                   <>
                     Continue <ArrowRight className="h-4 w-4" />
                   </>
                 ) : (
-                  "Submit quote request"
+                  "Request My Quote"
                 )}
               </ButtonAction>
             </div>
           </form>
 
           <p className="mt-4 text-center text-xs text-muted-foreground">
-            No spam, no obligation. We respond within one business day.
+            No exact product picked yet? That's okay. Tell us the goal and we'll help you
+            narrow it down.
           </p>
         </div>
       </Section>

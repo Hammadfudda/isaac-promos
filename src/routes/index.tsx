@@ -9,7 +9,6 @@ import workwearImg from "@/assets/cat-workwear.jpg";
 import promoImg from "@/assets/cat-promo.jpg";
 import {
   Action,
-  ButtonAction,
   CTABlock,
   ImageSlot,
   Section,
@@ -55,11 +54,41 @@ const trustStrip = [
 ];
 
 const featuredCategories = [
-  { name: "Custom Apparel", slug: "apparel", line: "Tees, polos and fleece for teams and events.", img: apparelImg, span: "lg:col-span-2 lg:row-span-2" },
-  { name: "Drinkware", slug: "drinkware", line: "Bottles and tumblers that stay in daily use.", img: drinkwareImg, span: "" },
-  { name: "Patches & Badges", slug: "patches-badges", line: "Leather, PVC, chenille and embroidered.", img: patchesImg, span: "" },
-  { name: "Workwear", slug: "workwear", line: "Field-ready shirts branded for job sites.", img: workwearImg, span: "" },
-  { name: "Bags & Promo", slug: "promotional-items", line: "Totes, pens, keychains and giveaways.", img: promoImg, span: "" },
+  {
+    name: "Custom Apparel",
+    slug: "apparel",
+    line: "Tees, polos and fleece for teams and events.",
+    img: apparelImg,
+    span: "lg:col-span-2 lg:row-span-2",
+  },
+  {
+    name: "Drinkware",
+    slug: "drinkware",
+    line: "Bottles and tumblers with custom branding.",
+    img: drinkwareImg,
+    span: "",
+  },
+  {
+    name: "Patches & Badges",
+    slug: "patches-badges",
+    line: "Leather, PVC, chenille and embroidered.",
+    img: patchesImg,
+    span: "",
+  },
+  {
+    name: "Workwear",
+    slug: "workwear",
+    line: "Field-ready shirts branded for job sites.",
+    img: workwearImg,
+    span: "",
+  },
+  {
+    name: "Bags & Promo",
+    slug: "promotional-items",
+    line: "Totes, pens, keychains, lanyards and giveaways.",
+    img: promoImg,
+    span: "",
+  },
 ];
 
 const problems = [
@@ -86,6 +115,7 @@ function Home() {
   return (
     <>
       <Hero />
+      <WhyWeDoIt />
       <TrustStrip />
       <SolveSection />
       <FeaturedCategories />
@@ -117,15 +147,19 @@ function Hero() {
           <h1 className="mt-4 text-4xl leading-[1.02] sm:text-5xl lg:text-[4.1rem]">
             Custom Products Without the Bulk-Order Headache.
           </h1>
+
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
             From branded apparel and drinkware to patches, workwear and promotional
             merchandise, Isaac Promos helps businesses turn an idea into a clear,
             customized bulk order.
           </p>
+
           <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-            Tell us what you need, your quantity, timeline and branding requirements. We
-            will help you figure out the right product and customization approach.
+            Tell us what you need: the product, the quantity, your timeline, and how you
+            want it branded. We'll help you land on the right product and the right
+            customization approach.
           </p>
+
           <div className="mt-8 flex flex-wrap gap-3">
             <Action to="/quote" size="lg">
               Get a Quote
@@ -134,6 +168,7 @@ function Hero() {
               Explore Products
             </Action>
           </div>
+
           <p className="mt-5 border-l-2 border-primary pl-4 text-sm text-muted-foreground">
             Not sure what product you need? Tell us what you're trying to accomplish.
           </p>
@@ -143,17 +178,11 @@ function Hero() {
           <div className="hover-media border border-border">
             <img
               src={heroImg}
-              alt="Assorted blank custom merchandise including folded shirts, a polo, tumbler, bottle, tote bag, patch, pen and golf towel arranged on a studio surface"
+              alt="Assorted custom merchandise including shirts, a polo, tumbler, bottle, tote bag, patch, pen and towel arranged on a studio surface"
               width={1600}
               height={1200}
               className="h-full w-full object-cover"
             />
-          </div>
-          <div className="absolute -bottom-6 left-6 hidden max-w-[15rem] border border-border bg-background p-5 shadow-[0_20px_40px_-30px_rgba(0,0,0,0.5)] lg:block">
-            <p className="font-display text-3xl font-bold leading-none text-primary">20+</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Product types across apparel, drinkware, patches and promotional items.
-            </p>
           </div>
         </div>
       </div>
@@ -161,9 +190,46 @@ function Hero() {
   );
 }
 
+function WhyWeDoIt() {
+  return (
+    <Section>
+      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div>
+          <p className="eyebrow">Why we do it this way</p>
+          <h2 className="mt-3 text-3xl sm:text-4xl">
+            We are building for long-term relationships.
+          </h2>
+        </div>
+
+        <div className="max-w-2xl">
+          <p className="leading-relaxed text-muted-foreground">
+            We're building this company around long-term relationships, not one-off
+            orders. Our goal is a wall of loyal customers, not a pile of profit.
+          </p>
+
+          <p className="mt-6 font-display text-sm font-bold uppercase tracking-[0.1em]">
+            How we do it
+          </p>
+
+          <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+            <li>Delivering quality work, on time, every time</li>
+            <li>Keeping our profit margins as low as we reasonably can</li>
+            <li>Prioritizing long-term trust over short-term gain</li>
+          </ul>
+
+          <p className="mt-6 leading-relaxed text-muted-foreground">
+            At the end of the day, we're here to build a wall with customers, not with
+            money.
+          </p>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
 function TrustStrip() {
   return (
-    <div className="border-b border-border bg-surface">
+    <div className="border-y border-border bg-surface">
       <div className="container-x grid gap-px sm:grid-cols-2 lg:grid-cols-4">
         {trustStrip.map((t) => (
           <div key={t.title} className="py-7 lg:pr-8">
@@ -197,6 +263,7 @@ function SolveSection() {
           <Link
             key={s.slug}
             to="/solutions"
+            hash={s.slug}
             className="group bg-background p-7 transition-colors hover:bg-surface"
           >
             <h3 className="font-display text-lg font-bold">{s.title}</h3>
@@ -222,6 +289,7 @@ function FeaturedCategories() {
         title="Browse the categories we work in most."
         lead="Each category page explains what the products are typically used for and which decoration methods apply."
       />
+
       <div className="mt-12 grid auto-rows-[220px] gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {featuredCategories.map((c) => (
           <Link
@@ -252,6 +320,7 @@ function FeaturedCategories() {
           </Link>
         ))}
       </div>
+
       <div className="mt-8">
         <Action to="/products" variant="dark">
           View All Products
@@ -279,18 +348,20 @@ function ProblemSolution() {
                 className="flex gap-3 border-b border-ink-foreground/10 pb-3 text-sm text-ink-foreground/75"
               >
                 <span aria-hidden="true" className="text-primary">
-                  —
+                  •
                 </span>
                 {p}
               </li>
             ))}
           </ul>
         </div>
+
         <div className="border border-ink-foreground/15 p-8 lg:p-10">
           <p className="eyebrow">How we work</p>
           <h3 className="mt-3 text-2xl text-ink-foreground">
             We help simplify the process from product selection to production.
           </h3>
+
           <ul className="mt-8 space-y-4">
             {answers.map((a, i) => (
               <li key={a} className="flex gap-4">
@@ -301,6 +372,7 @@ function ProblemSolution() {
               </li>
             ))}
           </ul>
+
           <div className="mt-9">
             <Action to="/how-it-works" variant="primary">
               See How It Works
@@ -313,7 +385,16 @@ function ProblemSolution() {
 }
 
 const finderFields = {
-  audience: ["Company", "School", "Team", "Event", "Construction / Field Staff", "Giveaway", "Retail / Resale", "Other"],
+  audience: [
+    "Company",
+    "School",
+    "Team",
+    "Event",
+    "Construction / Field Staff",
+    "Giveaway",
+    "Retail / Resale",
+    "Other",
+  ],
   item: ["Apparel", "Drinkware", "Bags", "Patches", "Promo Items", "Not Sure"],
   qty: ["25–50", "50–100", "100–250", "250–500", "500+", "Not Sure"],
 };
@@ -322,7 +403,6 @@ function ProductFinder() {
   const [audience, setAudience] = useState("");
   const [item, setItem] = useState("");
   const [qty, setQty] = useState("");
-  const navigateTo = `/quote`;
 
   return (
     <Section>
@@ -332,6 +412,7 @@ function ProductFinder() {
           title="Not sure where to start?"
           lead="Answer three quick questions and we will point you toward products that make sense for the order. You can change any of it later."
         />
+
         <div className="border border-border bg-surface p-7 lg:p-9">
           <FinderGroup
             label="What are you ordering for?"
@@ -354,16 +435,17 @@ function ProductFinder() {
             onChange={setQty}
             name="finder-qty"
           />
+
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
-              to={navigateTo}
+              to="/quote"
               search={{ audience, item, qty } as never}
               className="inline-flex h-12 items-center justify-center rounded-sm bg-primary px-6 font-display text-[0.95rem] font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/90"
             >
               Show Me Good Options
             </Link>
             <p className="text-sm text-muted-foreground">
-              No selection is final. We confirm everything before production.
+              Each question allows one choice only. You can change the selection anytime.
             </p>
           </div>
         </div>
@@ -396,7 +478,7 @@ function FinderGroup({
             key={o}
             className={`cursor-pointer border px-3 py-2 text-sm transition-colors ${
               value === o
-                ? "border-primary bg-primary text-primary-foreground"
+                ? "border-primary bg-primary font-semibold text-primary-foreground"
                 : "border-border bg-background hover:border-foreground"
             }`}
           >
@@ -430,30 +512,29 @@ function Spotlight() {
             className="h-full w-full object-cover"
           />
         </div>
+
         <div>
           <p className="eyebrow">Product spotlight</p>
           <h2 className="mt-3 text-3xl sm:text-4xl">
-            Apparel is where most bulk orders start.
+            Shirts, polos and hoodies built around your budget and branding.
           </h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            Shirts and polos carry your branding further than almost anything else, but
-            the difference between a good order and a disappointing one usually comes
-            down to the blank and the decoration method. We help you compare both before
-            you commit to a quantity.
+            We keep our margins tight and shipping is included, so the pricing you get is
+            genuinely competitive. We work with a wide range of fabrics and can decorate
+            with screen printing, embroidery, DTG, heat transfer or sublimation.
           </p>
-          <dl className="mt-8 grid gap-5 sm:grid-cols-2">
-            {[
-              ["Gildan 2000 Shirts", "A familiar heavyweight cotton tee for high-quantity runs."],
-              ["Premium Polos", "Higher-end construction for client-facing and management teams."],
-              ["Embroidered Polos", "Stitched branding that holds up to repeated washing."],
-              ["DTF Branded Polos", "Full-color transfers for detailed or multi-color logos."],
-            ].map(([t, d]) => (
-              <div key={t}>
-                <dt className="font-display text-sm font-bold">{t}</dt>
-                <dd className="mt-1 text-sm text-muted-foreground">{d}</dd>
-              </div>
-            ))}
-          </dl>
+
+          <div className="mt-6 space-y-4 text-sm text-muted-foreground">
+            <p>
+              Leather, chenille and PVC patch options are available if you want a more
+              premium look.
+            </p>
+            <p>
+              We usually send a sample before full production starts. Once you approve it,
+              we move to mass production, which saves fabric and time on both ends.
+            </p>
+          </div>
+
           <div className="mt-8 flex flex-wrap gap-3">
             <Action to="/products/$category" params={{ category: "apparel" }} variant="dark">
               Explore Apparel
@@ -481,8 +562,9 @@ function DecorationPreview() {
           Compare Methods
         </Action>
       </div>
+
       <div className="mt-12 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-        {decorationMethods.slice(0, 8).map((m) => (
+        {decorationMethods.map((m) => (
           <div key={m.key} className="bg-background p-6">
             <h3 className="font-display text-base font-bold">{m.name}</h3>
             <p className="mt-3 text-sm text-muted-foreground">{m.look}</p>
@@ -493,9 +575,13 @@ function DecorationPreview() {
           </div>
         ))}
       </div>
+
       <p className="mt-8 text-sm text-muted-foreground">
         Not sure which method fits your project?{" "}
-        <Link to="/contact" className="font-semibold text-primary underline-offset-4 hover:underline">
+        <Link
+          to="/contact"
+          className="font-semibold text-primary underline-offset-4 hover:underline"
+        >
           Ask us.
         </Link>
       </p>
@@ -511,6 +597,7 @@ function ProcessPreview() {
         title="A process built for buyers who are still deciding."
         lead="You do not need final specifications to start. Most projects get shaped during the first two steps."
       />
+
       <ol className="mt-12 grid gap-px border border-border bg-border lg:grid-cols-5">
         {processSteps.map((s) => (
           <li key={s.n} className="bg-background p-6">
@@ -520,6 +607,7 @@ function ProcessPreview() {
           </li>
         ))}
       </ol>
+
       <div className="mt-8">
         <Action to="/how-it-works" variant="dark">
           Read the Full Process
@@ -542,6 +630,7 @@ function IndustriesPreview() {
           See All Solutions
         </Action>
       </div>
+
       <div className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
         {industries.slice(0, 6).map((i) => (
           <div key={i.name} className="border-t-2 border-ink pt-5">
@@ -574,6 +663,7 @@ function Distributor() {
             opportunities based on your requirements.
           </p>
         </div>
+
         <div className="lg:justify-self-end">
           <Action to="/contact" size="lg">
             Discuss an Outsourced Project
@@ -597,6 +687,7 @@ function WorkPreview() {
           View Gallery
         </Action>
       </div>
+
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {projectPlaceholders.slice(0, 4).map((p) => (
           <article key={p.title}>
@@ -614,6 +705,7 @@ function WorkPreview() {
 
 function FaqPreview() {
   const preview = faqGroups.flatMap((g) => g.items).slice(0, 5);
+
   return (
     <Section>
       <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
@@ -632,11 +724,14 @@ function FaqPreview() {
             </Action>
           </div>
         </div>
+
         <dl className="divide-y divide-border border-y border-border">
           {preview.map((f) => (
             <div key={f.q} className="py-6">
               <dt className="font-display text-base font-bold">{f.q}</dt>
-              <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.a}</dd>
+              <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {f.a}
+              </dd>
             </div>
           ))}
         </dl>

@@ -2,14 +2,21 @@ import { Link } from "@tanstack/react-router";
 import logo from "@/assets/isaac-promos-logo.png.asset.json";
 import { Action } from "./ui";
 
-const columns: { title: string; links: { label: string; to: string; params?: Record<string, string> }[] }[] = [
+const columns: {
+  title: string;
+  links: { label: string; to: string; params?: Record<string, string> }[];
+}[] = [
   {
     title: "Products",
     links: [
       { label: "Apparel", to: "/products/$category", params: { category: "apparel" } },
       { label: "Drinkware", to: "/products/$category", params: { category: "drinkware" } },
       { label: "Bags", to: "/products/$category", params: { category: "bags" } },
-      { label: "Patches & Badges", to: "/products/$category", params: { category: "patches-badges" } },
+      {
+        label: "Patches & Badges",
+        to: "/products/$category",
+        params: { category: "patches-badges" },
+      },
       { label: "Workwear", to: "/products/$category", params: { category: "workwear" } },
       { label: "All Products", to: "/products" },
     ],
@@ -38,6 +45,7 @@ const columns: { title: string; links: { label: string; to: string; params?: Rec
     links: [
       { label: "Decoration Methods", to: "/decoration-methods" },
       { label: "FAQ", to: "/faq" },
+      { label: "Download Product Catalog", to: "/quote" },
       { label: "Get a Quote", to: "/quote" },
     ],
   },
@@ -64,18 +72,29 @@ export function SiteFooter() {
                 ISAAC<span className="text-primary">PROMOS</span>
               </span>
             </div>
+
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-ink-foreground/70">
               Custom merchandise for businesses, organizations, teams and projects of all
               sizes. Tell us the goal and we help build the order around it.
             </p>
+
             <div className="mt-6 space-y-1 text-sm text-ink-foreground/70">
               <p>Email: [email placeholder]</p>
               <p>Phone: [phone placeholder]</p>
               <p>Serving business buyers across the United States</p>
             </div>
-            <div className="mt-6">
+
+            <div className="mt-6 flex flex-wrap gap-3">
               <Action to="/quote">Get a Quote</Action>
+              <Action to="/quote" variant="outline">
+                Download Product Catalog
+              </Action>
             </div>
+
+            <p className="mt-3 max-w-sm text-xs leading-relaxed text-ink-foreground/55">
+              Full product catalog available on request. Tell us what you are sourcing and
+              we will send relevant options.
+            </p>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
