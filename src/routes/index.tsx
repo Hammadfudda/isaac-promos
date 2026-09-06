@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { MarqueeBar } from "@/components/site/MarqueeBar";
 import heroImg from "@/assets/hero-merch.jpg";
 import apparelImg from "@/assets/cat-apparel.jpg";
 import drinkwareImg from "@/assets/cat-drinkware.jpg";
@@ -113,10 +114,12 @@ function Home() {
   return (
     <>
       <Hero />
+      <MarqueeBar />
       <WhyWeDoIt />
       <TrustStrip />
       <SolveSection />
       <FeaturedCategories />
+      <MarqueeBar dark />
       <ProblemSolution />
       <ProductFinder />
       <Spotlight />

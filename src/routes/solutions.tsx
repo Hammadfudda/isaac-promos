@@ -9,16 +9,9 @@ export const Route = createFileRoute("/solutions")({
       {
         name: "description",
         content:
-          "Uniform programs, school apparel, event merchandise, workwear, client gifts and distributor orders — solutions organized around what your order needs to accomplish.",
-      },
-      { property: "og:title", content: "Bulk Merchandise Solutions by Use Case | Isaac Promos" },
-      {
-        property: "og:description",
-        content:
-          "Solutions for uniforms, schools, events, workwear, giveaways, fundraisers and outsourced distributor orders.",
+          "Explore bulk merchandise solutions for uniforms, schools, events, workwear, giveaways, fundraising and outsourced distributor projects.",
       },
     ],
-    links: [{ rel: "canonical", href: "/solutions" }],
   }),
   component: SolutionsPage,
 });
@@ -29,47 +22,46 @@ function SolutionsPage() {
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "Solutions" }]}
         eyebrow="Solutions"
-        title="Start from the outcome, not the product list."
-        lead="Most buyers do not begin with a product code. They begin with a team to outfit, an event to prepare for or a budget to hit. Find the situation that matches yours."
+        title="Start with the outcome, not the product list."
+        lead="Tell us what the merchandise needs to accomplish and we can help identify the right product categories and branding approach."
       />
 
       <Section>
-        <div className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-2">
-          {solutions.map((s) => (
+        <div className="grid gap-px border border-border bg-border md:grid-cols-2">
+          {solutions.map((solution) => (
             <article
-              key={s.slug}
-              id={s.slug}
-              className="flex flex-col bg-background p-7 transition-colors hover:bg-surface lg:p-9"
+              key={solution.slug}
+              id={solution.slug}
+              className="flex flex-col bg-background p-6 sm:p-8"
             >
-              <h2 className="text-xl leading-snug lg:text-2xl">{s.title}</h2>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.outcome}</p>
+              <h2 className="text-xl sm:text-2xl">{solution.title}</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {solution.outcome}
+              </p>
 
-              <dl className="mt-6 space-y-3 border-t border-border pt-5 text-sm">
-                <div className="flex gap-3">
-                  <dt className="w-28 shrink-0 font-display text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+              <div className="mt-6 grid gap-5 text-sm">
+                <div>
+                  <p className="font-display text-xs font-bold uppercase tracking-[0.1em] text-muted-foreground">
                     Common needs
-                  </dt>
-                  <dd className="text-foreground">{s.needs.join(" · ")}</dd>
+                  </p>
+                  <p className="mt-2">{solution.needs.join(", ")}</p>
                 </div>
-                <div className="flex gap-3">
-                  <dt className="w-28 shrink-0 font-display text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-                    Categories
-                  </dt>
-                  <dd className="text-foreground">{s.categories.join(", ")}</dd>
+                <div>
+                  <p className="font-display text-xs font-bold uppercase tracking-[0.1em] text-muted-foreground">
+                    Product categories
+                  </p>
+                  <p className="mt-2">{solution.categories.join(", ")}</p>
                 </div>
-                <div className="flex gap-3">
-                  <dt className="w-28 shrink-0 font-display text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-                    Methods
-                  </dt>
-                  <dd className="text-foreground">{s.methods.join(", ")}</dd>
+                <div>
+                  <p className="font-display text-xs font-bold uppercase tracking-[0.1em] text-muted-foreground">
+                    Possible methods
+                  </p>
+                  <p className="mt-2">{solution.methods.join(", ")}</p>
                 </div>
-              </dl>
+              </div>
 
-              <div className="mt-7 flex flex-wrap gap-3 pt-1">
-                <Action to="/quote">{s.cta}</Action>
-                <Action to="/products" variant="outline">
-                  Browse Products
-                </Action>
+              <div className="mt-7">
+                <Action to="/quote">{solution.cta}</Action>
               </div>
             </article>
           ))}
@@ -78,37 +70,41 @@ function SolutionsPage() {
 
       <Section tone="surface">
         <SectionHead
-          eyebrow="Industries"
-          title="Who we work with most"
-          lead="The buying process changes depending on who is ordering. Here is how we typically approach each group."
+          eyebrow="Industries we help"
+          title="Different buyers have different pressure points."
+          lead="A school order, a construction uniform program and an event giveaway order should not be handled the same way."
         />
-        <div className="mt-12 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2 lg:grid-cols-3">
-          {industries.map((ind) => (
-            <div key={ind.name} className="flex flex-col bg-background p-7">
-              <h3 className="text-lg">{ind.name}</h3>
-              <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{ind.need}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {ind.cats.map((c) => (
-                  <Tag key={c}>{c}</Tag>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {industries.map((industry) => (
+            <article key={industry.name} className="border-t-2 border-ink pt-5">
+              <h3 className="text-lg">{industry.name}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {industry.need}
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {industry.cats.map((cat) => (
+                  <Tag key={cat}>{cat}</Tag>
                 ))}
               </div>
               <p className="mt-4 text-xs text-muted-foreground">
-                Typical methods: {ind.methods.join(", ")}
+                Possible methods: {industry.methods.join(", ")}
               </p>
-              <div className="mt-6">
+              <div className="mt-5">
                 <Action to="/quote" variant="outline">
-                  {ind.cta}
+                  {industry.cta}
                 </Action>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </Section>
 
       <CTABlock
-        title="Not sure which of these fits your project?"
-        body="Describe the situation in a sentence or two. We will tell you which approach makes sense and what information we need to quote it."
-        secondary={{ label: "Contact Us", to: "/contact" }}
+        title="Do not see your exact use case?"
+        body="Describe the project in plain language. We can help decide which product direction makes sense."
+        primaryLabel="Discuss Your Project"
+        secondary={{ label: "Browse Products", to: "/products" }}
       />
     </>
   );

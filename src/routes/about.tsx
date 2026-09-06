@@ -8,13 +8,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "Isaac Promos is a US-facing custom merchandise and bulk order partner focused on clear specifications, honest timelines and consistent communication.",
-      },
-      { property: "og:title", content: "About Isaac Promos | Custom Merchandise Partner" },
-      {
-        property: "og:description",
-        content:
-          "Who we are, how we work and why buyers choose a partner over a print vendor.",
+          "Isaac Promos helps businesses, schools, contractors, events, distributors and organizations source and customize bulk merchandise with practical product guidance.",
       },
     ],
     links: [{ rel: "canonical", href: "/about" }],
@@ -22,22 +16,31 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
 });
 
-const principles = [
+const values = [
   {
-    t: "Clarity before commitment",
-    b: "Specifications, quantities, methods and timelines are confirmed in writing before production starts. No surprises at invoicing.",
+    title: "Practical Recommendations",
+    body:
+      "We start with what the order needs to accomplish, then help narrow down the product, material, branding method and quantity.",
   },
   {
-    t: "Honest recommendations",
-    b: "If a cheaper product serves you better, we say so. If a deadline is not realistic, we say that too — before you order.",
+    title: "Clear Communication",
+    body:
+      "Specifications, quantity, artwork expectations and project details should be clear before production begins.",
   },
   {
-    t: "One point of contact",
-    b: "You are not handed off. The person who quotes your project is the person who follows it through and handles the reorder.",
+    title: "Flexible Product Sourcing",
+    body:
+      "You can come to us with a product name, a rough idea, a reference image or a business need. We help structure the order from there.",
   },
   {
-    t: "Built for repeat orders",
-    b: "We keep your confirmed specifications on file so a reorder takes one message instead of restarting the conversation.",
+    title: "Attention to Branding Details",
+    body:
+      "Logo placement, decoration method, garment choice and presentation all affect the final result. We help you think through those details.",
+  },
+  {
+    title: "Business-to-Business Service",
+    body:
+      "Our process is built for organizations that need bulk orders, repeat orders, team programs, event merchandise or outsourced production support.",
   },
 ];
 
@@ -46,77 +49,63 @@ function AboutPage() {
     <>
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "About" }]}
-        eyebrow="About"
-        title="A merchandise partner, not another printing vendor."
-        lead="Isaac Promos helps US businesses, schools, contractors, event organizers and distributors source and customize merchandise in bulk — with the product guidance that most order forms leave out."
+        eyebrow="About Isaac Promos"
+        title="A custom merchandise partner that helps you figure out the order."
+        lead="Isaac Promos exists to make custom merchandise ordering easier for organizations that need more than a product listing."
       />
 
       <Section>
-        <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr]">
-          <div className="max-w-2xl space-y-6 text-base leading-relaxed text-muted-foreground">
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
+          <div className="max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground">
             <p>
-              Most bulk merchandise problems are not printing problems. They are decision problems:
-              the wrong blank for the environment, a decoration method that will not survive the
-              wash, a quantity that missed a price break, or a deadline nobody flagged until it was
-              too late.
+              Many buyers know what they want to accomplish, but they do not always know which product, material, branding technique or quantity makes the most sense.
             </p>
             <p>
-              We built Isaac Promos around the part that actually goes wrong. Before we quote, we ask
-              how the items will be used, who receives them and when they are needed. Then we
-              recommend a product and a decoration method that fit those answers — including when
-              that means spending less than you planned.
+              That is the gap Isaac Promos is built to help close. You can come to us with a logo, a deadline, a rough budget, a reference image, a product name or simply an idea. We help turn that into a clearer bulk order.
             </p>
             <p>
-              We are a newer company in the US market, and we are direct about that. What we offer
-              instead of a long client list is a process you can inspect: written specifications,
-              explained pricing variables, realistic timelines and a contact who stays reachable
-              after the order ships.
+              We work with businesses, schools, contractors, event organizers, teams, organizations, agencies and distributors across the United States. The goal is not to make you solve the merchandise problem before contacting us. The goal is to help you solve it with us.
             </p>
           </div>
 
-          <aside className="h-fit border border-border bg-surface p-7">
-            <p className="eyebrow">At a glance</p>
-            <dl className="mt-5 space-y-4 text-sm">
-              {[
-                ["Focus", "Custom merchandise & bulk order solutions"],
-                ["Market", "United States"],
-                ["Buyers", "Businesses, schools, contractors, events, distributors"],
-                ["Categories", "Apparel, drinkware, bags, patches, workwear, promo"],
-                ["Methods", "Embroidery, DTF, screen print, PVC, chenille, laser"],
-                ["Order type", "Bulk, repeat and outsourced projects"],
-              ].map(([k, v]) => (
-                <div key={k} className="border-b border-border pb-4 last:border-0 last:pb-0">
-                  <dt className="font-display text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-                    {k}
-                  </dt>
-                  <dd className="mt-1 text-foreground">{v}</dd>
-                </div>
-              ))}
-            </dl>
+          <aside className="border border-border bg-surface p-6 sm:p-7">
+            <p className="eyebrow">What we help with</p>
+            <ul className="mt-5 space-y-3 text-sm text-muted-foreground">
+              <li>Product selection and sourcing</li>
+              <li>Bulk order planning</li>
+              <li>Decoration and branding choices</li>
+              <li>Artwork and placement discussions</li>
+              <li>Custom and unusual product requests</li>
+              <li>Repeat and outsourced projects</li>
+            </ul>
           </aside>
         </div>
       </Section>
 
       <Section tone="surface">
         <SectionHead
-          eyebrow="How we operate"
-          title="Four principles we hold to"
-          lead="These are the standards a purchasing manager should be able to hold us to on every order."
+          eyebrow="How we work"
+          title="Five values behind the process."
+          lead="The website is not built around fake numbers or invented reviews. Trust should come from a clear process and useful guidance."
         />
-        <div className="mt-10 grid gap-px overflow-hidden border border-border bg-border md:grid-cols-2">
-          {principles.map((p) => (
-            <div key={p.t} className="bg-background p-8">
-              <h3 className="text-lg">{p.t}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.b}</p>
-            </div>
+
+        <div className="mt-10 grid gap-px border border-border bg-border md:grid-cols-2">
+          {values.map((value) => (
+            <article key={value.title} className="bg-background p-6 sm:p-8">
+              <h3 className="text-lg">{value.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {value.body}
+              </p>
+            </article>
           ))}
         </div>
       </Section>
 
       <CTABlock
-        title="Want to test how we work before committing?"
-        body="Send one project. Judge the questions we ask, the options we present and how fast we come back to you."
-        secondary={{ label: "How It Works", to: "/how-it-works" }}
+        title="Tell us what you are trying to create."
+        body="You do not need final specifications before you contact us. Start with the goal, quantity and timeline and we will help organize the next steps."
+        primaryLabel="Tell Us About Your Project"
+        secondary={{ label: "See How It Works", to: "/how-it-works" }}
       />
     </>
   );

@@ -24,16 +24,10 @@ function NotFoundComponent() {
           The page you are looking for does not exist or has been moved.
         </p>
         <div className="mt-6 flex justify-center gap-3">
-          <Link
-            to="/"
-            className="inline-flex h-10 items-center justify-center rounded-sm bg-ink px-4 text-sm font-semibold text-ink-foreground"
-          >
+          <Link to="/" className="inline-flex h-10 items-center justify-center rounded-sm bg-ink px-4 text-sm font-semibold text-ink-foreground">
             Go home
           </Link>
-          <Link
-            to="/products"
-            className="inline-flex h-10 items-center justify-center rounded-sm border border-input px-4 text-sm font-semibold"
-          >
+          <Link to="/products" className="inline-flex h-10 items-center justify-center rounded-sm border border-input px-4 text-sm font-semibold">
             Browse products
           </Link>
         </div>
@@ -45,6 +39,7 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
+
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
   }, [error]);
@@ -53,10 +48,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-[60vh] items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          This page did not load
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Something went wrong. You can try refreshing or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -105,19 +100,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Isaac Promos",
-          description:
-            "Custom merchandise and bulk order solutions partner for US businesses, schools and organizations.",
-          areaServed: "US",
-        }),
-      },
-    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -144,10 +126,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
+      <div className="flex min-h-screen w-full flex-col">
         <SiteHeader />
-        <main className="flex-1">
-          {/* Required: nested routes render here. */}
+        <main className="w-full flex-1">
           <Outlet />
         </main>
         <SiteFooter />

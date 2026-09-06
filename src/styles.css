@@ -202,3 +202,105 @@
     transform: none;
   }
 }
+
+
+/* Isaac Promos moving category bar */
+.marquee-shell {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border-block: 1px solid var(--color-border);
+  background: var(--color-background);
+}
+
+.marquee-shell-dark {
+  border-color: color-mix(in oklab, var(--color-ink-foreground) 14%, transparent);
+  background: var(--color-ink);
+  color: var(--color-ink-foreground);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  min-width: max-content;
+  align-items: center;
+  animation: isaac-marquee 24s linear infinite;
+  will-change: transform;
+}
+
+.marquee-shell:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.25rem;
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.marquee-label {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.marquee-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--color-primary);
+}
+
+.marquee-item:hover .marquee-label {
+  color: var(--color-primary);
+}
+
+@keyframes isaac-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 639px) {
+  .marquee-track {
+    animation-duration: 18s;
+  }
+
+  .marquee-item {
+    gap: 0.6rem;
+    padding: 0.78rem 0.95rem;
+  }
+
+  .marquee-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.11em;
+  }
+
+  .container-x {
+    max-width: none;
+  }
+
+  main,
+  section,
+  header,
+  footer {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation-duration: 60s;
+  }
+}
