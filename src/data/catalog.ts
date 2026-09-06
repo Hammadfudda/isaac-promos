@@ -265,13 +265,12 @@ export const products: Product[] = [
     slug: "small-giveaway-items",
     name: "Small Giveaway Items",
     category: "promotional-items",
-    blurb: "More small branded giveaway options are being added soon.",
-    idealFor: ["Events", "Campaigns", "Trade shows"],
+    blurb: "Compact branded giveaway items for events, campaigns, trade shows and high-volume programs.",
+    idealFor: ["Events", "Campaigns", "Trade shows", "High-volume giveaways"],
     decoration: ["pad-print"],
     why:
-      "This range is still being expanded. Tell us what kind of giveaway you have in mind and we can discuss what is currently practical to source.",
-    useCases: ["Event handouts", "Campaign kits", "High-volume giveaways"],
-    comingSoon: true,
+      "Small giveaway items work best when the product is useful, the branding stays clear at a small size and the unit cost fits the quantity being distributed.",
+    useCases: ["Event handouts", "Campaign kits", "Trade show tables", "High-volume giveaways"],
   },
   {
     slug: "pens",

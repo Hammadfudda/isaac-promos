@@ -1,9 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import apparelImg from "@/assets/cat-apparel.png";
 import drinkwareImg from "@/assets/cat-drinkware.png";
-import patchesImg from "@/assets/cat-patches.jpg";
-import workwearImg from "@/assets/cat-workwear.jpg";
-import promoImg from "@/assets/cat-promo.jpg";
+import bagsImg from "@/assets/Tote-Bags.png";
+import promoItemsImg from "@/assets/Small-Giveaway-Items.png";
+import patchesImg from "@/assets/Embroidery-Patches.png";
+import workwearImg from "@/assets/Branded-Work-Shirts.png";
+import towelsImg from "@/assets/custom-Towels.png";
+import garmentLabelsImg from "@/assets/Garment-Labels.png";
+import customProjectsImg from "@/assets/hero-merch.png";
 import { Action, CTABlock, PageHeader, Tag } from "@/components/site/ui";
 import {
   categories,
@@ -12,12 +16,224 @@ import {
   productsByCategory,
 } from "@/data/catalog";
 
-const images = {
+const categoryImages: Record<string, string> = {
   apparel: apparelImg,
   drinkware: drinkwareImg,
-  patches: patchesImg,
+  bags: bagsImg,
+  "promotional-items": promoItemsImg,
+  "patches-badges": patchesImg,
   workwear: workwearImg,
-  promo: promoImg,
+  towels: towelsImg,
+  "garment-labels": garmentLabelsImg,
+  "custom-projects": customProjectsImg,
+};
+
+const categoryCopy: Record<
+  string,
+  {
+    title: string;
+    intro: string;
+    points: { title: string; body: string }[];
+  }
+> = {
+  apparel: {
+    title: "Shirts, Polos & Hoodies, Built Around Your Budget and Branding",
+    intro:
+      "We keep our margins tight and include shipping in the quote, so the pricing is easy to compare without extra surprises later.",
+    points: [
+      {
+        title: "Fabric & Printing",
+        body:
+          "We work with a wide range of fabrics and can decorate with screen printing, embroidery, DTG, heat transfer or sublimation. We can help choose the right method based on the garment, artwork and quantity.",
+      },
+      {
+        title: "Patches",
+        body:
+          "Leather, chenille and PVC patch options are available when you want a different finish or a more premium look.",
+      },
+      {
+        title: "Sampling",
+        body:
+          "We provide mock-ups and usually prefer sending a sample before full production when practical, so issues can be caught before the full run.",
+      },
+    ],
+  },
+  drinkware: {
+    title: "Bottles and Tumblers People Actually Keep Using",
+    intro:
+      "Drinkware works well for onboarding kits, client gifts, events and team programs because it stays useful long after the order is delivered.",
+    points: [
+      {
+        title: "Choose the Right Format",
+        body:
+          "Bottle capacity, tumbler shape, lid style and insulation level all affect how the item feels in daily use.",
+      },
+      {
+        title: "Match the Decoration",
+        body:
+          "Laser engraving, pad printing and other methods suit different coatings and finishes. We help compare the tradeoffs before production.",
+      },
+      {
+        title: "Build Around the Use Case",
+        body:
+          "Tell us whether the order is for gifting, onboarding, events or everyday staff use and we can narrow down practical options.",
+      },
+    ],
+  },
+  bags: {
+    title: "Reusable Bags Built for Events, Kits and Everyday Branding",
+    intro:
+      "Bags are useful when you need the product itself to carry the rest of the order. Material, structure and print area make a noticeable difference.",
+    points: [
+      {
+        title: "Material Choice",
+        body:
+          "Canvas, woven and non-woven options give you different levels of structure, durability and cost.",
+      },
+      {
+        title: "Size & Handles",
+        body:
+          "Bag dimensions, gussets and handle length should match what people will actually carry.",
+      },
+      {
+        title: "Branding Area",
+        body:
+          "We help review artwork placement so the logo stays readable and balanced on the selected bag.",
+      },
+    ],
+  },
+  "promotional-items": {
+    title: "Useful Branded Giveaways for Events and Campaigns",
+    intro:
+      "Small promotional products work best when they are useful, easy to distribute and appropriate for the audience rather than chosen only for the lowest unit cost.",
+    points: [
+      {
+        title: "High-Volume Options",
+        body:
+          "Pens, lanyards, stress balls, keychains and other compact items can work well for large event or campaign quantities.",
+      },
+      {
+        title: "Kits & Combinations",
+        body:
+          "Notebooks, pens, lanyards and other items can be combined into employee, conference or welcome kits.",
+      },
+      {
+        title: "Clear Branding",
+        body:
+          "Small imprint areas need simple artwork. We help flag when a logo or detail needs adjustment before production.",
+      },
+    ],
+  },
+  "patches-badges": {
+    title: "Custom Patches and Badges in Multiple Finishes",
+    intro:
+      "Patches and badges let you add durable branding to apparel, caps, bags and uniforms without printing directly on every garment.",
+    points: [
+      {
+        title: "Pick the Finish",
+        body:
+          "Embroidery, PVC, chenille and leather each create a different look, texture and price point.",
+      },
+      {
+        title: "Shape & Edge",
+        body:
+          "Round, rectangular and custom-cut shapes can be matched to the artwork and intended application.",
+      },
+      {
+        title: "Application",
+        body:
+          "Tell us where the patch or badge will be used and we can help review size, backing and attachment options.",
+      },
+    ],
+  },
+  workwear: {
+    title: "Durable Branded Workwear for Field and Shop Crews",
+    intro:
+      "Workwear has to hold up to repeat wear while keeping branding clear and professional in the working environment.",
+    points: [
+      {
+        title: "Fabric & Durability",
+        body:
+          "We help compare practical work shirts, FR options and other garments based on the conditions they will be worn in.",
+      },
+      {
+        title: "Logo Placement",
+        body:
+          "Left chest, sleeve and other placements can be selected around pockets, reflective areas and garment construction.",
+      },
+      {
+        title: "Repeat Orders",
+        body:
+          "For ongoing uniform programs, keeping the product and decoration details consistent makes future reorders easier.",
+      },
+    ],
+  },
+  towels: {
+    title: "Custom Towels for Golf, Events, Gyms and Hospitality",
+    intro:
+      "Towels are practical branded items where fabric weight, weave, size and hanging hardware matter more than they first appear.",
+    points: [
+      {
+        title: "Choose the Size",
+        body:
+          "Golf, utility and larger towel formats serve different use cases and branding areas.",
+      },
+      {
+        title: "Decoration",
+        body:
+          "Embroidery and other suitable methods can be selected based on the towel construction and artwork.",
+      },
+      {
+        title: "Use Case",
+        body:
+          "Tell us whether the order is for a tournament, gym, hospitality program or giveaway and we can narrow down the right format.",
+      },
+    ],
+  },
+  "garment-labels": {
+    title: "Labels That Make the Branding Part of the Garment",
+    intro:
+      "Garment labels are useful when the identity needs to feel built into the finished apparel rather than added only to the outside.",
+    points: [
+      {
+        title: "Label Type",
+        body:
+          "Neck labels, care labels and other garment labels serve different branding and information needs.",
+      },
+      {
+        title: "Artwork & Wording",
+        body:
+          "Send the size, wording, logo and garment details so the label can be reviewed before production.",
+      },
+      {
+        title: "Consistent Finishing",
+        body:
+          "Labels can help create a more complete and repeatable finish across apparel programs and resale products.",
+      },
+    ],
+  },
+  "custom-projects": {
+    title: "Have a Product Idea That Does Not Fit a Standard Category?",
+    intro:
+      "Send the requirement, reference image or spec sheet. We review custom requests case by case and tell you directly what is practical to source.",
+    points: [
+      {
+        title: "Start With a Reference",
+        body:
+          "A photo, sketch, existing sample or product link gives us a useful starting point.",
+      },
+      {
+        title: "Share the Quantity",
+        body:
+          "Volume often determines what can be customized, sourced or manufactured efficiently.",
+      },
+      {
+        title: "Confirm the Timeline",
+        body:
+          "Custom work can involve sampling or setup, so the required delivery date matters early in the conversation.",
+      },
+    ],
+  },
 };
 
 export const Route = createFileRoute("/products/$category/")({
@@ -55,7 +271,8 @@ export const Route = createFileRoute("/products/$category/")({
 
 function CategoryPage() {
   const { category, items } = Route.useLoaderData();
-  const img = images[category.image];
+  const img = categoryImages[category.slug] ?? customProjectsImg;
+  const copy = categoryCopy[category.slug];
 
   return (
     <>
@@ -79,52 +296,32 @@ function CategoryPage() {
               loading="lazy"
               width={1200}
               height={900}
-              className="aspect-[4/3] h-full w-full object-cover"
+              className="aspect-[4/3] h-full w-full bg-background object-contain p-3 sm:p-5"
             />
           </div>
 
           <div className="min-w-0">
-            {category.slug === "apparel" ? (
+            {copy ? (
               <>
-                <h2 className="text-2xl sm:text-3xl">
-                  Shirts, Polos &amp; Hoodies, Built Around Your Budget and Branding
-                </h2>
-
+                <h2 className="text-2xl sm:text-3xl">{copy.title}</h2>
                 <p className="mt-4 leading-relaxed text-muted-foreground">
-                  We keep our margins tight and include shipping in the quote, so the pricing is easy to compare without extra surprises later.
+                  {copy.intro}
                 </p>
 
                 <div className="mt-6 space-y-5 text-sm leading-relaxed text-muted-foreground">
-                  <div>
-                    <h3 className="font-display text-sm font-bold text-foreground">
-                      Fabric &amp; Printing
-                    </h3>
-                    <p className="mt-2">
-                      We work with a wide range of fabrics and can decorate with screen printing, embroidery, DTG, heat transfer or sublimation. These options work well for school giveaways, campaigns, staff apparel and lighter office branding. We can help choose the right method based on the garment, artwork and quantity.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="font-display text-sm font-bold text-foreground">
-                      Patches
-                    </h3>
-                    <p className="mt-2">
-                      Leather, chenille and PVC patch options are available if you want a different finish or a more premium look.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="font-display text-sm font-bold text-foreground">
-                      Sampling
-                    </h3>
-                    <p className="mt-2">
-                      We provide mock-ups and usually prefer sending a sample before full production. Once the sample is approved, we move into the full run. This helps catch issues early and saves both fabric and production time.
-                    </p>
-                  </div>
+                  {copy.points.map((point) => (
+                    <div key={point.title}>
+                      <h3 className="font-display text-sm font-bold text-foreground">
+                        {point.title}
+                      </h3>
+                      <p className="mt-2">{point.body}</p>
+                    </div>
+                  ))}
                 </div>
-              </>            ) : (
+              </>
+            ) : (
               <>
-                <h2 className="text-2xl sm:text-3xl">What this category covers</h2>
+                <h2 className="text-2xl sm:text-3xl">{category.tagline}</h2>
                 <p className="mt-4 leading-relaxed text-muted-foreground">
                   {category.intro}
                 </p>

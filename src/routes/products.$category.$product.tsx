@@ -6,12 +6,44 @@ import patchesImg from "@/assets/cat-patches.jpg";
 import workwearImg from "@/assets/cat-workwear.jpg";
 import promoImg from "@/assets/cat-promo.jpg";
 
-const customTshirtAssets = import.meta.glob(
-  "../assets/custom-tshirt.{png,jpg,jpeg,webp}",
-  { eager: true, import: "default" },
-) as Record<string, string>;
+import customTshirtImg from "@/assets/custom-tshirt.png";
+import gildan2000Img from "@/assets/gildan-2000.png";
+import premiumPolosImg from "@/assets/premium-polos.png";
+import customPolosImg from "@/assets/custom-polos.png";
+import embroideredPolosImg from "@/assets/Embroidered Polos.png";
+import dtfPolosImg from "@/assets/DTF-Polos.png";
+import hoodiesImg from "@/assets/Hoodies.png";
 
-const customTshirtImg = Object.values(customTshirtAssets)[0];
+import customBottleImg from "@/assets/custom bottle.png";
+import tumblersImg from "@/assets/tumblers-with -custom-logo.png";
+
+import toteBagsImg from "@/assets/Tote-Bags.png";
+import wovenBagsImg from "@/assets/Woven-Bags.png";
+import nonWovenBagsImg from "@/assets/non-woven-bags.png";
+
+import customLanyardsImg from "@/assets/Custom Lanyards.png";
+import stressBallsImg from "@/assets/Custom-Stress-Balls-with-Logo.png";
+import smallGiveawayImg from "@/assets/Small-Giveaway-Items.png";
+import pensImg from "@/assets/pen.png";
+import keychainsImg from "@/assets/Keychains.png";
+import customKeychainImg from "@/assets/custom-keychain.png";
+import notebooksImg from "@/assets/Custom-Notebooks.png";
+
+import garmentLabelsImg from "@/assets/Garment-Labels.png";
+import neckLabelsImg from "@/assets/Neck-Labels.png";
+import careLabelsImg from "@/assets/Care-Labels.png";
+
+import leatherPatchesImg from "@/assets/Leather-Patches.png";
+import pvcPatchesImg from "@/assets/PVC-Patches.png";
+import chenillePatchesImg from "@/assets/Chenille-Patches.png";
+import embroideryPatchesImg from "@/assets/Embroidery-Patches.png";
+import pvcBadgesImg from "@/assets/pvc-plastic-badges.png";
+
+import frShirtsImg from "@/assets/FR-Shirts.png";
+import brandedWorkShirtsImg from "@/assets/Branded-Work-Shirts.png";
+
+import golfTowelsImg from "@/assets/Golf-Towels.png";
+import customTowelsImg from "@/assets/custom-Towels.png";
 import {
   Action,
   Breadcrumbs,
@@ -26,12 +58,53 @@ import {
   productsByCategory,
 } from "@/data/catalog";
 
-const images = {
+const categoryImages = {
   apparel: apparelImg,
   drinkware: drinkwareImg,
   patches: patchesImg,
   workwear: workwearImg,
   promo: promoImg,
+};
+
+const productImages: Record<string, string> = {
+  "custom-t-shirts": customTshirtImg,
+  "gildan-2000": gildan2000Img,
+  "premium-polos": premiumPolosImg,
+  "custom-polos": customPolosImg,
+  "embroidered-polos": embroideredPolosImg,
+  "dtf-branded-polos": dtfPolosImg,
+  "custom-hoodies": hoodiesImg,
+
+  "custom-bottles": customBottleImg,
+  tumblers: tumblersImg,
+
+  "tote-bags": toteBagsImg,
+  "woven-bags": wovenBagsImg,
+  "non-woven-bags": nonWovenBagsImg,
+
+  "custom-lanyards": customLanyardsImg,
+  "custom-stress-balls": stressBallsImg,
+  "small-giveaway-items": smallGiveawayImg,
+  pens: pensImg,
+  keychains: keychainsImg,
+  "custom-keychains": customKeychainImg,
+  "custom-notebook": notebooksImg,
+
+  "garment-labels": garmentLabelsImg,
+  "neck-labels": neckLabelsImg,
+  "care-labels": careLabelsImg,
+
+  "leather-patches": leatherPatchesImg,
+  "pvc-patches": pvcPatchesImg,
+  "chenille-patches": chenillePatchesImg,
+  "embroidery-patches": embroideryPatchesImg,
+  "pvc-plastic-badges": pvcBadgesImg,
+
+  "fr-shirts": frShirtsImg,
+  "branded-work-shirts": brandedWorkShirtsImg,
+
+  "golf-towels": golfTowelsImg,
+  "custom-towels": customTowelsImg,
 };
 
 export const Route = createFileRoute("/products/$category/$product")({
@@ -53,10 +126,7 @@ export const Route = createFileRoute("/products/$category/$product")({
 
 function ProductPage() {
   const { product, category, related } = Route.useLoaderData();
-  const hero =
-    product.slug === "custom-t-shirts" && customTshirtImg
-      ? customTshirtImg
-      : images[category.image];
+  const hero = productImages[product.slug] ?? categoryImages[category.image];
 
   return (
     <>
