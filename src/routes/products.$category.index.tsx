@@ -87,11 +87,11 @@ function CategoryPage() {
             {category.slug === "apparel" ? (
               <>
                 <h2 className="text-2xl sm:text-3xl">
-                  Shirts, Polos &amp; Hoodies Built Around Your Budget and Branding
+                  Shirts, Polos &amp; Hoodies, Built Around Your Budget and Branding
                 </h2>
 
                 <p className="mt-4 leading-relaxed text-muted-foreground">
-                  We keep pricing as lean as we can and include shipping in the quote, so you can compare the real cost of the order without extra surprises later.
+                  We keep our margins tight and include shipping in the quote, so the pricing is easy to compare without extra surprises later.
                 </p>
 
                 <div className="mt-6 space-y-5 text-sm leading-relaxed text-muted-foreground">
@@ -100,7 +100,7 @@ function CategoryPage() {
                       Fabric &amp; Printing
                     </h3>
                     <p className="mt-2">
-                      We work with a wide range of fabrics and can use screen printing, embroidery, DTG, heat transfer and sublimation. The right option depends on the artwork, quantity, garment and how the item will be used. These options work well for school giveaways, campaigns, staff apparel and subtle office branding.
+                      We work with a wide range of fabrics and can decorate with screen printing, embroidery, DTG, heat transfer or sublimation. These options work well for school giveaways, campaigns, staff apparel and lighter office branding. We can help choose the right method based on the garment, artwork and quantity.
                     </p>
                   </div>
 
@@ -109,7 +109,7 @@ function CategoryPage() {
                       Patches
                     </h3>
                     <p className="mt-2">
-                      Leather, chenille and PVC patches are also available when you want a different finish or a more premium look.
+                      Leather, chenille and PVC patch options are available if you want a different finish or a more premium look.
                     </p>
                   </div>
 
@@ -118,7 +118,7 @@ function CategoryPage() {
                       Sampling
                     </h3>
                     <p className="mt-2">
-                      We can prepare mock-ups and, where practical, prefer sending a sample before full production. Once the sample is approved, we move into the full run. This helps catch issues early and avoids wasting fabric or production time.
+                      We provide mock-ups and usually prefer sending a sample before full production. Once the sample is approved, we move into the full run. This helps catch issues early and saves both fabric and production time.
                     </p>
                   </div>
                 </div>

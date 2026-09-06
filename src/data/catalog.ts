@@ -37,7 +37,7 @@ export const categories: Category[] = [
     name: "Apparel",
     tagline: "Shirts, Polos & Hoodies Built Around Your Budget and Branding",
     intro:
-      "We keep pricing as lean as we can and include shipping in the quote, so you can compare the real cost of the order without extra surprises later. We work with a wide range of fabrics and can use screen printing, embroidery, DTG, heat transfer and sublimation. Leather, chenille and PVC patches are also available. We can prepare mock-ups and, where practical, prefer sending a sample before full production so issues can be caught early.",
+      "We keep our margins tight and include shipping in the quote, so the pricing is easy to compare. We work with a wide range of fabrics and offer screen printing, embroidery, DTG, heat transfer and sublimation. Leather, chenille and PVC patch options are also available. We usually prepare a mock-up and, where practical, prefer sending a sample before full production so issues can be caught early.",
     image: "apparel",
   },
   {

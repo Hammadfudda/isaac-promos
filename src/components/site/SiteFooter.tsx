@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { Facebook } from "lucide-react";
 import { Action } from "./ui";
 
 const columns: {
@@ -44,7 +45,6 @@ const columns: {
     links: [
       { label: "Decoration Methods", to: "/decoration-methods" },
       { label: "FAQ", to: "/faq" },
-      { label: "Download Product Catalog", to: "/quote" },
       { label: "Get a Quote", to: "/quote" },
     ],
   },
@@ -81,16 +81,20 @@ export function SiteFooter() {
               Serving business buyers across the United States.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-6">
               <Action to="/quote">Get a Quote</Action>
-              <Action to="/quote" variant="outline">
-                Download Product Catalog
-              </Action>
             </div>
 
-            <p className="mt-3 max-w-sm text-xs leading-relaxed text-ink-foreground/55">
-              Full product catalog available on request. Tell us what you are sourcing and we will send relevant options.
-            </p>
+            <a
+              href="https://www.facebook.com/izaacpromos/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Isaac Promos on Facebook"
+              className="mt-5 inline-flex h-10 w-10 items-center justify-center rounded-sm border border-ink-foreground/20 text-ink-foreground/75 transition-colors hover:border-primary hover:text-primary"
+            >
+              <Facebook className="h-5 w-5" aria-hidden="true" />
+            </a>
+
           </div>
 
           <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4">

@@ -59,6 +59,30 @@ function DecorationMethodsPage() {
               </dl>
             </article>
           ))}
+
+          <article className="flex flex-col justify-between bg-surface p-6 sm:p-8">
+            <div>
+              <p className="eyebrow">Need help choosing?</p>
+              <h2 className="mt-3 text-xl">We can match the method to the product.</h2>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                Send us the product, logo, quantity and the look you want. We can help compare the practical options before you commit to production.
+              </p>
+
+              <ul className="mt-5 space-y-2 text-sm text-muted-foreground">
+                <li>Artwork detail and number of colors</li>
+                <li>Fabric or product material</li>
+                <li>Order quantity and intended use</li>
+                <li>Finish, durability and budget</li>
+              </ul>
+            </div>
+
+            <a
+              href="/contact"
+              className="mt-7 inline-flex w-fit items-center justify-center rounded-sm bg-ink px-4 py-2.5 font-display text-sm font-semibold text-ink-foreground transition-transform hover:-translate-y-0.5"
+            >
+              Ask About Your Project
+            </a>
+          </article>
         </div>
       </Section>
 

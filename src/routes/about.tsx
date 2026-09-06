@@ -42,6 +42,11 @@ const values = [
     body:
       "Our process is built for organizations that need bulk orders, repeat orders, team programs, event merchandise or outsourced production support.",
   },
+  {
+    title: "Reliable Follow-Through",
+    body:
+      "We keep confirmed product, artwork and order details organized so communication stays clear and future reorders are easier to manage.",
+  },
 ];
 
 function AboutPage() {
@@ -85,7 +90,7 @@ function AboutPage() {
       <Section tone="surface">
         <SectionHead
           eyebrow="How we work"
-          title="Five values behind the process."
+          title="Six values behind the process."
           lead="The website is not built around fake numbers or invented reviews. Trust should come from a clear process and useful guidance."
         />
 

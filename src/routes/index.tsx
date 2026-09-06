@@ -141,20 +141,20 @@ function Home() {
 function Hero() {
   return (
     <section className="border-b border-border bg-background">
-      <div className="container-x grid items-center gap-8 py-10 sm:gap-12 sm:py-14 lg:grid-cols-[1.05fr_1fr] lg:py-24">
+      <div className="container-x grid items-center gap-8 py-8 sm:gap-12 sm:py-12 lg:grid-cols-[1.05fr_1fr] lg:py-14 xl:py-16">
         <div className="reveal min-w-0">
           <p className="eyebrow">Custom Merchandise • Bulk Orders • USA</p>
 
           <h1 className="mt-4 text-3xl leading-[1.03] sm:text-5xl lg:text-[4.1rem]">
-            Custom Products Without the Bulk Order Headache.
+            One Partner for Custom Merchandise, Not Five Vendors.
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg">
-            From branded apparel and drinkware to patches, workwear and promotional merchandise, Isaac Promos helps businesses turn an idea into a clear custom order.
+            Apparel, drinkware, bags, patches, workwear, promotional items, whatever you're branding, Isaac Promos helps you turn the idea into an actual order.
           </p>
 
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Tell us what you need, how many you need, your timeline and the branding requirements. We will help you figure out the right product and the right way to customize it.
+            Tell us the product, the quantity, your timeline, and how you want it branded. We'll help you figure out the right product and the right way to customize it, even if you're starting with just a rough idea.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
@@ -167,7 +167,7 @@ function Hero() {
           </div>
 
           <p className="mt-5 border-l-2 border-primary pl-4 text-sm text-muted-foreground">
-            Not sure what product you need? Tell us what you are trying to accomplish.
+            Not sure what product you need? Tell us what you're trying to accomplish.
           </p>
         </div>
 
@@ -194,28 +194,27 @@ function WhyWeDoIt() {
         <div className="min-w-0">
           <p className="eyebrow">Why we do it this way</p>
           <h2 className="mt-3 text-2xl sm:text-4xl">
-            We want clients to come back, not just place one order.
+            We are building for long-term relationships.
           </h2>
         </div>
 
         <div className="min-w-0 max-w-2xl">
           <p className="leading-relaxed text-muted-foreground">
-            That means doing good work, keeping pricing competitive, communicating clearly and making the next order easier than the first.
+            We are building this company around long-term relationships, not one-off orders. We would rather earn repeat business than chase the biggest margin on a single job.
           </p>
 
           <p className="mt-6 font-display text-sm font-bold uppercase tracking-[0.1em]">
-            How we work
+            How we do it
           </p>
 
           <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-            <li>Deliver quality we can stand behind</li>
-            <li>Keep timelines realistic and communicate clearly</li>
-            <li>Keep our margins as lean as we reasonably can</li>
-            <li>Focus on long-term relationships instead of squeezing the most profit from one order</li>
+            <li>Delivering quality work and keeping the order on schedule</li>
+            <li>Keeping our profit margins as low as we reasonably can</li>
+            <li>Prioritizing long-term trust over short-term gain</li>
           </ul>
 
           <p className="mt-6 leading-relaxed text-muted-foreground">
-            We would rather build a strong base of repeat customers than chase the biggest margin on every job.
+            The goal is simple. Do work people feel comfortable coming back for.
           </p>
         </div>
       </div>
