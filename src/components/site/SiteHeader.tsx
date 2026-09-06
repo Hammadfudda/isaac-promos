@@ -256,11 +256,6 @@ export function SiteHeader() {
                           className="text-sm text-muted-foreground transition-colors hover:text-primary"
                         >
                           {item.name}
-                          {item.comingSoon ? (
-                            <span className="ml-2 text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-primary">
-                              Coming Soon
-                            </span>
-                          ) : null}
                         </Link>
                       </li>
                     ))}
