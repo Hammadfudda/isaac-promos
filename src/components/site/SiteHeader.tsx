@@ -40,7 +40,7 @@ const megaMenu: {
       { name: "Custom Keychains", slug: "custom-keychains" },
       { name: "Custom Lanyards", slug: "custom-lanyards" },
       { name: "Custom Stress Balls with Logo", slug: "custom-stress-balls" },
-      { name: "Custom Notebooks", slug: "custom-notebook" },
+      { name: "Custom Notebook", slug: "custom-notebook" },
       { name: "Small Giveaway Items", slug: "small-giveaway-items", comingSoon: true },
     ],
   },
@@ -256,6 +256,11 @@ export function SiteHeader() {
                           className="text-sm text-muted-foreground transition-colors hover:text-primary"
                         >
                           {item.name}
+                          {item.comingSoon ? (
+                            <span className="ml-2 text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-primary">
+                              Coming Soon
+                            </span>
+                          ) : null}
                         </Link>
                       </li>
                     ))}

@@ -48,7 +48,7 @@ export const Route = createFileRoute("/")({
 const trustStrip = [
   { title: "Bulk Order Support", body: "Built around volume orders, not one-off purchases." },
   { title: "Custom Branding", body: "Embroidery, printing, patches and engraving options." },
-  { title: "Multiple Categories", body: "Apparel, drinkware, bags, patches, notebooks, workwear and more." },
+  { title: "Multiple Categories", body: "Apparel, drinkware, bags, patches, workwear and more." },
   { title: "US-Focused Service", body: "Working with business buyers across the United States." },
 ];
 
@@ -84,7 +84,7 @@ const featuredCategories = [
   {
     name: "Bags & Promo",
     slug: "promotional-items",
-    line: "Totes, pens, keychains and custom notebooks.",
+    line: "Totes, pens, keychains and notebooks.",
     img: promoImg,
     span: "",
   },
