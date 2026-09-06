@@ -19,6 +19,7 @@ const columns: {
       },
       { label: "Workwear", to: "/products/$category", params: { category: "workwear" } },
       { label: "Garment Labels", to: "/products/$category", params: { category: "garment-labels" } },
+      { label: "Custom Notebooks", to: "/products/$category/$product", params: { category: "promotional-items", product: "custom-notebook" } },
       { label: "All Products", to: "/products" },
     ],
   },
@@ -69,7 +70,7 @@ export function SiteFooter() {
               </span>
 
               <span className="font-display text-lg font-bold tracking-tight">
-                IZAAC<span className="text-primary"> PROMOS</span>
+                ISAAC<span className="text-primary"> PROMOS</span>
               </span>
             </Link>
 

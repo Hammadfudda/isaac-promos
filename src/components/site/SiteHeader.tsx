@@ -40,7 +40,7 @@ const megaMenu: {
       { name: "Custom Keychains", slug: "custom-keychains" },
       { name: "Custom Lanyards", slug: "custom-lanyards" },
       { name: "Custom Stress Balls with Logo", slug: "custom-stress-balls" },
-      { name: "Custom Notebook", slug: "custom-notebook" },
+      { name: "Custom Notebooks", slug: "custom-notebook" },
       { name: "Small Giveaway Items", slug: "small-giveaway-items", comingSoon: true },
     ],
   },
@@ -157,7 +157,7 @@ export function SiteHeader() {
                 className="h-11 w-11 shrink-0 object-contain sm:h-12 sm:w-12"
               />
               <span className="hidden truncate font-display text-base font-bold leading-none tracking-tight sm:block sm:text-lg">
-                IZAAC<span className="text-primary"> PROMOS</span>
+                ISAAC<span className="text-primary"> PROMOS</span>
               </span>
             </Link>
 
@@ -305,7 +305,7 @@ export function SiteHeader() {
                   className="h-10 w-10 shrink-0 object-contain"
                 />
                 <span className="font-display text-base font-bold tracking-tight">
-                  IZAAC<span className="text-primary"> PROMOS</span>
+                  ISAAC<span className="text-primary"> PROMOS</span>
                 </span>
               </Link>
 

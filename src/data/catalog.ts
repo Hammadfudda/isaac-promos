@@ -59,7 +59,7 @@ export const categories: Category[] = [
   {
     slug: "promotional-items",
     name: "Promotional Items",
-    tagline: "Pens, keychains, lanyards, stress balls and notebooks for bulk programs.",
+    tagline: "Pens, keychains, lanyards, stress balls and custom notebooks for bulk programs.",
     intro:
       "Small promotional products are usually about quantity, usability and consistency. We help you choose items that fit the budget without looking disposable.",
     image: "promo",
@@ -308,14 +308,14 @@ export const products: Product[] = [
   },
   {
     slug: "custom-notebook",
-    name: "Custom Notebook",
+    name: "Custom Notebooks",
     category: "promotional-items",
-    blurb: "Branded notebooks for meetings, onboarding kits, conferences and client gifts.",
-    idealFor: ["Corporate kits", "Conferences", "Client gifts", "Employee onboarding"],
-    decoration: ["screen-print", "laser"],
+    blurb: "Branded notebooks for meetings, employee welcome kits, conferences, schools and client gifts.",
+    idealFor: ["Corporate kits", "Conferences", "Schools", "Client gifts", "Employee onboarding"],
+    decoration: ["screen-print", "pad-print"],
     why:
-      "Notebooks are practical business merchandise that stay in use after an event or onboarding program. Cover material and branding method determine the final look.",
-    useCases: ["Meeting kits", "Welcome packs", "Client gifting"],
+      "Notebooks are practical promotional merchandise because they stay useful long after an event or onboarding program. Cover style, size, binding and branding method can be selected around the audience and budget.",
+    useCases: ["Meeting kits", "Welcome packs", "Conference bags", "School programs", "Client gifting"],
   },
   {
     slug: "garment-labels",
@@ -799,6 +799,11 @@ export const faqGroups = [
         q: "Do you offer custom lanyards?",
         a:
           "Yes. We can review bulk custom lanyard projects for events, staff IDs, schools and conferences. Send the quantity, artwork and attachment style if you already know it.",
+      },
+      {
+        q: "Do you offer custom notebooks?",
+        a:
+          "Yes. Custom notebooks fit well for conferences, employee kits, schools, meetings and client gifts. Tell us the quantity, size, cover style and how you want the logo applied, and we can help narrow down the options.",
       },
       {
         q: "Can you make stress balls with our logo?",
