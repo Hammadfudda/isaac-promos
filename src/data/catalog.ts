@@ -6,7 +6,10 @@ export type DecorationKey =
   | "chenille"
   | "leather"
   | "laser"
-  | "pad-print";
+  | "pad-print"
+  | "dtg"
+  | "heat-transfer"
+  | "sublimation";
 
 export type Product = {
   slug: string;
@@ -17,6 +20,7 @@ export type Product = {
   decoration: DecorationKey[];
   why: string;
   useCases: string[];
+  comingSoon?: boolean;
 };
 
 export type Category = {
@@ -31,15 +35,15 @@ export const categories: Category[] = [
   {
     slug: "apparel",
     name: "Apparel",
-    tagline: "Shirts, polos and hoodies built around your budget and branding.",
+    tagline: "Shirts, Polos & Hoodies Built Around Your Budget and Branding",
     intro:
-      "We keep our margins tight and shipping is included, so the pricing you get is genuinely competitive. We work with a wide range of fabrics and can decorate with screen printing, embroidery, DTG, heat transfer or sublimation. Leather, chenille and PVC patch options are also available for a more premium look. We usually send a sample before full production starts. Once you approve it, we move to mass production, which saves fabric and time on both ends.",
+      "We keep pricing as lean as we can and include shipping in the quote, so you can compare the real cost of the order without extra surprises later. We work with a wide range of fabrics and can use screen printing, embroidery, DTG, heat transfer and sublimation. Leather, chenille and PVC patches are also available. We can prepare mock-ups and, where practical, prefer sending a sample before full production so issues can be caught early.",
     image: "apparel",
   },
   {
     slug: "drinkware",
     name: "Drinkware",
-    tagline: "Custom bottles and tumblers built for daily use.",
+    tagline: "Custom bottles and tumblers with your logo for everyday use.",
     intro:
       "Drinkware works well for onboarding kits, events and client gifts. Decoration options depend on the finish and shape of the item, and we help you compare the tradeoffs before ordering.",
     image: "drinkware",
@@ -47,7 +51,7 @@ export const categories: Category[] = [
   {
     slug: "bags",
     name: "Bags",
-    tagline: "Tote bags for events, kits and campaigns.",
+    tagline: "Tote, woven and non-woven bags for events, kits and campaigns.",
     intro:
       "Bags keep your branding in use after an event ends. Material, weight, handle style and print area all affect the final look, so we help you compare options before ordering.",
     image: "promo",
@@ -55,7 +59,7 @@ export const categories: Category[] = [
   {
     slug: "promotional-items",
     name: "Promotional Items",
-    tagline: "Pens, keychains and notebooks for bulk programs.",
+    tagline: "Pens, keychains, lanyards, stress balls and notebooks for bulk programs.",
     intro:
       "Small promotional products are usually about quantity, usability and consistency. We help you choose items that fit the budget without looking disposable.",
     image: "promo",
@@ -83,6 +87,14 @@ export const categories: Category[] = [
     intro:
       "Towels are useful for tournaments, gift sets, gyms, shops and hospitality. Weight, weave and hanging hardware are the main choices.",
     image: "promo",
+  },
+  {
+    slug: "garment-labels",
+    name: "Garment Labels",
+    tagline: "Neck, care and garment labels for apparel branding and finishing.",
+    intro:
+      "Garment labels are useful when the branding needs to be part of the finished apparel rather than added only to the outside. Send the label size, wording, artwork and garment details and we can help review the best direction.",
+    image: "apparel",
   },
   {
     slug: "custom-projects",
@@ -185,9 +197,9 @@ export const products: Product[] = [
   },
   {
     slug: "tumblers",
-    name: "Tumblers",
+    name: "Tumblers with Custom Logo",
     category: "drinkware",
-    blurb: "Insulated tumblers with engraved or printed custom branding.",
+    blurb: "Insulated tumblers customized with your logo by engraving or printing.",
     idealFor: ["Corporate gifts", "Holiday programs", "Recognition awards"],
     decoration: ["laser", "pad-print"],
     why:
@@ -204,6 +216,62 @@ export const products: Product[] = [
     why:
       "Material weight and construction affect whether a tote feels reusable or disposable. We help you compare those choices against your budget.",
     useCases: ["Event swag bags", "School book bags", "Store merchandise"],
+  },
+  {
+    slug: "woven-bags",
+    name: "Woven Bags",
+    category: "bags",
+    blurb: "Reusable woven bags for events, retail, welcome kits and higher-volume programs.",
+    idealFor: ["Events", "Retail", "Welcome kits", "Campaigns"],
+    decoration: ["screen-print", "dtf"],
+    why:
+      "Woven construction gives the bag more structure than a basic giveaway tote. Size, handle style, material weight and print area can be matched to the project.",
+    useCases: ["Conference bags", "Retail packaging", "School and community events"],
+  },
+  {
+    slug: "non-woven-bags",
+    name: "Non-Woven Bags",
+    category: "bags",
+    blurb: "Lightweight reusable bags for giveaways, events and high-volume distribution.",
+    idealFor: ["Giveaways", "Trade shows", "School events", "High-volume programs"],
+    decoration: ["screen-print", "dtf"],
+    why:
+      "Non-woven bags are a practical option when you need useful branded packaging at scale without moving into a heavier premium bag.",
+    useCases: ["Trade show handouts", "Community events", "Welcome packs"],
+  },
+  {
+    slug: "custom-lanyards",
+    name: "Custom Lanyards",
+    category: "promotional-items",
+    blurb: "Branded lanyards produced in bulk for events, staff, schools and organizations.",
+    idealFor: ["Events", "Staff IDs", "Schools", "Conferences"],
+    decoration: ["sublimation", "screen-print"],
+    why:
+      "Lanyards are useful when identification and branding need to stay visible throughout an event or workday. Width, attachment and print style can be matched to the use case.",
+    useCases: ["Conference credentials", "Employee badges", "School events"],
+  },
+  {
+    slug: "custom-stress-balls",
+    name: "Custom Stress Balls with Logo",
+    category: "promotional-items",
+    blurb: "Logo-branded stress balls for giveaways, campaigns and event tables.",
+    idealFor: ["Giveaways", "Health campaigns", "Events", "Trade shows"],
+    decoration: ["pad-print"],
+    why:
+      "Stress balls are simple giveaway items that work best when the logo remains clear at a small print size. Shape, color and imprint area depend on the selected item.",
+    useCases: ["Trade show tables", "Awareness campaigns", "Office giveaways"],
+  },
+  {
+    slug: "small-giveaway-items",
+    name: "Small Giveaway Items",
+    category: "promotional-items",
+    blurb: "More small branded giveaway options are being added soon.",
+    idealFor: ["Events", "Campaigns", "Trade shows"],
+    decoration: ["pad-print"],
+    why:
+      "This range is still being expanded. Tell us what kind of giveaway you have in mind and we can discuss what is currently practical to source.",
+    useCases: ["Event handouts", "Campaign kits", "High-volume giveaways"],
+    comingSoon: true,
   },
   {
     slug: "pens",
@@ -248,6 +316,39 @@ export const products: Product[] = [
     why:
       "Notebooks are practical business merchandise that stay in use after an event or onboarding program. Cover material and branding method determine the final look.",
     useCases: ["Meeting kits", "Welcome packs", "Client gifting"],
+  },
+  {
+    slug: "garment-labels",
+    name: "Garment Labels",
+    category: "garment-labels",
+    blurb: "Custom garment labels for branded apparel and private-label finishing.",
+    idealFor: ["Custom apparel", "Private-label garments", "Uniform programs"],
+    decoration: ["screen-print"],
+    why:
+      "Garment labels help make the finished piece feel intentional and branded from the inside as well as the outside. Size, material and information depend on the garment and program.",
+    useCases: ["Branded apparel", "School merchandise", "Uniform programs"],
+  },
+  {
+    slug: "neck-labels",
+    name: "Neck Labels",
+    category: "garment-labels",
+    blurb: "Custom neck labels for shirts, polos, hoodies and other branded apparel.",
+    idealFor: ["T-shirts", "Polos", "Hoodies", "Private-label apparel"],
+    decoration: ["screen-print", "heat-transfer"],
+    why:
+      "A neck label can replace or supplement the standard garment label with brand, sizing or care information depending on the project.",
+    useCases: ["Retail apparel", "Event merchandise", "Brand programs"],
+  },
+  {
+    slug: "care-labels",
+    name: "Care Labels",
+    category: "garment-labels",
+    blurb: "Custom care labels for garment instructions, sizing and brand information.",
+    idealFor: ["Apparel programs", "Uniforms", "Private-label garments"],
+    decoration: ["screen-print"],
+    why:
+      "Care labels are useful when a garment program needs consistent washing, sizing or brand information inside each item.",
+    useCases: ["Uniform programs", "Retail apparel", "Custom clothing runs"],
   },
   {
     slug: "leather-patches",
@@ -386,6 +487,27 @@ export const decorationMethods: {
     bestFor: "Higher quantities with a limited number of ink colors",
     look: "Flat, solid color that sits well on cotton",
     products: "T-shirts, hoodies, totes, towels",
+  },
+  {
+    key: "dtg",
+    name: "DTG Printing",
+    bestFor: "Detailed artwork on suitable cotton garments and smaller apparel runs",
+    look: "Printed directly into the garment with a soft, detailed finish",
+    products: "T-shirts and selected cotton apparel",
+  },
+  {
+    key: "heat-transfer",
+    name: "Heat Transfer",
+    bestFor: "Names, numbers, smaller runs and selected apparel applications",
+    look: "Applied graphic or lettering bonded to the garment with heat",
+    products: "T-shirts, polos, hoodies and neck labels",
+  },
+  {
+    key: "sublimation",
+    name: "Sublimation",
+    bestFor: "Polyester items and artwork that benefits from full-color coverage",
+    look: "Color infused into suitable polyester material",
+    products: "Performance apparel, selected lanyards and other polyester items",
   },
   {
     key: "pvc",
@@ -652,6 +774,26 @@ export const faqGroups = [
         q: "Do minimum quantities vary by product?",
         a:
           "Minimums depend on the product and customization method. Send us your approximate quantity and we can help identify suitable options.",
+      },
+      {
+        q: "Do you offer custom lanyards?",
+        a:
+          "Yes. We can review bulk custom lanyard projects for events, staff IDs, schools and conferences. Send the quantity, artwork and attachment style if you already know it.",
+      },
+      {
+        q: "Can you make stress balls with our logo?",
+        a:
+          "Yes. Logo-branded stress balls can be discussed for giveaway and event orders. The imprint size and available shapes depend on the selected item.",
+      },
+      {
+        q: "Do you offer woven and non-woven bags?",
+        a:
+          "Yes. We can help compare tote, woven and non-woven bag options based on quantity, intended use and branding requirements.",
+      },
+      {
+        q: "Can you make garment labels?",
+        a:
+          "Yes. Garment, neck and care label projects can be reviewed for apparel programs. Send the label size, wording, artwork and garment details.",
       },
     ],
   },

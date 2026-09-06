@@ -17,6 +17,7 @@ const columns: {
         params: { category: "patches-badges" },
       },
       { label: "Workwear", to: "/products/$category", params: { category: "workwear" } },
+      { label: "Garment Labels", to: "/products/$category", params: { category: "garment-labels" } },
       { label: "All Products", to: "/products" },
     ],
   },

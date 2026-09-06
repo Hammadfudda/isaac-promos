@@ -100,6 +100,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", type: "image/png", href: "/favicon.png" },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Isaac Promos",
+          description:
+            "Custom merchandise and bulk order solutions for businesses, schools and organizations in the United States.",
+          areaServed: "US",
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

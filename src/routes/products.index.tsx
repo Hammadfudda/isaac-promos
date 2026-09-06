@@ -28,6 +28,7 @@ const filters = [
   { label: "Patches", slug: "patches-badges" },
   { label: "Workwear", slug: "workwear" },
   { label: "Towels", slug: "towels" },
+  { label: "Labels", slug: "garment-labels" },
 ];
 
 function ProductsPage() {
@@ -138,6 +139,7 @@ function ProductsPage() {
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-1.5">
+                  {p.comingSoon ? <Tag>Coming Soon</Tag> : null}
                   {p.decoration.slice(0, 3).map((d) => (
                     <Tag key={d}>{decorationLabel(d)}</Tag>
                   ))}

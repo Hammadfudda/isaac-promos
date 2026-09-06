@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
         content:
           "Custom apparel, drinkware, patches, workwear and promotional products in bulk. Tell Isaac Promos your goal, quantity and timeline and we help build the order.",
       },
-      { property: "og:title", content: "Custom Products Without the Bulk-Order Headache" },
+      { property: "og:title", content: "Custom Products Without the Bulk Order Headache" },
       {
         property: "og:description",
         content:
@@ -146,15 +146,15 @@ function Hero() {
           <p className="eyebrow">Custom Merchandise • Bulk Orders • USA</p>
 
           <h1 className="mt-4 text-3xl leading-[1.03] sm:text-5xl lg:text-[4.1rem]">
-            Custom Products Without the Bulk-Order Headache.
+            Custom Products Without the Bulk Order Headache.
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg">
-            From branded apparel and drinkware to patches, workwear and promotional merchandise, Isaac Promos helps businesses turn an idea into a clear, customized bulk order.
+            From branded apparel and drinkware to patches, workwear and promotional merchandise, Isaac Promos helps businesses turn an idea into a clear custom order.
           </p>
 
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Tell us what you need, the quantity, your timeline and how you want it branded. We will help you land on the right product and the right customization approach.
+            Tell us what you need, how many you need, your timeline and the branding requirements. We will help you figure out the right product and the right way to customize it.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
@@ -194,27 +194,28 @@ function WhyWeDoIt() {
         <div className="min-w-0">
           <p className="eyebrow">Why we do it this way</p>
           <h2 className="mt-3 text-2xl sm:text-4xl">
-            We are building for long-term relationships.
+            We want clients to come back, not just place one order.
           </h2>
         </div>
 
         <div className="min-w-0 max-w-2xl">
           <p className="leading-relaxed text-muted-foreground">
-            We are building this company around long-term relationships, not one-off orders. Our goal is a wall of loyal customers, not a pile of profit.
+            That means doing good work, keeping pricing competitive, communicating clearly and making the next order easier than the first.
           </p>
 
           <p className="mt-6 font-display text-sm font-bold uppercase tracking-[0.1em]">
-            How we do it
+            How we work
           </p>
 
           <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-            <li>Delivering quality work, on time, every time</li>
-            <li>Keeping our profit margins as low as we reasonably can</li>
-            <li>Prioritizing long-term trust over short-term gain</li>
+            <li>Deliver quality we can stand behind</li>
+            <li>Keep timelines realistic and communicate clearly</li>
+            <li>Keep our margins as lean as we reasonably can</li>
+            <li>Focus on long-term relationships instead of squeezing the most profit from one order</li>
           </ul>
 
           <p className="mt-6 leading-relaxed text-muted-foreground">
-            At the end of the day, we are here to build a wall with customers, not with money.
+            We would rather build a strong base of repeat customers than chase the biggest margin on every job.
           </p>
         </div>
       </div>

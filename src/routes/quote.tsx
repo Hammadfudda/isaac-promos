@@ -20,7 +20,7 @@ export const Route = createFileRoute("/quote")({
 });
 
 type FormState = {
-  category: string;
+  categories: string[];
   productDetails: string;
   quantity: string;
   budget: string;
@@ -37,7 +37,7 @@ type FormState = {
 };
 
 const initialState: FormState = {
-  category: "",
+  categories: [],
   productDetails: "",
   quantity: "",
   budget: "",
@@ -60,11 +60,22 @@ function QuotePage() {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState<FormState>(initialState);
 
-  const set = (key: keyof FormState, value: string) =>
-    setForm((f) => ({ ...f, [key]: value }));
+  const set = (
+    key: Exclude<keyof FormState, "categories">,
+    value: string,
+  ) => setForm((f) => ({ ...f, [key]: value }));
+
+  const toggleCategory = (slug: string) => {
+    setForm((current) => ({
+      ...current,
+      categories: current.categories.includes(slug)
+        ? current.categories.filter((item) => item !== slug)
+        : [...current.categories, slug],
+    }));
+  };
 
   const canContinue = useMemo(() => {
-    if (step === 0) return form.category !== "";
+    if (step === 0) return form.categories.length > 0;
     if (step === 1) return form.quantity.trim() !== "";
     if (step === 2) return true;
     return form.name.trim() !== "" && form.email.trim() !== "";
@@ -149,18 +160,18 @@ function QuotePage() {
                   </span>
 
                   <p className="mb-4 text-sm text-muted-foreground">
-                    Choose one category. If your project includes several product types, list the others in Product Details or Notes.
+                    Select every category that applies to this project. If you are not sure about one of the products, add the details below.
                   </p>
 
                   <div className="grid gap-2 sm:grid-cols-2">
                     {categories.map((cat) => {
-                      const selected = form.category === cat.slug;
+                      const selected = form.categories.includes(cat.slug);
 
                       return (
                         <button
                           key={cat.slug}
                           type="button"
-                          onClick={() => set("category", cat.slug)}
+                          onClick={() => toggleCategory(cat.slug)}
                           className={cn(
                             "relative min-w-0 rounded-sm border p-4 text-left transition-colors",
                             selected

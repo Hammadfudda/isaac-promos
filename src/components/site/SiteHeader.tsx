@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 import { Action } from "./ui";
 import { cn } from "@/lib/utils";
 
@@ -27,13 +27,17 @@ const megaMenu: {
     slug: "drinkware",
     items: [
       { name: "Custom Bottles", slug: "custom-bottles" },
-      { name: "Tumblers", slug: "tumblers" },
+      { name: "Tumblers with Custom Logo", slug: "tumblers" },
     ],
   },
   {
     category: "Bags",
     slug: "bags",
-    items: [{ name: "Tote Bags", slug: "tote-bags" }],
+    items: [
+      { name: "Tote Bags", slug: "tote-bags" },
+      { name: "Woven Bags", slug: "woven-bags" },
+      { name: "Non-Woven Bags", slug: "non-woven-bags" },
+    ],
   },
   {
     category: "Promotional Items",
@@ -42,7 +46,10 @@ const megaMenu: {
       { name: "Pens", slug: "pens" },
       { name: "Keychains", slug: "keychains" },
       { name: "Custom Keychains", slug: "custom-keychains" },
+      { name: "Custom Lanyards", slug: "custom-lanyards" },
+      { name: "Custom Stress Balls", slug: "custom-stress-balls" },
       { name: "Custom Notebook", slug: "custom-notebook" },
+      { name: "Small Giveaway Items", slug: "small-giveaway-items" },
     ],
   },
   {
@@ -70,6 +77,15 @@ const megaMenu: {
     items: [
       { name: "Golf Towels", slug: "golf-towels" },
       { name: "Custom Towels", slug: "custom-towels" },
+    ],
+  },
+  {
+    category: "Garment Labels",
+    slug: "garment-labels",
+    items: [
+      { name: "Garment Labels", slug: "garment-labels" },
+      { name: "Neck Labels", slug: "neck-labels" },
+      { name: "Care Labels", slug: "care-labels" },
     ],
   },
   {
@@ -173,9 +189,17 @@ export function SiteHeader() {
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((v) => !v)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-border bg-background"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-foreground/25 bg-background text-foreground"
             >
-              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {mobileOpen ? (
+                <X className="h-5 w-5" aria-hidden="true" />
+              ) : (
+                <span className="hamburger-lines" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+              )}
             </button>
           </div>
         </div>

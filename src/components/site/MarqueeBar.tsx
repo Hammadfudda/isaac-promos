@@ -11,12 +11,15 @@ const defaultItems: MarqueeItem[] = [
   { label: "PREMIUM POLOS", to: "/products/$category", category: "apparel" },
   { label: "HOODIES", to: "/products/$category", category: "apparel" },
   { label: "CUSTOM BOTTLES", to: "/products/$category", category: "drinkware" },
-  { label: "TUMBLERS", to: "/products/$category", category: "drinkware" },
-  { label: "TOTE BAGS", to: "/products/$category", category: "bags" },
+  { label: "TUMBLERS WITH CUSTOM LOGO", to: "/products/$category", category: "drinkware" },
+  { label: "WOVEN BAGS", to: "/products/$category", category: "bags" },
+  { label: "NON-WOVEN BAGS", to: "/products/$category", category: "bags" },
+  { label: "CUSTOM LANYARDS", to: "/products/$category", category: "promotional-items" },
+  { label: "STRESS BALLS", to: "/products/$category", category: "promotional-items" },
+  { label: "CUSTOM NOTEBOOKS", to: "/products/$category", category: "promotional-items" },
   { label: "CUSTOM PATCHES", to: "/products/$category", category: "patches-badges" },
   { label: "WORKWEAR", to: "/products/$category", category: "workwear" },
-  { label: "GOLF TOWELS", to: "/products/$category", category: "towels" },
-  { label: "PROMOTIONAL ITEMS", to: "/products/$category", category: "promotional-items" },
+  { label: "GARMENT LABELS", to: "/products/$category", category: "garment-labels" },
 ];
 
 export function MarqueeBar({
