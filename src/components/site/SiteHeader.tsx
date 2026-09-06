@@ -164,7 +164,6 @@ export function SiteHeader() {
             <nav
               aria-label="Primary"
               className="hidden items-center gap-0.5 xl:flex"
-              onMouseLeave={() => setDesktopProductsOpen(false)}
             >
               <button
                 type="button"
@@ -234,7 +233,6 @@ export function SiteHeader() {
           <div
             className="absolute inset-x-0 top-full hidden max-h-[calc(100vh-72px)] overflow-y-auto border-b border-border bg-background shadow-[0_24px_48px_-32px_rgba(0,0,0,0.35)] xl:block"
             onMouseEnter={() => setDesktopProductsOpen(true)}
-            onMouseLeave={() => setDesktopProductsOpen(false)}
           >
             <div className="container-x grid grid-cols-4 gap-x-8 gap-y-10 py-10">
               {megaMenu.map((group) => (
@@ -274,7 +272,7 @@ export function SiteHeader() {
                 <p className="text-sm text-muted-foreground">
                   Not sure what to order? Tell us what you are trying to accomplish and we will help narrow it down.
                 </p>
-                <Action to="/contact" variant="dark">
+                <Action to="/quote" variant="dark">
                   Get Product Recommendations
                 </Action>
               </div>
