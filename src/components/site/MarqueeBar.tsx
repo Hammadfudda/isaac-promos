@@ -22,7 +22,7 @@ export function MarqueeBar({ dark = false }: { dark?: boolean }) {
   return (
     <div
       className={dark ? "marquee-shell marquee-shell-dark" : "marquee-shell"}
-      aria-label="Popular Isaac Promos product categories"
+      aria-label="Popular Izaac Promos product categories"
     >
       <div className="marquee-track">
         {doubled.map(([label, category], index) => (

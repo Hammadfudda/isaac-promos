@@ -641,6 +641,26 @@ export const solutions = [
     cta: "Spec a Patch Order",
   },
   {
+    slug: "employee-welcome-kits",
+    title: "Employee Welcome Kits",
+    outcome:
+      "Branded apparel, drinkware, bags and small merchandise combined into a practical onboarding kit for new hires.",
+    needs: ["Consistent branding", "Mixed product types", "Repeat onboarding orders"],
+    categories: ["Apparel", "Drinkware", "Bags", "Promotional Items"],
+    methods: ["Embroidery", "Screen Printing", "Laser Engraving", "Pad Printing"],
+    cta: "Build a Welcome Kit",
+  },
+  {
+    slug: "branded-drinkware-programs",
+    title: "Branded Drinkware Programs",
+    outcome:
+      "Custom bottles and tumblers selected for staff, events, client gifts and repeat company programs.",
+    needs: ["Logo placement", "Finish selection", "Quantity and gifting level"],
+    categories: ["Drinkware"],
+    methods: ["Laser Engraving", "Pad Printing"],
+    cta: "Plan a Drinkware Order",
+  },
+  {
     slug: "distributor-orders",
     title: "Distributor / Outsourced Orders",
     outcome:

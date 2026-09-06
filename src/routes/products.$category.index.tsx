@@ -30,14 +30,14 @@ export const Route = createFileRoute("/products/$category/")({
     if (!loaderData) {
       return {
         meta: [
-          { title: "Category not found | Isaac Promos" },
+          { title: "Category not found | Izaac Promos" },
           { name: "robots", content: "noindex" },
         ],
       };
     }
 
     const { category } = loaderData;
-    const title = `Custom ${category.name} in Bulk | Isaac Promos`;
+    const title = `Custom ${category.name} in Bulk | Izaac Promos`;
 
     return {
       meta: [

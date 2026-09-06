@@ -26,17 +26,17 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Isaac Promos | Custom Bulk Merchandise & Promotional Products" },
+      { title: "Izaac Promos | Custom Bulk Merchandise & Promotional Products" },
       {
         name: "description",
         content:
-          "Custom apparel, drinkware, patches, workwear and promotional products in bulk. Tell Isaac Promos your goal, quantity and timeline and we help build the order.",
+          "Custom apparel, drinkware, patches, workwear and promotional products in bulk. Tell Izaac Promos your goal, quantity and timeline and we help build the order.",
       },
       { property: "og:title", content: "Custom Products Without the Bulk Order Headache" },
       {
         property: "og:description",
         content:
-          "Isaac Promos helps US businesses source, customize and order custom merchandise at scale.",
+          "Izaac Promos helps US businesses source, customize and order custom merchandise at scale.",
       },
       { property: "og:url", content: "/" },
     ],
@@ -150,7 +150,7 @@ function Hero() {
           </h1>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg">
-            Apparel, drinkware, bags, patches, workwear, promotional items, whatever you're branding, Isaac Promos helps you turn the idea into an actual order.
+            Apparel, drinkware, bags, patches, workwear, promotional items, whatever you're branding, Izaac Promos helps you turn the idea into an actual order.
           </p>
 
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -654,7 +654,7 @@ function Distributor() {
             Need a dependable partner behind the scenes?
           </h2>
           <p className="mt-5 max-w-2xl leading-relaxed text-ink-foreground/70">
-            If you have the customer but need help sourcing or producing the merchandise, talk to us about your project. Isaac Promos can evaluate custom and bulk-order opportunities based on your requirements.
+            If you have the customer but need help sourcing or producing the merchandise, talk to us about your project. Izaac Promos can evaluate custom and bulk-order opportunities based on your requirements.
           </p>
         </div>
 

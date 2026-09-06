@@ -4,11 +4,11 @@ import { CTABlock, PageHeader, Section, SectionHead } from "@/components/site/ui
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Isaac Promos | Custom Merchandise Partner" },
+      { title: "About Izaac Promos | Custom Merchandise Partner" },
       {
         name: "description",
         content:
-          "Isaac Promos helps businesses, schools, contractors, events, distributors and organizations source and customize bulk merchandise with practical product guidance.",
+          "Izaac Promos helps businesses, schools, contractors, events, distributors and organizations source and customize bulk merchandise with practical product guidance.",
       },
     ],
     links: [{ rel: "canonical", href: "/about" }],
@@ -54,9 +54,9 @@ function AboutPage() {
     <>
       <PageHeader
         crumbs={[{ label: "Home", to: "/" }, { label: "About" }]}
-        eyebrow="About Isaac Promos"
+        eyebrow="About Izaac Promos"
         title="A custom merchandise partner that helps you figure out the order."
-        lead="Isaac Promos exists to make custom merchandise ordering easier for organizations that need more than a product listing."
+        lead="Izaac Promos exists to make custom merchandise ordering easier for organizations that need more than a product listing."
       />
 
       <Section>
@@ -66,7 +66,7 @@ function AboutPage() {
               Many buyers know what they want to accomplish, but they do not always know which product, material, branding technique or quantity makes the most sense.
             </p>
             <p>
-              That is the gap Isaac Promos is built to help close. You can come to us with a logo, a deadline, a rough budget, a reference image, a product name or simply an idea. We help turn that into a clearer bulk order.
+              That is the gap Izaac Promos is built to help close. You can come to us with a logo, a deadline, a rough budget, a reference image, a product name or simply an idea. We help turn that into a clearer bulk order.
             </p>
             <p>
               We work with businesses, schools, contractors, event organizers, teams, organizations, agencies and distributors across the United States. The goal is not to make you solve the merchandise problem before contacting us. The goal is to help you solve it with us.

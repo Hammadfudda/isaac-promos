@@ -5,7 +5,7 @@ import { faqGroups } from "@/data/catalog";
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "Custom Merchandise FAQ | Isaac Promos" },
+      { title: "Custom Merchandise FAQ | Izaac Promos" },
       {
         name: "description",
         content:

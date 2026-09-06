@@ -5,7 +5,7 @@ import { decorationMethods } from "@/data/catalog";
 export const Route = createFileRoute("/decoration-methods")({
   head: () => ({
     meta: [
-      { title: "Decoration Methods for Custom Merchandise | Isaac Promos" },
+      { title: "Decoration Methods for Custom Merchandise | Izaac Promos" },
       {
         name: "description",
         content:

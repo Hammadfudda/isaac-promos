@@ -7,11 +7,11 @@ import { categories, decorationLabel, products } from "@/data/catalog";
 export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
-      { title: "Custom Products & Bulk Merchandise | Isaac Promos" },
+      { title: "Custom Products & Bulk Merchandise | Izaac Promos" },
       {
         name: "description",
         content:
-          "Browse custom apparel, drinkware, bags, patches, workwear, towels and promotional items available for bulk orders through Isaac Promos.",
+          "Browse custom apparel, drinkware, bags, patches, workwear, towels and promotional items available for bulk orders through Izaac Promos.",
       },
     ],
     links: [{ rel: "canonical", href: "/products" }],

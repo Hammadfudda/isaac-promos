@@ -5,11 +5,11 @@ import { Action, ButtonAction, PageHeader, Section } from "@/components/site/ui"
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Isaac Promos | Bulk Merchandise Help" },
+      { title: "Contact Izaac Promos | Bulk Merchandise Help" },
       {
         name: "description",
         content:
-          "Talk to Isaac Promos about custom products, bulk merchandise, product sourcing, branding questions and outsourced orders.",
+          "Talk to Izaac Promos about custom products, bulk merchandise, product sourcing, branding questions and outsourced orders.",
       },
     ],
   }),

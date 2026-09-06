@@ -5,11 +5,11 @@ import { processSteps } from "@/data/catalog";
 export const Route = createFileRoute("/how-it-works")({
   head: () => ({
     meta: [
-      { title: "How Custom Bulk Orders Work | Isaac Promos" },
+      { title: "How Custom Bulk Orders Work | Izaac Promos" },
       {
         name: "description",
         content:
-          "See how Isaac Promos helps move a custom merchandise project from an idea to product selection, quote review, production and completion.",
+          "See how Izaac Promos helps move a custom merchandise project from an idea to product selection, quote review, production and completion.",
       },
     ],
   }),

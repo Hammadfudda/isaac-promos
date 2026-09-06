@@ -143,7 +143,7 @@ export function SiteHeader() {
             <Link
               to="/"
               className="flex min-w-0 items-center gap-2.5"
-              aria-label="Isaac Promos home"
+              aria-label="Izaac Promos home"
               onClick={() => {
                 closeMobile();
                 setDesktopProductsOpen(false);
@@ -151,13 +151,13 @@ export function SiteHeader() {
             >
               <img
                 src="/isaac-promos-logo.png"
-                alt="Isaac Promos"
+                alt="Izaac Promos"
                 width={52}
                 height={52}
                 className="h-11 w-11 shrink-0 object-contain sm:h-12 sm:w-12"
               />
               <span className="hidden truncate font-display text-base font-bold leading-none tracking-tight sm:block sm:text-lg">
-                ISAAC<span className="text-primary"> PROMOS</span>
+                IZAAC<span className="text-primary"> PROMOS</span>
               </span>
             </Link>
 
@@ -272,7 +272,7 @@ export function SiteHeader() {
                 <p className="text-sm text-muted-foreground">
                   Not sure what to order? Tell us what you are trying to accomplish and we will help narrow it down.
                 </p>
-                <Action to="/quote" variant="dark">
+                <Action to="/contact" variant="dark">
                   Get Product Recommendations
                 </Action>
               </div>
@@ -295,17 +295,17 @@ export function SiteHeader() {
                 to="/"
                 onClick={closeMobile}
                 className="flex min-w-0 items-center gap-2.5"
-                aria-label="Isaac Promos home"
+                aria-label="Izaac Promos home"
               >
                 <img
                   src="/isaac-promos-logo.png"
-                  alt="Isaac Promos"
+                  alt="Izaac Promos"
                   width={48}
                   height={48}
                   className="h-10 w-10 shrink-0 object-contain"
                 />
                 <span className="font-display text-base font-bold tracking-tight">
-                  ISAAC<span className="text-primary"> PROMOS</span>
+                  IZAAC<span className="text-primary"> PROMOS</span>
                 </span>
               </Link>
 

@@ -5,7 +5,7 @@ import { industries, solutions } from "@/data/catalog";
 export const Route = createFileRoute("/solutions")({
   head: () => ({
     meta: [
-      { title: "Bulk Merchandise Solutions by Use Case | Isaac Promos" },
+      { title: "Bulk Merchandise Solutions by Use Case | Izaac Promos" },
       {
         name: "description",
         content:
