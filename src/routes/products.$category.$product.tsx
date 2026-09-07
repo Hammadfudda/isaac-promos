@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { CheckCircle2, Loader2, Upload } from "lucide-react";
 import apparelImg from "@/assets/cat-apparel.png";
 import drinkwareImg from "@/assets/cat-drinkware.png";
 import patchesImg from "@/assets/cat-patches.jpg";
@@ -51,6 +52,11 @@ import {
   CTABlock,
   Tag,
 } from "@/components/site/ui";
+import {
+  sendEmailJs,
+  uploadToCloudinary,
+  validateUpload,
+} from "@/lib/form-delivery";
 import {
   decorationLabel,
   findCategory,
@@ -243,7 +249,7 @@ function ProductPage() {
               </p>
             </div>
 
-            <QuickQuoteForm productName={product.name} />
+            <QuickQuoteForm productName={product.name} categoryName={category.name} />
 
             <p className="mt-4 text-xs text-muted-foreground">
               Availability, colors and pricing may vary based on quantity and project requirements.
@@ -314,39 +320,209 @@ function ProductPage() {
   );
 }
 
-function QuickQuoteForm({ productName }: { productName: string }) {
+function QuickQuoteForm({
+  productName,
+  categoryName,
+}: {
+  productName: string;
+  categoryName: string;
+}) {
+  const [quantity, setQuantity] = useState("");
+  const [deadline, setDeadline] = useState("");
+  const [notes, setNotes] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [company, setCompany] = useState("");
+  const [artwork, setArtwork] = useState<File | null>(null);
+  const [fileError, setFileError] = useState("");
+  const [submitError, setSubmitError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  async function submitQuickQuote() {
+    setSubmitError("");
+    setSubmitting(true);
+
+    try {
+      const artworkUrl = artwork
+        ? await uploadToCloudinary(artwork)
+        : "No artwork uploaded";
+
+      await sendEmailJs(import.meta.env.VITE_EMAILJS_TEMPLATE_ID_QUOTE, {
+        customer_name: name.trim(),
+        customer_email: email.trim(),
+        customer_phone: phone.trim() || "Not provided",
+        company_name: company.trim() || "Not provided",
+        product_category: categoryName,
+        product_name: productName,
+        quantity: quantity.trim() || "Not provided",
+        deadline: deadline || "Not provided",
+        decoration_method: "Not specified",
+        artwork_url: artworkUrl,
+        message: notes.trim() || "No additional notes",
+      });
+
+      setSubmitted(true);
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : "We could not send your quote request. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  if (submitted) {
+    return (
+      <div className="mt-8 border border-border bg-surface p-5 text-center sm:p-6">
+        <CheckCircle2 className="mx-auto h-10 w-10 text-primary" />
+        <h2 className="mt-4 text-lg">Quote request sent</h2>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          Your request for {productName} has been sent to the Izaac Promos team.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <form
       className="mt-8 border border-border bg-surface p-5 sm:p-6"
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSubmitted(true);
+      onSubmit={async (event) => {
+        event.preventDefault();
+        await submitQuickQuote();
       }}
     >
       <h2 className="text-lg">Ask about this product</h2>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Product selected: <span className="font-semibold text-foreground">{productName}</span>
+      </p>
 
       <div className="mt-5 grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className="mb-2 block text-xs font-bold uppercase tracking-[0.1em]">
+            Name
+          </span>
+          <input
+            required
+            className="field"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Your name"
+          />
+        </label>
+
+        <label className="block">
+          <span className="mb-2 block text-xs font-bold uppercase tracking-[0.1em]">
+            Email
+          </span>
+          <input
+            required
+            type="email"
+            className="field"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="you@company.com"
+          />
+        </label>
+
+        <label className="block">
+          <span className="mb-2 block text-xs font-bold uppercase tracking-[0.1em]">
+            Phone, optional
+          </span>
+          <input
+            className="field"
+            value={phone}
+            onChange={(event) => setPhone(event.target.value)}
+            placeholder="(555) 555-5555"
+          />
+        </label>
+
+        <label className="block">
+          <span className="mb-2 block text-xs font-bold uppercase tracking-[0.1em]">
+            Company, optional
+          </span>
+          <input
+            className="field"
+            value={company}
+            onChange={(event) => setCompany(event.target.value)}
+            placeholder="Company / Organization"
+          />
+        </label>
+
+        <label className="block">
+          <span className="mb-2 block text-xs font-bold uppercase tracking-[0.1em]">
             Order quantity
           </span>
-          <input className="field" name="quantity" placeholder="Example: 150" />
+          <input
+            className="field"
+            value={quantity}
+            onChange={(event) => setQuantity(event.target.value)}
+            placeholder="Example: 150"
+          />
         </label>
 
         <label className="block">
           <span className="mb-2 block text-xs font-bold uppercase tracking-[0.1em]">
             Desired deadline
           </span>
-          <input className="field" name="deadline" type="date" />
+          <input
+            className="field"
+            value={deadline}
+            onChange={(event) => setDeadline(event.target.value)}
+            type="date"
+          />
         </label>
 
         <label className="block sm:col-span-2">
           <span className="mb-2 block text-xs font-bold uppercase tracking-[0.1em]">
-            Logo / artwork
+            Logo / artwork, optional
           </span>
-          <input className="field" name="artwork" type="file" />
+          <div className="rounded-sm border border-dashed border-border bg-background p-4">
+            <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
+              <Upload className="h-5 w-5 shrink-0 text-primary" />
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".png,.jpg,.jpeg,.webp,.pdf,.svg,.eps,.ai"
+                onChange={(event) => {
+                  const nextFile = event.target.files?.[0] ?? null;
+                  const error = validateUpload(nextFile);
+                  setFileError(error ?? "");
+                  setArtwork(error ? null : nextFile);
+                }}
+                className="block min-w-0 w-full text-sm text-muted-foreground file:mr-3 file:border-0 file:bg-transparent file:font-semibold file:text-foreground"
+              />
+            </div>
+
+            {artwork && !fileError ? (
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                <span className="rounded-sm bg-primary/10 px-2.5 py-1.5 font-semibold text-primary">
+                  {artwork.name}
+                </span>
+                <button
+                  type="button"
+                  className="font-semibold text-muted-foreground underline underline-offset-4 hover:text-foreground"
+                  onClick={() => {
+                    setArtwork(null);
+                    setFileError("");
+                    if (fileInputRef.current) fileInputRef.current.value = "";
+                  }}
+                >
+                  Remove
+                </button>
+              </div>
+            ) : null}
+
+            {fileError ? (
+              <p className="mt-3 text-xs font-medium text-destructive">
+                {fileError}
+              </p>
+            ) : null}
+          </div>
         </label>
 
         <label className="block sm:col-span-2">
@@ -355,26 +531,44 @@ function QuickQuoteForm({ productName }: { productName: string }) {
           </span>
           <textarea
             className="field min-h-24"
-            name="notes"
+            value={notes}
+            onChange={(event) => setNotes(event.target.value)}
             placeholder={`Anything specific about your ${productName.toLowerCase()} order`}
           />
         </label>
       </div>
 
+      {submitError ? (
+        <div
+          className="mt-5 rounded-sm border border-destructive/30 bg-destructive/5 p-4 text-sm text-destructive"
+          role="alert"
+        >
+          {submitError}
+        </div>
+      ) : null}
+
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-        <ButtonAction type="submit" size="lg" className="w-full sm:w-auto">
-          Request Quote
+        <ButtonAction
+          type="submit"
+          size="lg"
+          className="w-full sm:w-auto"
+          disabled={submitting || Boolean(fileError) || !name.trim() || !email.trim()}
+        >
+          {submitting ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Sending...
+            </>
+          ) : (
+            "Request Quote"
+          )}
         </ButtonAction>
+
         <Action to="/quote" variant="outline" size="lg" className="w-full sm:w-auto">
           Use the Full Quote Form
         </Action>
       </div>
-
-      {submitted ? (
-        <p className="mt-4 text-sm text-primary">
-          Request details captured. Use the full quote form so we also have your contact information.
-        </p>
-      ) : null}
     </form>
   );
 }
+
